@@ -1,0 +1,12 @@
+__author__ = 'seb'
+
+from math import sqrt
+
+class graphene_generation(object):
+    def __init__(self, n=50, dim_x=200, dim_y=200):
+        self.atom=n
+        self.xmax=dim_x
+        self.ymax=dim_y
+        self.lattice=[]
+        self.motif=[]
+        self.lattice_vertor =

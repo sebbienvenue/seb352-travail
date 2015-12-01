@@ -1,0 +1,46 @@
+__author__ = 'seb'
+
+from op_vector import *
+
+class Gen_graphene(Vectors_operations):
+    def __init__(self):
+        self.lattice_vector =[(3,0), (0, sqrt(3))]
+        self.motif = []
+        self.lattice = []
+
+    def gen_graphene(self):
+        tri = (0.5, sqrt(3)/2)
+        self.motif = [(0,0), tri, (tri[0]+1, tri[0]), (2,0)]
+        chaine = []
+        for i in list(range(-3, 4)):
+            for j in list(range(-3, 4)):
+                chaine.append(self.somme_vector(self.mult_const(self.lattice_vector[0], i), self.mult_const(self.lattice_vector[1], j)))
+        for i in list(range(0, len(chaine))):
+            for j in [0, 1, 2, 3 ]:
+                self.lattice.append(self.somme_vector(chaine[i], self.motif[j]))
+
+    def store(self):
+        file_txt= open("coord.txt", 'w')
+        file_dat= open("coord.dat", 'w')
+        for i in list(range(0, len(self.lattice))):
+            file_txt.write("{0} {1}\n".format(self.lattice[0], self.lattice[1]))
+            file_dat.write("{0} {1}\n".format(self.lattice[0], self.lattice[1]))
+        file_txt.close()
+        file_dat.close()
+
+    def affiche(self):
+        print(list(range(0, 4)))
+        print(list(range(-3, 4)))
+        print()
+        print(len(self.lattice))
+        print()
+
+
+
+
+if __name__ == '__main__':
+
+    V=Gen_graphene()
+    V.gen_graphene()
+    V.affiche()
+
