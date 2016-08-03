@@ -1,0 +1,38 @@
+digraph G {
+    N944 -> N747 [label="structure"];
+    N747 -> N2902 [label="output_parameters"];
+    N747 -> N2877 [label="output_structure"];
+    N747 -> N2878 [label="output_kpoints"];
+    N747 -> N3832 [label="retrieved"];
+    N747 -> N2864 [label="output_trajectory_array"];
+    N747 -> N105 [label="remote_folder"];
+    N2877 -> N2265 [label="structure"];
+    N2265 -> N319 [label="output_kpoints"];
+    N2265 -> N2270 [label="remote_folder"];
+    N2265 -> N325 [label="output_trajectory_array"];
+    N2265 -> N318 [label="output_structure"];
+    N2265 -> N324 [label="output_parameters"];
+    N2265 -> N321 [label="retrieved"];
+    N2864 [shape=ellipse,label="ArrayData (2864)"];
+    N324 [shape=ellipse,label="ParameterData (324)"];
+    N325 [shape=ellipse,label="ArrayData (325)"];
+    N321 [shape=ellipse,label="FolderData (321)"];
+    N105 [shape=ellipse,label="RemoteData (105)"];
+    N747 [shape=polygon,sides=4,label="PwCalculation (747)
+vc-relax FINISHED"];
+    N944 [shape=ellipse,label="StructureData (944)
+CoLaO3",color="lightblue",style="filled"];
+    N318 [shape=ellipse,label="StructureData (318)
+CoLaO3"];
+    N2270 [shape=ellipse,label="RemoteData (2270)"];
+    N2902 [shape=ellipse,label="ParameterData (2902)"];
+    N3832 [shape=ellipse,label="FolderData (3832)"];
+    N2265 [shape=polygon,sides=4,label="PwCalculation (2265)
+vc-relax FINISHED"];
+    N2877 [shape=ellipse,label="StructureData (2877)
+CoLaO3"];
+    N2878 [shape=ellipse,label="KpointsData (2878)
+(20 kpts)"];
+    N319 [shape=ellipse,label="KpointsData (319)
+(20 kpts)"];
+}
