@@ -1,0 +1,42 @@
+digraph G {
+    N2404 -> N57 [label="output_trajectory_array"];
+    N3539 -> N2404 [label="kpoints"];
+    N1088 -> N2404 [label="code"];
+    N559 -> N2404 [label="pseudo_Pb"];
+    N2406 -> N2404 [label="settings"];
+    N3873 -> N2404 [label="pseudo_Sn"];
+    N2405 -> N2404 [label="parameters"];
+    N4224 -> N2404 [label="pseudo_O"];
+    N1776 -> N2404 [label="structure"];
+    N4285 -> N1776 [label="output_structure"];
+    N3112 -> N4285 [label="kpoints"];
+    N1088 -> N4285 [label="code"];
+    N559 -> N4285 [label="pseudo_Pb"];
+    N3873 -> N4285 [label="pseudo_Sn"];
+    N3922 -> N4285 [label="structure"];
+    N3455 -> N4285 [label="parameters"];
+    N3456 -> N4285 [label="settings"];
+    N4224 -> N4285 [label="pseudo_O"];
+    N1088 [shape=diamond,label="Code (1088)
+'pw-SVN-piz-daint'"];
+    N3873 [shape=ellipse,label="UpfData (3873)"];
+    N2404 [shape=polygon,sides=4,label="PwCalculation (2404)
+vc-relax FINISHED"];
+    N2405 [shape=ellipse,label="ParameterData (2405)"];
+    N2406 [shape=ellipse,label="ParameterData (2406)"];
+    N3112 [shape=ellipse,label="KpointsData (3112)
+6x6x6 (+0.0,0.0,0.0)"];
+    N4224 [shape=ellipse,label="UpfData (4224)"];
+    N559 [shape=ellipse,label="UpfData (559)"];
+    N1776 [shape=ellipse,label="StructureData (1776)
+O3PbSn"];
+    N3922 [shape=ellipse,label="StructureData (3922)
+O3PbSn"];
+    N3539 [shape=ellipse,label="KpointsData (3539)
+6x6x6 (+0.0,0.0,0.0)"];
+    N57 [shape=ellipse,label="ArrayData (57)",color="lightblue",style="filled"];
+    N4285 [shape=polygon,sides=4,label="PwCalculation (4285)
+vc-relax FINISHED"];
+    N3456 [shape=ellipse,label="ParameterData (3456)"];
+    N3455 [shape=ellipse,label="ParameterData (3455)"];
+}
