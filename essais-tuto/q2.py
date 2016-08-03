@@ -19,14 +19,15 @@ ParameterData = DataFactory("parameter")
 #	{"id":{"==":285}}, {"id":{"==":3512}} ] })
 
 
+
 #	Pour etablir des liens entre etats
-#qb.append(RemoteData, tag="remote", project=["*"])
-#qb.append(Group, group_of="remote")
+qb.append(RemoteData, tag="remote", project=["*"])
+qb.append(Group, group_of="remote")
 
 #qb.append(ParameterData, project=["attributes.energy_smearing"]) #, filters=)
-qb.append(ParameterData, project=["attributes.element"])
+#qb.append(ParameterData, project=["attributes.element"])
 
-for i in qb.iterall():
-	print i
-
+#for i in qb.iterall():
+#	print i
+print qb.all()
 
