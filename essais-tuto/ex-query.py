@@ -11,7 +11,7 @@ qb.append(RemoteData, tag="remote", project=["*"])
 qb.append(Group,group_of="remote",
 	filters={"name":{"in": ["tutorial_pbesol", "tutorial_lda", "tutorial_pbe"]   }})
 
-qb.append(ParameterData, project=["attributes.energy_smearing"],
+qb.append(ParameterData, project=["attributes.energy_smearing"]
 
 
 #qb.append(ParameterData, project=["attributes.energy_smearing"],

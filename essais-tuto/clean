@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+#clear the submit_test/ directory
+rm -r submit_test/

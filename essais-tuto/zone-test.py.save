@@ -1,0 +1,14 @@
+from aiida.orm.querybuilder import QueryBuilder
+from aiida.orm.data.remote import RemoteData
+from datetime import datetime
+path="/home/aiida/Documents/seb352-travail/essais-tuto/"
+
+StructureData=DataFactory("structure")
+ParameterData=DataFactory("parameter")
+
+qb1=QueryBuilder()
+
+qb1.append(StructureData, project=["ctime"] , filters={"ctime":{">=":datetime(2015, 1,1)}})
+
+for i in qb1.iterall():
+	print i
