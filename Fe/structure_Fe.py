@@ -301,7 +301,7 @@ if __name__ == "__main__":
     #                 volume_tolerance=Float(0.1))
 
     run(EquationOfStates, element=Str("Fe"),
-        code=Str('pw@localhost'), pseudo_family=Str('atomistic'))
+        code=Str('pw-deneb@sebbienvenue'), pseudo_family=Str('atomistic'))
 
     print "Workflow results:"
     print wf_results
