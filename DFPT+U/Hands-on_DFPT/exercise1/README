@@ -1,0 +1,13 @@
+Exercise 1: Calculation of phonons of silicon at the Gamma point.
+
+ Step 1. Run the SCF ground-state calculation
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/pw.x < Si.scf.in > Si.scf.out
+
+ Step 2. Run the phonon calculation
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/ph.x < Si.ph.in > Si.ph.out
+
+ Step 3. Impose the acoustic sum rule at the Gamma point
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/dynmat.x < Si.dynmat.in > Si.dynmat.out

@@ -1,0 +1,13 @@
+Exercise 2: Calculation of the phonon dispersion in polar semiconductor AlAs.
+
+ Step 1. Run the SCF ground-state calculation
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/pw.x < AlAs.scf.in > AlAs.scf.out
+
+ Step 2. Run the phonon calculation at Gamma
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/ph.x < AlAs.ph.in > AlAs.ph.out
+
+ Step 3. Impose the acoustic sum rule at the Gamma point and add the non-analitic LO-TO splitting
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/dynmat.x < AlAs.dynmat.in > AlAs.dynmat.out

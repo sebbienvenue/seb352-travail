@@ -1,0 +1,25 @@
+Exercise 2: Calculation of the phonon dispersion of silicon.
+
+ Step 1. Run the SCF ground-state calculation
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/pw.x < Si.scf.in > Si.scf.out
+
+ Step 2. Run the phonon calculation on a uniform grid of q-points
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/ph.x < Si.ph.in > Si.ph.out
+
+ Step 3. Fourrier transform the Interatomic Force Constants from a uniform grid of q-points to real space: C(q) => C(R)
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/q2r.x < Si.q2r.in > Si.q2r.out
+
+ Step 4. Calculate frequencies omega(q') at generic q' points using Interatomic Force Constants C(R)
+
+    mpirun -np 2 /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/matdyn.x < Si.matdyn.in > Si.matdyn.out
+
+ Step 5. Plot the phonon dispersion of silicon 
+
+    /scratch/itimrov/temp_13_QE_school_v.5.2.0/espresso-5.2.0/bin/plotband.x < Si.plotband.in > Si.plotband.out
+
+    gnuplot -> load 'plot_dispersion.gnu'
+
+    evince phonon_dispersion.eps 

@@ -1,0 +1,5 @@
+ &input
+   fildyn='AlAs.dyn', 
+   zasr='simple', 
+   flfrc='AlAs444.fc'
+ /
