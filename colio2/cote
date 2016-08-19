@@ -1,0 +1,23 @@
+BIN_LIST="ph.x"
+PH_COMMAND="srun $BIN_DIR/ph.x -nk 16"
+
+
+# Phonon calculation at Gamma
+cat > LiCoO2.ph.in << EOF
+phonons of LiCoO2
+ &inputph
+  prefix = 'LiCoO2',
+  outdir='$TMP_DIR/',
+  tr2_ph = 1.0d-14,
+  amass(1) = 58.933194,
+  amass(2) = 15.999,
+  amass(3) =  6.94,
+  epsil = .true.
+  fildyn='LiCoO2.dyn1',
+ /
+0.000000000000000   0.000000000000000   0.000000000000000
+EOF
+
+
+
+$PH_COMMAND < ./inputs/LiCoO2.ph.in > ./outputs/LiCoO2.ph.out
