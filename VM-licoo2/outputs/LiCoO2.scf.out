@@ -1,5 +1,5 @@
 
-     Program PWSCF v.5.0.2 (svn rev. 9392) starts on 29Aug2016 at  9:49:17 
+     Program PWSCF v.5.0.2 (svn rev. 9392) starts on 29Aug2016 at 10:10:26 
 
      This program is part of the open-source Quantum ESPRESSO suite
      for quantum simulation of materials; please cite
@@ -8,8 +8,8 @@
      in publications or presentations arising from this work. More details at
      http://www.quantum-espresso.org/quote.php
 
-     Parallel version (MPI), running on     7 processors
-     R & G space division:  proc/nbgrp/npool/nimage =       7
+     Parallel version (MPI), running on     4 processors
+     R & G space division:  proc/nbgrp/npool/nimage =       4
 
      Current dimensions of program PWSCF are:
      Max number of different atomic species (ntypx) = 10
@@ -25,8 +25,8 @@
      Parallelization info
      --------------------
      sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
-     Min         222      89     28                11621     2919     518
-     Max         223      90     29                11625     2939     523
+     Min         388     156     49                20337     5119     907
+     Max         389     157     50                20343     5133     911
      Sum        1555     625    199                81361    20507    3639
  
 
@@ -558,17 +558,17 @@ A      1.00
      Smooth grid:    20507 G-vectors     FFT dimensions: (  32,  32,  54)
 
      Largest allocated arrays     est. size (Mb)     dimensions
-        Kohn-Sham Wavefunctions         0.09 Mb     (    383,   16)
-        Atomic wavefunctions            0.15 Mb     (    383,   26)
-        NL pseudopotentials             0.25 Mb     (    383,   43)
-        Each V/rho on FFT grid          0.46 Mb     (  29952)
-        Each G-vector array             0.09 Mb     (  11621)
-        G-vector shells                 0.08 Mb     (  10809)
+        Kohn-Sham Wavefunctions         0.16 Mb     (    653,   16)
+        Atomic wavefunctions            0.26 Mb     (    653,   26)
+        NL pseudopotentials             0.43 Mb     (    653,   43)
+        Each V/rho on FFT grid          0.81 Mb     (  52992)
+        Each G-vector array             0.16 Mb     (  20343)
+        G-vector shells                 0.15 Mb     (  19749)
      Largest temporary arrays     est. size (Mb)     dimensions
-        Auxiliary wavefunctions         0.37 Mb     (    383,   64)
+        Auxiliary wavefunctions         0.64 Mb     (    653,   64)
         Each subspace H/S matrix        0.06 Mb     (  64,  64)
         Each <psi_i|beta_j> matrix      0.01 Mb     (     43,   16)
-        Arrays for rho mixing           3.66 Mb     (  29952,   8)
+        Arrays for rho mixing           6.47 Mb     (  52992,   8)
 
      Check: negative/imaginary core charge=   -0.000011    0.000000
 
@@ -604,9 +604,9 @@ N of occupied +U levels =   7.0000000
  Atomic wfc used for LDA+U Projector are NOT orthogonalized
      Starting wfc are   26 randomized atomic wfcs
 
-     total cpu time spent up to now is        6.2 secs
+     total cpu time spent up to now is        8.5 secs
 
-     per-process dynamical memory:    19.1 Mb
+     per-process dynamical memory:    22.8 Mb
 
      Self-consistent Calculation
 
@@ -617,66 +617,66 @@ N of occupied +U levels =   7.0000000
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   4.89556
+atom    1   Tr[ns(na)] =   4.89733
     eigenvalues: 
-  0.236  0.237  0.619  0.676  0.680
+  0.236  0.237  0.619  0.675  0.681
     eigenvectors:
-  0.000  0.000  1.000  0.000  0.000
-  0.066  0.552  0.000  0.142  0.240
-  0.555  0.065  0.000  0.237  0.142
-  0.339  0.041  0.000  0.388  0.233
-  0.041  0.342  0.000  0.233  0.385
+  0.000  0.000  0.999  0.000  0.001
+  0.008  0.610  0.000  0.087  0.295
+  0.614  0.008  0.000  0.293  0.086
+  0.374  0.005  0.000  0.478  0.143
+  0.005  0.377  0.000  0.142  0.476
     occupations:
-  0.619  0.001  0.000  0.001  0.001
-  0.001  0.406 -0.001  0.001 -0.215
-  0.000 -0.001  0.404 -0.214  0.001
-  0.001  0.001 -0.214  0.510 -0.001
-  0.001 -0.215  0.001 -0.001  0.510
-N of occupied +U levels =   4.8955599
+  0.619 -0.001  0.002 -0.000  0.001
+ -0.001  0.406 -0.001  0.002 -0.215
+  0.002 -0.001  0.403 -0.214  0.000
+ -0.000  0.002 -0.214  0.510 -0.002
+  0.001 -0.215  0.000 -0.002  0.511
+N of occupied +U levels =   4.8973254
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.6784
+Hubbard energy    0.6782
  -------
 
-     total cpu time spent up to now is       13.9 secs
+     total cpu time spent up to now is       18.3 secs
 
-     total energy              =    -369.47129637 Ry
-     Harris-Foulkes estimate   =    -380.82941041 Ry
-     estimated scf accuracy    <      13.50727318 Ry
+     total energy              =    -369.47888051 Ry
+     Harris-Foulkes estimate   =    -380.82937824 Ry
+     estimated scf accuracy    <      13.49844883 Ry
 
      iteration #  2     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  1.00E-02,  avg # of iterations =  4.0
+     ethr =  1.00E-02,  avg # of iterations =  4.1
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   9.51483
+atom    1   Tr[ns(na)] =   9.51507
     eigenvalues: 
   0.943  0.949  0.949  0.959  0.959
     eigenvectors:
   1.000  0.000  0.000  0.000  0.000
-  0.000  0.360  0.509  0.064  0.068
-  0.000  0.506  0.359  0.069  0.066
-  0.000  0.079  0.055  0.443  0.422
-  0.000  0.054  0.077  0.424  0.444
+  0.000  0.191  0.679  0.001  0.130
+  0.000  0.674  0.191  0.135  0.000
+  0.000  0.106  0.029  0.862  0.003
+  0.000  0.029  0.101  0.003  0.867
     occupations:
-  0.943  0.000 -0.000 -0.000  0.000
-  0.000  0.950 -0.000  0.000  0.003
+  0.943 -0.000 -0.000 -0.000  0.000
+ -0.000  0.950 -0.000  0.000  0.003
  -0.000 -0.000  0.950  0.003  0.000
- -0.000  0.000  0.003  0.957  0.000
-  0.000  0.003  0.000  0.000  0.957
-N of occupied +U levels =   9.5148279
+ -0.000  0.000  0.003  0.957 -0.000
+  0.000  0.003  0.000 -0.000  0.958
+N of occupied +U levels =   9.5150735
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.7075
+Hubbard energy    0.7072
  -------
 
-     total cpu time spent up to now is       25.8 secs
+     total cpu time spent up to now is       34.0 secs
 
-     total energy              =    -375.23549561 Ry
-     Harris-Foulkes estimate   =    -397.19936292 Ry
-     estimated scf accuracy    <      59.90883795 Ry
+     total energy              =    -375.23597714 Ry
+     Harris-Foulkes estimate   =    -397.18832384 Ry
+     estimated scf accuracy    <      59.88144271 Ry
 
      iteration #  3     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
@@ -685,32 +685,32 @@ Hubbard energy    0.7075
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   9.38680
+atom    1   Tr[ns(na)] =   9.38682
     eigenvalues: 
-  0.850  0.851  0.997  0.998  0.998
+  0.850  0.850  0.997  0.998  0.998
     eigenvectors:
   0.000  0.000  1.000  0.000  0.000
-  0.086  0.531  0.000  0.022  0.361
-  0.533  0.086  0.000  0.359  0.022
-  0.328  0.053  0.000  0.584  0.036
-  0.053  0.330  0.000  0.036  0.581
+  0.616  0.001  0.000  0.010  0.373
+  0.001  0.619  0.000  0.370  0.010
+  0.001  0.379  0.000  0.603  0.017
+  0.382  0.001  0.000  0.016  0.601
     occupations:
-  0.997  0.000  0.000  0.000  0.000
-  0.000  0.907  0.000  0.000 -0.072
-  0.000  0.000  0.906 -0.072  0.000
-  0.000  0.000 -0.072  0.942  0.000
-  0.000 -0.072  0.000  0.000  0.942
-N of occupied +U levels =   9.3867974
+  0.997 -0.000  0.000  0.000  0.000
+ -0.000  0.907  0.000  0.000 -0.072
+  0.000  0.000  0.907 -0.072 -0.000
+  0.000  0.000 -0.072  0.942 -0.000
+  0.000 -0.072 -0.000 -0.000  0.941
+N of occupied +U levels =   9.3868178
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.6550
+Hubbard energy    0.6548
  -------
 
-     total cpu time spent up to now is       37.3 secs
+     total cpu time spent up to now is       48.8 secs
 
-     total energy              =    -379.21954284 Ry
-     Harris-Foulkes estimate   =    -380.01742819 Ry
-     estimated scf accuracy    <       5.68294866 Ry
+     total energy              =    -379.21963965 Ry
+     Harris-Foulkes estimate   =    -380.01701231 Ry
+     estimated scf accuracy    <       5.68074126 Ry
 
      iteration #  4     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
@@ -719,270 +719,270 @@ Hubbard energy    0.6550
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   8.61778
+atom    1   Tr[ns(na)] =   8.62705
     eigenvalues: 
-  0.658  0.663  0.995  0.996  0.996
+  0.662  0.664  0.995  0.996  0.996
     eigenvectors:
-  0.000  0.000  1.000  0.000  0.000
-  0.009  0.620  0.000  0.006  0.365
-  0.622  0.009  0.000  0.363  0.006
-  0.364  0.005  0.000  0.621  0.010
-  0.005  0.366  0.000  0.010  0.619
+  0.000  0.000  0.999  0.001  0.000
+  0.048  0.581  0.000  0.000  0.371
+  0.584  0.048  0.000  0.367  0.000
+  0.339  0.028  0.001  0.631  0.000
+  0.029  0.342  0.000  0.000  0.629
     occupations:
-  0.995  0.000  0.001  0.001  0.000
-  0.000  0.787  0.000  0.001 -0.161
-  0.001  0.000  0.783 -0.163  0.000
-  0.001  0.001 -0.163  0.871  0.000
-  0.000 -0.161  0.000  0.000  0.873
-N of occupied +U levels =   8.6177845
+  0.995  0.000  0.001  0.000  0.000
+  0.000  0.787 -0.000  0.000 -0.161
+  0.001 -0.000  0.785 -0.161 -0.000
+  0.000  0.000 -0.161  0.873 -0.000
+  0.000 -0.161 -0.000 -0.000  0.873
+N of occupied +U levels =   8.6270481
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.5457
+Hubbard energy    0.5451
  -------
 
-     total cpu time spent up to now is       44.4 secs
+     total cpu time spent up to now is       58.1 secs
 
-     total energy              =    -379.35295180 Ry
-     Harris-Foulkes estimate   =    -379.44534362 Ry
-     estimated scf accuracy    <       1.05489773 Ry
+     total energy              =    -379.34363552 Ry
+     Harris-Foulkes estimate   =    -379.44104169 Ry
+     estimated scf accuracy    <       1.07379228 Ry
 
      iteration #  5     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  3.30E-03,  avg # of iterations =  3.2
+     ethr =  3.36E-03,  avg # of iterations =  3.2
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.97833
+atom    1   Tr[ns(na)] =   7.95201
     eigenvalues: 
-  0.500  0.505  0.994  0.995  0.995
+  0.495  0.498  0.994  0.995  0.995
     eigenvectors:
-  0.000  0.000  0.993  0.007  0.000
-  0.466  0.162  0.002  0.276  0.094
-  0.162  0.469  0.000  0.092  0.276
-  0.095  0.273  0.000  0.158  0.473
-  0.276  0.096  0.004  0.467  0.157
+  0.000  0.000  0.994  0.006  0.000
+  0.583  0.045  0.000  0.065  0.307
+  0.045  0.586  0.002  0.302  0.064
+  0.026  0.342  0.004  0.517  0.111
+  0.345  0.027  0.000  0.110  0.518
     occupations:
   0.994  0.000  0.001  0.001  0.000
-  0.000  0.685  0.001  0.001 -0.238
-  0.001  0.001  0.685 -0.237  0.001
-  0.001  0.001 -0.237  0.814  0.001
-  0.000 -0.238  0.001  0.001  0.811
-N of occupied +U levels =   7.9783264
+  0.000  0.681  0.001  0.001 -0.242
+  0.001  0.001  0.681 -0.240  0.000
+  0.001  0.001 -0.240  0.811  0.000
+  0.000 -0.242  0.000  0.000  0.809
+N of occupied +U levels =   7.9520084
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.4887
+Hubbard energy    0.4927
  -------
 
-     total cpu time spent up to now is       52.1 secs
+     total cpu time spent up to now is       68.2 secs
 
-     total energy              =    -379.55141690 Ry
-     Harris-Foulkes estimate   =    -379.52396142 Ry
-     estimated scf accuracy    <       0.08767535 Ry
+     total energy              =    -379.55256808 Ry
+     Harris-Foulkes estimate   =    -379.52752451 Ry
+     estimated scf accuracy    <       0.08106750 Ry
 
      iteration #  6     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  2.74E-04,  avg # of iterations =  3.2
+     ethr =  2.53E-04,  avg # of iterations =  3.4
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   8.12255
+atom    1   Tr[ns(na)] =   8.13749
     eigenvalues: 
-  0.535  0.537  0.996  0.996  0.996
+  0.539  0.540  0.996  0.997  0.997
     eigenvectors:
-  0.000  0.000  1.000  0.000  0.000
-  0.235  0.394  0.000  0.060  0.311
-  0.396  0.236  0.000  0.308  0.060
-  0.231  0.137  0.000  0.529  0.103
-  0.138  0.233  0.000  0.103  0.526
+  0.000  0.000  0.997  0.003  0.001
+  0.232  0.397  0.000  0.000  0.371
+  0.399  0.233  0.001  0.367  0.000
+  0.233  0.135  0.002  0.630  0.000
+  0.136  0.235  0.000  0.000  0.629
     occupations:
-  0.996  0.000  0.001  0.001  0.000
-  0.000  0.707  0.000  0.001 -0.222
-  0.001  0.000  0.705 -0.222  0.000
-  0.001  0.001 -0.222  0.827  0.000
-  0.000 -0.222  0.000  0.000  0.826
-N of occupied +U levels =   8.1225548
+  0.996 -0.000  0.001  0.001  0.000
+ -0.000  0.709  0.000  0.000 -0.221
+  0.001  0.000  0.708 -0.220 -0.000
+  0.001  0.000 -0.220  0.828  0.000
+  0.000 -0.221 -0.000  0.000  0.827
+N of occupied +U levels =   8.1374922
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.3355
+Hubbard energy    0.3398
  -------
 
-     total cpu time spent up to now is       60.7 secs
+     total cpu time spent up to now is       80.2 secs
 
-     total energy              =    -379.55011675 Ry
-     Harris-Foulkes estimate   =    -379.57694138 Ry
-     estimated scf accuracy    <       0.22249679 Ry
+     total energy              =    -379.55035796 Ry
+     Harris-Foulkes estimate   =    -379.57883612 Ry
+     estimated scf accuracy    <       0.24383197 Ry
 
      iteration #  7     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  2.74E-04,  avg # of iterations =  3.5
+     ethr =  2.53E-04,  avg # of iterations =  3.5
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.80177
+atom    1   Tr[ns(na)] =   7.81542
     eigenvalues: 
-  0.455  0.457  0.996  0.996  0.996
+  0.459  0.460  0.996  0.996  0.996
     eigenvectors:
-  0.000  0.000  0.001  0.005  0.994
-  0.301  0.333  0.071  0.293  0.002
-  0.334  0.303  0.293  0.070  0.000
-  0.191  0.172  0.514  0.123  0.000
-  0.174  0.192  0.122  0.509  0.004
+  0.000  0.000  0.001  0.810  0.189
+  0.191  0.443  0.027  0.067  0.272
+  0.445  0.192  0.336  0.003  0.025
+  0.254  0.109  0.590  0.005  0.042
+  0.110  0.256  0.046  0.116  0.472
     occupations:
-  0.996  0.000  0.001  0.001  0.000
-  0.000  0.654  0.000  0.001 -0.260
-  0.001  0.000  0.652 -0.260  0.000
-  0.001  0.001 -0.260  0.800  0.000
-  0.000 -0.260  0.000  0.000  0.799
-N of occupied +U levels =   7.8017696
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.656  0.000  0.000 -0.258
+  0.001  0.000  0.654 -0.258  0.000
+  0.001  0.000 -0.258  0.801  0.000
+ -0.000 -0.258  0.000  0.000  0.800
+N of occupied +U levels =   7.8154164
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.3377
+Hubbard energy    0.3338
  -------
 
-     total cpu time spent up to now is       69.1 secs
+     total cpu time spent up to now is       91.5 secs
 
-     total energy              =    -379.56700655 Ry
-     Harris-Foulkes estimate   =    -379.56838934 Ry
-     estimated scf accuracy    <       0.00420897 Ry
+     total energy              =    -379.56591922 Ry
+     Harris-Foulkes estimate   =    -379.56916726 Ry
+     estimated scf accuracy    <       0.00868543 Ry
 
      iteration #  8     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  1.32E-05,  avg # of iterations =  3.7
+     ethr =  2.71E-05,  avg # of iterations =  3.8
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74958
-    eigenvalues: 
-  0.443  0.444  0.996  0.996  0.996
-    eigenvectors:
-  0.000  0.000  0.556  0.165  0.279
-  0.421  0.214  0.098  0.008  0.259
-  0.215  0.423  0.065  0.293  0.004
-  0.122  0.240  0.112  0.520  0.006
-  0.242  0.123  0.170  0.014  0.451
-    occupations:
-  0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.645  0.000  0.000 -0.266
-  0.001  0.000  0.643 -0.265  0.000
-  0.001  0.000 -0.265  0.796  0.000
- -0.000 -0.266  0.000  0.000  0.794
-N of occupied +U levels =   7.7495796
- --- exit write_ns ---
- --- in v_hubbard ---
-Hubbard energy    0.3384
- -------
-
-     total cpu time spent up to now is       78.4 secs
-
-     total energy              =    -379.56944276 Ry
-     Harris-Foulkes estimate   =    -379.57004932 Ry
-     estimated scf accuracy    <       0.00211615 Ry
-
-     iteration #  9     ecut=    80.00 Ry     beta=0.70
-     Davidson diagonalization with overlap
-     ethr =  6.61E-06,  avg # of iterations =  3.1
- --- enter write_ns ---
- LDA+U parameters:
-U( 1)     =  8.92880000
-alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74980
-    eigenvalues: 
-  0.443  0.444  0.996  0.996  0.996
-    eigenvectors:
-  0.000  0.000  0.003  0.012  0.984
-  0.421  0.214  0.067  0.292  0.006
-  0.215  0.424  0.294  0.067  0.000
-  0.122  0.240  0.520  0.119  0.000
-  0.242  0.123  0.116  0.509  0.010
-    occupations:
-  0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.645  0.000  0.000 -0.266
-  0.001  0.000  0.643 -0.265  0.000
-  0.001  0.000 -0.265  0.796  0.000
- -0.000 -0.266  0.000  0.000  0.794
-N of occupied +U levels =   7.7498043
- --- exit write_ns ---
- --- in v_hubbard ---
-Hubbard energy    0.3325
- -------
-
-     total cpu time spent up to now is       86.1 secs
-
-     total energy              =    -379.56975038 Ry
-     Harris-Foulkes estimate   =    -379.56974266 Ry
-     estimated scf accuracy    <       0.00023751 Ry
-
-     iteration # 10     ecut=    80.00 Ry     beta=0.70
-     Davidson diagonalization with overlap
-     ethr =  7.42E-07,  avg # of iterations =  3.1
- --- enter write_ns ---
- LDA+U parameters:
-U( 1)     =  8.92880000
-alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.75583
+atom    1   Tr[ns(na)] =   7.75505
     eigenvalues: 
   0.445  0.445  0.996  0.996  0.996
     eigenvectors:
-  0.000  0.000  0.073  0.008  0.919
-  0.579  0.058  0.268  0.067  0.029
-  0.058  0.582  0.069  0.291  0.001
-  0.033  0.327  0.121  0.518  0.001
-  0.331  0.033  0.469  0.117  0.050
+  0.000  0.000  0.010  0.416  0.574
+  0.392  0.243  0.011  0.211  0.143
+  0.244  0.394  0.347  0.002  0.013
+  0.139  0.223  0.612  0.003  0.023
+  0.225  0.140  0.019  0.368  0.248
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.646  0.000  0.000 -0.265
+  0.001  0.000  0.644 -0.265  0.000
+  0.001  0.000 -0.265  0.796  0.000
+ -0.000 -0.265  0.000  0.000  0.795
+N of occupied +U levels =   7.7550458
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3381
+ -------
+
+     total cpu time spent up to now is      104.0 secs
+
+     total energy              =    -379.56896355 Ry
+     Harris-Foulkes estimate   =    -379.57068917 Ry
+     estimated scf accuracy    <       0.00553500 Ry
+
+     iteration #  9     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  1.73E-05,  avg # of iterations =  3.0
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.75165
+    eigenvalues: 
+  0.444  0.444  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.000  0.001  0.998
+  0.372  0.263  0.005  0.359  0.000
+  0.265  0.374  0.357  0.005  0.000
+  0.150  0.211  0.630  0.009  0.000
+  0.213  0.151  0.009  0.626  0.001
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.645  0.000  0.000 -0.266
+  0.001  0.000  0.644 -0.265 -0.000
+  0.001  0.000 -0.265  0.796  0.000
+ -0.000 -0.266 -0.000  0.000  0.795
+N of occupied +U levels =   7.7516489
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3334
+ -------
+
+     total cpu time spent up to now is      114.0 secs
+
+     total energy              =    -379.56974044 Ry
+     Harris-Foulkes estimate   =    -379.56972159 Ry
+     estimated scf accuracy    <       0.00021513 Ry
+
+     iteration # 10     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  6.72E-07,  avg # of iterations =  3.4
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.75356
+    eigenvalues: 
+  0.444  0.444  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.023  0.006  0.971
+  0.393  0.243  0.352  0.003  0.009
+  0.244  0.395  0.003  0.356  0.001
+  0.138  0.222  0.006  0.631  0.003
+  0.225  0.139  0.616  0.005  0.016
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
  -0.000  0.645  0.000  0.000 -0.265
   0.001  0.000  0.643 -0.265 -0.000
-  0.001  0.000 -0.265  0.798  0.000
- -0.000 -0.265 -0.000  0.000  0.796
-N of occupied +U levels =   7.7558278
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.265 -0.000  0.000  0.795
+N of occupied +U levels =   7.7535608
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3315
  -------
 
-     total cpu time spent up to now is       94.9 secs
+     total cpu time spent up to now is      125.8 secs
 
-     total energy              =    -379.56979492 Ry
-     Harris-Foulkes estimate   =    -379.56982700 Ry
-     estimated scf accuracy    <       0.00021539 Ry
+     total energy              =    -379.56980296 Ry
+     Harris-Foulkes estimate   =    -379.56981622 Ry
+     estimated scf accuracy    <       0.00012601 Ry
 
      iteration # 11     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  6.73E-07,  avg # of iterations =  1.0
+     ethr =  3.94E-07,  avg # of iterations =  1.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.75456
+atom    1   Tr[ns(na)] =   7.75356
     eigenvalues: 
-  0.444  0.445  0.996  0.996  0.996
+  0.444  0.444  0.996  0.996  0.996
     eigenvectors:
-  0.000  0.000  0.069  0.007  0.924
-  0.554  0.083  0.260  0.076  0.027
-  0.083  0.557  0.078  0.281  0.001
-  0.047  0.313  0.138  0.501  0.002
-  0.316  0.047  0.455  0.134  0.047
+  0.000  0.000  0.011  0.004  0.985
+  0.397  0.240  0.341  0.018  0.005
+  0.241  0.399  0.019  0.341  0.000
+  0.136  0.224  0.033  0.606  0.001
+  0.227  0.137  0.596  0.031  0.009
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
  -0.000  0.645  0.000  0.000 -0.265
   0.001  0.000  0.643 -0.265 -0.000
-  0.001  0.000 -0.265  0.798  0.000
- -0.000 -0.265 -0.000  0.000  0.796
-N of occupied +U levels =   7.7545556
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.265 -0.000  0.000  0.795
+N of occupied +U levels =   7.7535593
  --- exit write_ns ---
  --- in v_hubbard ---
-Hubbard energy    0.3318
+Hubbard energy    0.3317
  -------
 
-     total cpu time spent up to now is      101.1 secs
+     total cpu time spent up to now is      134.1 secs
 
-     total energy              =    -379.56978204 Ry
-     Harris-Foulkes estimate   =    -379.56980228 Ry
-     estimated scf accuracy    <       0.00006395 Ry
+     total energy              =    -379.56978631 Ry
+     Harris-Foulkes estimate   =    -379.56980685 Ry
+     estimated scf accuracy    <       0.00006391 Ry
 
      iteration # 12     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
@@ -991,70 +991,70 @@ Hubbard energy    0.3318
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74393
+atom    1   Tr[ns(na)] =   7.74536
     eigenvalues: 
   0.442  0.442  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.551  0.086  0.110  0.253  0.000
-  0.086  0.554  0.250  0.109  0.000
-  0.048  0.311  0.446  0.194  0.000
-  0.314  0.049  0.193  0.444  0.000
+  0.421  0.216  0.173  0.190  0.000
+  0.217  0.424  0.188  0.171  0.000
+  0.122  0.238  0.335  0.305  0.000
+  0.240  0.123  0.304  0.333  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
  -0.000  0.643  0.000  0.000 -0.266
   0.001  0.000  0.641 -0.266 -0.000
   0.001  0.000 -0.266  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7439322
+N of occupied +U levels =   7.7453557
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      109.9 secs
+     total cpu time spent up to now is      145.7 secs
 
-     total energy              =    -379.56979898 Ry
-     Harris-Foulkes estimate   =    -379.56980588 Ry
-     estimated scf accuracy    <       0.00004055 Ry
+     total energy              =    -379.56980129 Ry
+     Harris-Foulkes estimate   =    -379.56980310 Ry
+     estimated scf accuracy    <       0.00001587 Ry
 
      iteration # 13     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  1.27E-07,  avg # of iterations =  1.6
+     ethr =  4.96E-08,  avg # of iterations =  1.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74533
+atom    1   Tr[ns(na)] =   7.74573
     eigenvalues: 
   0.442  0.442  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.636  0.001  0.081  0.282  0.000
-  0.001  0.640  0.279  0.080  0.000
-  0.001  0.359  0.498  0.143  0.000
-  0.362  0.001  0.142  0.495  0.000
+  0.421  0.216  0.231  0.132  0.000
+  0.217  0.423  0.131  0.229  0.000
+  0.122  0.237  0.233  0.408  0.000
+  0.240  0.123  0.405  0.231  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.643 -0.000  0.000 -0.266
-  0.001 -0.000  0.641 -0.266 -0.000
+ -0.000  0.643  0.000  0.000 -0.266
+  0.001  0.000  0.641 -0.266 -0.000
   0.001  0.000 -0.266  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7453259
+N of occupied +U levels =   7.7457341
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      116.2 secs
+     total cpu time spent up to now is      154.0 secs
 
-     total energy              =    -379.56979933 Ry
-     Harris-Foulkes estimate   =    -379.56980084 Ry
-     estimated scf accuracy    <       0.00000707 Ry
+     total energy              =    -379.56979976 Ry
+     Harris-Foulkes estimate   =    -379.56980164 Ry
+     estimated scf accuracy    <       0.00000704 Ry
 
      iteration # 14     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  2.21E-08,  avg # of iterations =  3.2
+     ethr =  2.20E-08,  avg # of iterations =  3.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
@@ -1064,133 +1064,235 @@ atom    1   Tr[ns(na)] =   7.74845
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.595  0.042  0.080  0.283  0.000
-  0.042  0.598  0.280  0.079  0.000
-  0.024  0.335  0.499  0.142  0.000
-  0.339  0.024  0.141  0.496  0.000
+  0.405  0.232  0.133  0.230  0.000
+  0.234  0.407  0.228  0.131  0.000
+  0.131  0.228  0.406  0.235  0.000
+  0.230  0.132  0.233  0.404  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.644 -0.000  0.000 -0.266
-  0.001 -0.000  0.642 -0.265 -0.000
+ -0.000  0.644  0.000  0.000 -0.266
+  0.001  0.000  0.642 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7484484
+N of occupied +U levels =   7.7484458
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      124.9 secs
+     total cpu time spent up to now is      165.1 secs
 
-     total energy              =    -379.56980152 Ry
+     total energy              =    -379.56980157 Ry
      Harris-Foulkes estimate   =    -379.56980149 Ry
-     estimated scf accuracy    <       0.00000096 Ry
+     estimated scf accuracy    <       0.00000120 Ry
 
      iteration # 15     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  2.99E-09,  avg # of iterations =  1.0
+     ethr =  3.74E-09,  avg # of iterations =  1.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74844
+atom    1   Tr[ns(na)] =   7.74849
     eigenvalues: 
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.621  0.016  0.023  0.340  0.000
-  0.016  0.625  0.337  0.023  0.000
-  0.009  0.350  0.601  0.040  0.000
-  0.354  0.009  0.040  0.597  0.000
+  0.405  0.233  0.147  0.215  0.000
+  0.234  0.407  0.213  0.146  0.000
+  0.131  0.228  0.380  0.261  0.000
+  0.230  0.132  0.259  0.378  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.644 -0.000  0.000 -0.266
-  0.001 -0.000  0.642 -0.265 -0.000
+ -0.000  0.644  0.000  0.000 -0.266
+  0.001  0.000  0.642 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7484431
+N of occupied +U levels =   7.7484851
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      131.1 secs
+     total cpu time spent up to now is      173.4 secs
 
-     total energy              =    -379.56980135 Ry
-     Harris-Foulkes estimate   =    -379.56980153 Ry
-     estimated scf accuracy    <       0.00000088 Ry
+     total energy              =    -379.56980139 Ry
+     Harris-Foulkes estimate   =    -379.56980159 Ry
+     estimated scf accuracy    <       0.00000132 Ry
 
      iteration # 16     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  2.75E-09,  avg # of iterations =  2.5
+     ethr =  3.74E-09,  avg # of iterations =  1.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74797
+atom    1   Tr[ns(na)] =   7.74833
     eigenvalues: 
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.600  0.037  0.222  0.141  0.000
-  0.037  0.604  0.140  0.220  0.000
-  0.021  0.338  0.249  0.392  0.000
-  0.342  0.021  0.390  0.248  0.000
+  0.391  0.246  0.033  0.330  0.000
+  0.248  0.393  0.326  0.033  0.000
+  0.139  0.220  0.582  0.058  0.000
+  0.223  0.140  0.058  0.579  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.644 -0.000  0.000 -0.266
-  0.001 -0.000  0.642 -0.265 -0.000
+ -0.000  0.644  0.000  0.000 -0.266
+  0.001  0.000  0.642 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7479736
+N of occupied +U levels =   7.7483296
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      138.3 secs
+     total cpu time spent up to now is      181.7 secs
 
-     total energy              =    -379.56980143 Ry
+     total energy              =    -379.56980140 Ry
      Harris-Foulkes estimate   =    -379.56980143 Ry
-     estimated scf accuracy    <       0.00000004 Ry
+     estimated scf accuracy    <       0.00000047 Ry
 
      iteration # 17     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  1.15E-10,  avg # of iterations =  3.8
+     ethr =  1.48E-09,  avg # of iterations =  2.7
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
 alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74785
+atom    1   Tr[ns(na)] =   7.74807
     eigenvalues: 
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.611  0.026  0.008  0.355  0.000
-  0.026  0.615  0.351  0.008  0.000
-  0.015  0.344  0.627  0.014  0.000
-  0.348  0.015  0.014  0.624  0.000
+  0.373  0.264  0.340  0.023  0.000
+  0.265  0.375  0.022  0.337  0.000
+  0.149  0.210  0.040  0.601  0.000
+  0.212  0.150  0.597  0.040  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
  -0.000  0.644 -0.000  0.000 -0.266
   0.001 -0.000  0.642 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478528
+N of occupied +U levels =   7.7480690
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      147.4 secs
+     total cpu time spent up to now is      191.1 secs
 
      total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          6.3E-09 Ry
+     Harris-Foulkes estimate   =    -379.56980143 Ry
+     estimated scf accuracy    <       0.00000013 Ry
 
      iteration # 18     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  1.96E-11,  avg # of iterations =  2.9
+     ethr =  4.11E-10,  avg # of iterations =  2.1
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.74799
+    eigenvalues: 
+  0.443  0.443  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.000  0.000  1.000
+  0.383  0.254  0.025  0.338  0.000
+  0.256  0.385  0.335  0.024  0.000
+  0.143  0.216  0.597  0.044  0.000
+  0.218  0.145  0.043  0.594  0.000
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.644 -0.000  0.000 -0.266
+  0.001 -0.000  0.642 -0.265 -0.000
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.266 -0.000  0.000  0.795
+N of occupied +U levels =   7.7479918
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3316
+ -------
+
+     total cpu time spent up to now is      201.2 secs
+
+     total energy              =    -379.56980145 Ry
+     Harris-Foulkes estimate   =    -379.56980145 Ry
+     estimated scf accuracy    <       0.00000009 Ry
+
+     iteration # 19     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  2.78E-10,  avg # of iterations =  3.0
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.74794
+    eigenvalues: 
+  0.443  0.443  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.000  0.000  1.000
+  0.295  0.342  0.038  0.325  0.000
+  0.344  0.297  0.322  0.037  0.000
+  0.193  0.166  0.574  0.067  0.000
+  0.168  0.195  0.067  0.571  0.000
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.644 -0.000  0.000 -0.266
+  0.001 -0.000  0.641 -0.265 -0.000
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.266 -0.000  0.000  0.795
+N of occupied +U levels =   7.7479391
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3316
+ -------
+
+     total cpu time spent up to now is      212.8 secs
+
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <       0.00000002 Ry
+
+     iteration # 20     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  7.49E-11,  avg # of iterations =  1.1
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.74792
+    eigenvalues: 
+  0.443  0.443  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.000  0.000  1.000
+  0.294  0.344  0.002  0.360  0.000
+  0.346  0.295  0.357  0.002  0.000
+  0.194  0.165  0.637  0.004  0.000
+  0.167  0.196  0.004  0.633  0.000
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.644 -0.000  0.000 -0.266
+  0.001 -0.000  0.641 -0.265 -0.000
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.266 -0.000  0.000  0.795
+N of occupied +U levels =   7.7479240
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3316
+ -------
+
+     total cpu time spent up to now is      221.2 secs
+
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          9.7E-09 Ry
+
+     iteration # 21     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  3.02E-11,  avg # of iterations =  3.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
@@ -1200,31 +1302,133 @@ atom    1   Tr[ns(na)] =   7.74786
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.603  0.034  0.017  0.346  0.000
-  0.034  0.607  0.343  0.016  0.000
-  0.019  0.340  0.612  0.029  0.000
-  0.343  0.019  0.029  0.608  0.000
+  0.117  0.520  0.011  0.351  0.000
+  0.523  0.118  0.348  0.011  0.000
+  0.293  0.066  0.621  0.020  0.000
+  0.067  0.296  0.020  0.617  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.644 -0.000  0.000 -0.266
+ -0.000  0.643 -0.000  0.000 -0.266
   0.001 -0.000  0.641 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478644
+N of occupied +U levels =   7.7478605
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      154.5 secs
+     total cpu time spent up to now is      232.2 secs
 
-     total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          2.6E-09 Ry
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          2.0E-10 Ry
 
-     iteration # 19     ecut=    80.00 Ry     beta=0.70
+     iteration # 22     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  8.14E-12,  avg # of iterations =  3.8
+     ethr =  6.28E-13,  avg # of iterations =  3.6
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.74784
+    eigenvalues: 
+  0.443  0.443  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.000  0.000  1.000
+  0.167  0.471  0.136  0.227  0.000
+  0.473  0.168  0.225  0.134  0.000
+  0.265  0.094  0.401  0.240  0.000
+  0.095  0.268  0.238  0.399  0.000
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.643 -0.000  0.000 -0.266
+  0.001 -0.000  0.641 -0.265 -0.000
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.266 -0.000  0.000  0.795
+N of occupied +U levels =   7.7478447
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3316
+ -------
+
+     total cpu time spent up to now is      244.8 secs
+
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          6.5E-10 Ry
+
+     iteration # 23     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  6.28E-13,  avg # of iterations =  3.0
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.74785
+    eigenvalues: 
+  0.443  0.443  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.000  0.000  1.000
+  0.148  0.490  0.111  0.252  0.000
+  0.492  0.149  0.249  0.110  0.000
+  0.276  0.083  0.445  0.196  0.000
+  0.084  0.279  0.194  0.443  0.000
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.643 -0.000  0.000 -0.266
+  0.001 -0.000  0.641 -0.265 -0.000
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.266 -0.000  0.000  0.795
+N of occupied +U levels =   7.7478500
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3316
+ -------
+
+     total cpu time spent up to now is      254.9 secs
+
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          2.4E-10 Ry
+
+     iteration # 24     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  6.28E-13,  avg # of iterations =  3.0
+ --- enter write_ns ---
+ LDA+U parameters:
+U( 1)     =  8.92880000
+alpha( 1) =  0.00000000
+atom    1   Tr[ns(na)] =   7.74786
+    eigenvalues: 
+  0.443  0.443  0.996  0.996  0.996
+    eigenvectors:
+  0.000  0.000  0.000  0.000  1.000
+  0.106  0.532  0.169  0.194  0.000
+  0.535  0.106  0.192  0.167  0.000
+  0.299  0.060  0.342  0.299  0.000
+  0.060  0.302  0.297  0.340  0.000
+    occupations:
+  0.996 -0.000  0.001  0.001 -0.000
+ -0.000  0.643 -0.000  0.000 -0.266
+  0.001 -0.000  0.641 -0.265 -0.000
+  0.001  0.000 -0.265  0.797  0.000
+ -0.000 -0.266 -0.000  0.000  0.795
+N of occupied +U levels =   7.7478554
+ --- exit write_ns ---
+ --- in v_hubbard ---
+Hubbard energy    0.3316
+ -------
+
+     total cpu time spent up to now is      265.5 secs
+
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          1.1E-10 Ry
+
+     iteration # 25     ecut=    80.00 Ry     beta=0.70
+     Davidson diagonalization with overlap
+     ethr =  3.38E-13,  avg # of iterations =  4.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
@@ -1234,31 +1438,31 @@ atom    1   Tr[ns(na)] =   7.74787
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.085  0.552  0.160  0.202  0.000
-  0.555  0.086  0.200  0.159  0.000
-  0.311  0.048  0.358  0.283  0.000
-  0.048  0.314  0.282  0.356  0.000
+  0.004  0.634  0.092  0.271  0.000
+  0.637  0.004  0.268  0.091  0.000
+  0.357  0.002  0.478  0.163  0.000
+  0.002  0.361  0.162  0.476  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
  -0.000  0.644 -0.000  0.000 -0.266
   0.001 -0.000  0.641 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478668
+N of occupied +U levels =   7.7478739
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      164.2 secs
+     total cpu time spent up to now is      280.4 secs
 
-     total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          2.9E-10 Ry
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          7.0E-10 Ry
 
-     iteration # 20     ecut=    80.00 Ry     beta=0.70
+     iteration # 26     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  9.19E-13,  avg # of iterations =  3.0
+     ethr =  3.38E-13,  avg # of iterations =  3.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
@@ -1268,133 +1472,31 @@ atom    1   Tr[ns(na)] =   7.74786
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.003  0.635  0.064  0.298  0.000
-  0.638  0.003  0.295  0.064  0.000
-  0.358  0.001  0.527  0.114  0.000
-  0.001  0.361  0.113  0.524  0.000
-    occupations:
-  0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.643 -0.000  0.000 -0.266
-  0.001 -0.000  0.641 -0.265 -0.000
-  0.001  0.000 -0.265  0.797  0.000
- -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478624
- --- exit write_ns ---
- --- in v_hubbard ---
-Hubbard energy    0.3316
- -------
-
-     total cpu time spent up to now is      172.2 secs
-
-     total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          6.4E-11 Ry
-
-     iteration # 21     ecut=    80.00 Ry     beta=0.70
-     Davidson diagonalization with overlap
-     ethr =  2.00E-13,  avg # of iterations =  3.2
- --- enter write_ns ---
- LDA+U parameters:
-U( 1)     =  8.92880000
-alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74785
-    eigenvalues: 
-  0.443  0.443  0.996  0.996  0.996
-    eigenvectors:
-  0.000  0.000  0.000  0.000  1.000
-  0.011  0.627  0.083  0.280  0.000
-  0.630  0.011  0.277  0.082  0.000
-  0.353  0.006  0.494  0.147  0.000
-  0.006  0.357  0.146  0.491  0.000
-    occupations:
-  0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.643 -0.000  0.000 -0.266
-  0.001 -0.000  0.641 -0.265 -0.000
-  0.001  0.000 -0.265  0.797  0.000
- -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478542
- --- exit write_ns ---
- --- in v_hubbard ---
-Hubbard energy    0.3316
- -------
-
-     total cpu time spent up to now is      182.3 secs
-
-     total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          3.2E-11 Ry
-
-     iteration # 22     ecut=    80.00 Ry     beta=0.70
-     Davidson diagonalization with overlap
-     ethr =  1.01E-13,  avg # of iterations =  3.2
- --- enter write_ns ---
- LDA+U parameters:
-U( 1)     =  8.92880000
-alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74786
-    eigenvalues: 
-  0.443  0.443  0.996  0.996  0.996
-    eigenvectors:
-  0.000  0.000  0.000  0.000  1.000
-  0.093  0.545  0.093  0.270  0.000
-  0.548  0.093  0.267  0.092  0.000
-  0.307  0.052  0.478  0.164  0.000
-  0.053  0.310  0.163  0.475  0.000
-    occupations:
-  0.996 -0.000  0.001  0.001 -0.000
- -0.000  0.643 -0.000  0.000 -0.266
-  0.001 -0.000  0.641 -0.265 -0.000
-  0.001  0.000 -0.265  0.797  0.000
- -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478570
- --- exit write_ns ---
- --- in v_hubbard ---
-Hubbard energy    0.3316
- -------
-
-     total cpu time spent up to now is      193.7 secs
-
-     total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          4.4E-12 Ry
-
-     iteration # 23     ecut=    80.00 Ry     beta=0.70
-     Davidson diagonalization with overlap
-     ethr =  1.00E-13,  avg # of iterations =  2.6
- --- enter write_ns ---
- LDA+U parameters:
-U( 1)     =  8.92880000
-alpha( 1) =  0.00000000
-atom    1   Tr[ns(na)] =   7.74786
-    eigenvalues: 
-  0.443  0.443  0.996  0.996  0.996
-    eigenvectors:
-  0.000  0.000  0.000  0.000  1.000
-  0.106  0.532  0.080  0.282  0.000
-  0.535  0.106  0.280  0.079  0.000
-  0.300  0.059  0.499  0.142  0.000
-  0.060  0.303  0.141  0.496  0.000
+  0.014  0.623  0.087  0.275  0.000
+  0.627  0.014  0.273  0.086  0.000
+  0.351  0.008  0.487  0.154  0.000
+  0.008  0.355  0.153  0.484  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
  -0.000  0.644 -0.000  0.000 -0.266
   0.001 -0.000  0.641 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478562
+N of occupied +U levels =   7.7478641
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      201.2 secs
+     total cpu time spent up to now is      292.5 secs
 
-     total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          7.7E-12 Ry
+     total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          1.2E-10 Ry
 
-     iteration # 24     ecut=    80.00 Ry     beta=0.70
+     iteration # 27     ecut=    80.00 Ry     beta=0.70
      Davidson diagonalization with overlap
-     ethr =  1.00E-13,  avg # of iterations =  1.9
+     ethr =  3.38E-13,  avg # of iterations =  3.0
  --- enter write_ns ---
  LDA+U parameters:
 U( 1)     =  8.92880000
@@ -1404,23 +1506,23 @@ atom    1   Tr[ns(na)] =   7.74786
   0.443  0.443  0.996  0.996  0.996
     eigenvectors:
   0.000  0.000  0.000  0.000  1.000
-  0.075  0.562  0.131  0.232  0.000
-  0.566  0.075  0.229  0.130  0.000
-  0.317  0.042  0.410  0.231  0.000
-  0.043  0.320  0.230  0.407  0.000
+  0.055  0.583  0.077  0.286  0.000
+  0.586  0.055  0.283  0.076  0.000
+  0.328  0.031  0.505  0.136  0.000
+  0.031  0.332  0.135  0.502  0.000
     occupations:
   0.996 -0.000  0.001  0.001 -0.000
  -0.000  0.644 -0.000  0.000 -0.266
   0.001 -0.000  0.641 -0.265 -0.000
   0.001  0.000 -0.265  0.797  0.000
  -0.000 -0.266 -0.000  0.000  0.795
-N of occupied +U levels =   7.7478571
+N of occupied +U levels =   7.7478578
  --- exit write_ns ---
  --- in v_hubbard ---
 Hubbard energy    0.3316
  -------
 
-     total cpu time spent up to now is      207.8 secs
+     total cpu time spent up to now is      303.6 secs
 
      End of self-consistent calculation
 
@@ -1949,7 +2051,7 @@ Hubbard energy    0.3316
           k = 0.5322-0.1542 0.2707 (  2562 PWs)   bands (ev):
 
    -83.9532 -47.4872 -47.4390 -47.2920 -33.0456  -7.5256  -7.3662   1.8311
-     3.9297   4.4628   5.7311   6.3938   7.1782   7.3962   7.7746   8.3848
+     3.9297   4.4628   5.7311   6.3938   7.1782   7.3961   7.7746   8.3848
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -2219,7 +2321,7 @@ Hubbard energy    0.3316
           k =-0.0000 0.3071 0.1090 (  2585 PWs)   bands (ev):
 
    -83.9564 -47.4542 -47.4223 -47.2984 -33.0653  -8.5576  -7.2693   2.6109
-     3.2411   4.9272   5.7191   6.1318   7.3770   8.1849   8.7587   8.9906
+     3.2411   4.9272   5.7191   6.1318   7.3770   8.1848   8.7587   8.9906
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -2713,7 +2815,7 @@ Hubbard energy    0.3316
 
           k =-0.0000 0.4618-0.4869 (  2569 PWs)   bands (ev):
 
-   -83.9544 -47.4820 -47.4290 -47.2939 -33.0499  -7.8859  -7.2982   1.9052
+   -83.9544 -47.4819 -47.4290 -47.2939 -33.0499  -7.8859  -7.2982   1.9052
      3.9177   5.1043   5.1625   6.3718   7.1155   7.7057   8.1326   8.4950
 
      occupation numbers 
@@ -2867,7 +2969,7 @@ Hubbard energy    0.3316
           k = 0.6653 0.0765 0.1899 (  2565 PWs)   bands (ev):
 
    -83.9515 -47.4799 -47.4587 -47.2906 -33.0421  -7.3988  -7.2813   2.3649
-     3.2100   4.3458   5.9873   6.1901   6.9179   7.0214   8.0904   8.3334
+     3.2100   4.3458   5.9873   6.1901   6.9179   7.0214   8.0903   8.3334
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -3002,7 +3104,7 @@ Hubbard energy    0.3316
           k =-0.6653-0.2308 0.1893 (  2565 PWs)   bands (ev):
 
    -83.9532 -47.4872 -47.4390 -47.2920 -33.0444  -7.6323  -7.2564   1.8922
-     3.9768   4.2098   5.9843   6.4765   7.1980   7.2601   7.5171   8.4337
+     3.9768   4.2098   5.9843   6.4764   7.1980   7.2601   7.5171   8.4337
 
      occupation numbers 
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
@@ -3188,79 +3290,79 @@ Hubbard energy    0.3316
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
      1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000   1.0000
 
-!    total energy              =    -379.56980144 Ry
-     Harris-Foulkes estimate   =    -379.56980144 Ry
-     estimated scf accuracy    <          2.9E-13 Ry
+!    total energy              =    -379.56980146 Ry
+     Harris-Foulkes estimate   =    -379.56980146 Ry
+     estimated scf accuracy    <          1.1E-13 Ry
 
      The total energy is the sum of the following terms:
 
-     one-electron contribution =    -259.68309402 Ry
-     hartree contribution      =     146.17382396 Ry
-     xc contribution           =     -53.24165883 Ry
+     one-electron contribution =    -259.68310164 Ry
+     hartree contribution      =     146.17383169 Ry
+     xc contribution           =     -53.24165900 Ry
      ewald contribution        =    -213.15046815 Ry
-     Hubbard energy            =       0.33159559 Ry
+     Hubbard energy            =       0.33159563 Ry
 
-     convergence has been achieved in  24 iterations
+     convergence has been achieved in  27 iterations
 
      Writing output data file LiCoO2.save
  
-     init_run     :      5.67s CPU      5.95s WALL (       1 calls)
-     electrons    :    194.50s CPU    201.61s WALL (       1 calls)
+     init_run     :      8.02s CPU      8.28s WALL (       1 calls)
+     electrons    :    289.65s CPU    295.12s WALL (       1 calls)
 
      Called by init_run:
-     wfcinit      :      3.94s CPU      4.15s WALL (       1 calls)
-     potinit      :      0.46s CPU      0.46s WALL (       1 calls)
+     wfcinit      :      5.05s CPU      5.29s WALL (       1 calls)
+     potinit      :      0.81s CPU      0.81s WALL (       1 calls)
 
      Called by electrons:
-     c_bands      :    159.64s CPU    164.73s WALL (      24 calls)
-     sum_band     :     29.34s CPU     31.08s WALL (      24 calls)
-     v_of_rho     :      0.93s CPU      0.96s WALL (      25 calls)
-     v_h          :      0.06s CPU      0.06s WALL (      25 calls)
-     v_xc         :      0.87s CPU      0.89s WALL (      25 calls)
-     newd         :      4.18s CPU      4.24s WALL (      25 calls)
-     mix_rho      :      0.12s CPU      0.13s WALL (      24 calls)
+     c_bands      :    234.85s CPU    238.66s WALL (      27 calls)
+     sum_band     :     44.81s CPU     46.26s WALL (      27 calls)
+     v_of_rho     :      1.51s CPU      1.57s WALL (      28 calls)
+     v_h          :      0.09s CPU      0.09s WALL (      28 calls)
+     v_xc         :      1.42s CPU      1.48s WALL (      28 calls)
+     newd         :      8.03s CPU      8.11s WALL (      28 calls)
+     mix_rho      :      0.19s CPU      0.19s WALL (      27 calls)
 
      Called by c_bands:
-     init_us_2    :      3.49s CPU      3.58s WALL (    9800 calls)
-     cegterg      :    149.02s CPU    153.22s WALL (    4704 calls)
+     init_us_2    :      6.52s CPU      6.65s WALL (   10976 calls)
+     cegterg      :    215.29s CPU    217.51s WALL (    5292 calls)
 
      Called by sum_band:
-     sum_band:bec :      0.08s CPU      0.19s WALL (    4704 calls)
-     addusdens    :      2.96s CPU      3.04s WALL (      24 calls)
+     sum_band:bec :      0.12s CPU      0.20s WALL (    5292 calls)
+     addusdens    :      5.79s CPU      5.91s WALL (      27 calls)
 
      Called by *egterg:
-     h_psi        :    110.15s CPU    113.31s WALL (   18787 calls)
-     s_psi        :      5.30s CPU      5.00s WALL (   18983 calls)
-     g_psi        :      0.68s CPU      0.84s WALL (   13887 calls)
-     cdiaghg      :     17.18s CPU     17.29s WALL (   18591 calls)
-     cegterg:over :      6.57s CPU      6.66s WALL (   13887 calls)
-     cegterg:upda :      4.38s CPU      4.48s WALL (   13887 calls)
-     cegterg:last :      2.05s CPU      2.06s WALL (    4757 calls)
+     h_psi        :    162.77s CPU    164.50s WALL (   20439 calls)
+     s_psi        :      8.73s CPU      8.58s WALL (   20635 calls)
+     g_psi        :      1.57s CPU      1.63s WALL (   14951 calls)
+     cdiaghg      :     18.18s CPU     18.15s WALL (   20243 calls)
+     cegterg:over :     10.10s CPU     10.18s WALL (   14951 calls)
+     cegterg:upda :      7.01s CPU      7.03s WALL (   14951 calls)
+     cegterg:last :      3.32s CPU      3.32s WALL (    5345 calls)
 
      Called by h_psi:
-     h_psi:vloc   :     92.57s CPU     95.05s WALL (   18787 calls)
-     h_psi:vnl    :     12.07s CPU     12.11s WALL (   18787 calls)
-     add_vuspsi   :      5.00s CPU      5.14s WALL (   18787 calls)
-     vhpsi        :      5.23s CPU      5.56s WALL (   18787 calls)
+     h_psi:vloc   :    136.24s CPU    137.82s WALL (   20439 calls)
+     h_psi:vnl    :     18.30s CPU     18.17s WALL (   20439 calls)
+     add_vuspsi   :      8.44s CPU      8.52s WALL (   20439 calls)
+     vhpsi        :      7.90s CPU      7.87s WALL (   20439 calls)
 
      General routines
-     calbec       :     14.67s CPU     14.90s WALL (   47178 calls)
-     fft          :      0.71s CPU      0.73s WALL (     396 calls)
-     ffts         :      0.02s CPU      0.02s WALL (      49 calls)
-     fftw         :     71.82s CPU     80.20s WALL (  484752 calls)
-     interpolate  :      0.12s CPU      0.12s WALL (      49 calls)
-     davcio       :      2.32s CPU      2.73s WALL (   29008 calls)
+     calbec       :     21.22s CPU     21.27s WALL (   51658 calls)
+     fft          :      1.06s CPU      1.09s WALL (     444 calls)
+     ffts         :      0.02s CPU      0.02s WALL (      55 calls)
+     fftw         :    121.70s CPU    122.88s WALL (  542472 calls)
+     interpolate  :      0.17s CPU      0.17s WALL (      55 calls)
+     davcio       :      2.80s CPU      3.15s WALL (   32536 calls)
  
      Parallel routines
-     fft_scatter  :     40.93s CPU     39.81s WALL (  485197 calls)
+     fft_scatter  :     50.35s CPU     46.68s WALL (  542971 calls)
      Hubbard U routines
-     new_ns       :      0.99s CPU      1.91s WALL (      24 calls)
-     vhpsi        :      5.23s CPU      5.56s WALL (   18787 calls)
+     new_ns       :      2.04s CPU      2.81s WALL (      27 calls)
+     vhpsi        :      7.90s CPU      7.87s WALL (   20439 calls)
  
-     PWSCF        :  3m20.86s CPU     3m28.38s WALL
+     PWSCF        :  4m58.36s CPU     5m 4.18s WALL
 
  
-   This run was terminated on:   9:52:45  29Aug2016            
+   This run was terminated on:  10:15:30  29Aug2016            
 
 =------------------------------------------------------------------------------=
    JOB DONE.

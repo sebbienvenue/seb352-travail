@@ -2,7 +2,7 @@
 clear 
 echo Starting at `date`
 
-go=7
+go=4
 
 #BIN_DIR=/home/sebastien/Programs/dftU/dfptu_git_03.07.2016/bin
 BIN_DIR=/home/bienvenue/Documents/DFPT+U/dfptu_git_03.07.2016/bin

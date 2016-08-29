@@ -1,0 +1,12 @@
+phonons of LiCoO2
+ &inputph
+  prefix = 'LiCoO2',
+  outdir='./tmp/',
+  tr2_ph = 1.0d-14,
+  amass(1) = 58.933194,
+  amass(2) = 15.999,
+  amass(3) =  6.94,
+  ldisp = .true.,
+  nq1=4, nq2=4, nq3=4
+  fildyn='LiCoO2.dyn',
+ /
