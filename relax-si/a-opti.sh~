@@ -3,50 +3,54 @@ clear
 echo Starting at `date`
 
 go=8
+span=0.1
 
 echo "running for Si"
-
+echo "Starting at `date`"
 
 ECUT="120"
 LISTK="16"
 LISTA="10.20"
-#echo "a,    k,    ecut,    energy" > results.R.dat
-echo " running the relaxation calculation for Si..."
+echo "a    k    ecut    energy" > results.a.dat
+echo " running the scf calculation for Si..."
 
 PSEUDO_DIR=.
 PSEUDO="Si.pbesol-n-rrkjus_psl.1.0.0.UPF"
-TMP_DIR=./tmp-RELAX
+TMP_DIR=./tmp
 BIN="/home/bienvenue/Documents/DFPT+U/dfptu_git_03.07.2016/bin"
 RUN="mpirun -np $go $BIN"
 
-for a in $LISTA
+#pour le test des valeurs de a
+rm -rf ZOU.dat 2>/dev/null
+
+for ok in {-20..20}
 do
 for j in $ECUT
 do 
 for k in $LISTK
 do 
 
+
+a=`expr "$ok * $span + $a0" | bc -l`
+#par test
+echo "$ok $a" >> ZOU.dat
+
 rm -rf TMP_DIR/*
 
-#restes de l inputs
-#    tstress = .true.
-#    tprnfor = .true.
-
-#relax calculation
-cat > ./inputs/si.R.$a.$k.$j.in << EOF
+#self-consistent calculation
+cat > ./inputs/si.a.scf.$a.$k.$j.in << EOF
  &control
-    calculation='relax',
+    calculation='scf',
     restart_mode='from_scratch',
     prefix='si'
     pseudo_dir = '$PSEUDO_DIR/',
     outdir='$TMP_DIR/'
+    tstress = .true.
+    tprnfor = .true.
  /
  &system
-    ibrav = 2, celldm(1) =$a, nat=  2, ntyp= 1,
+    ibrav = 2, celldm(1) = $a, nat=  2, ntyp= 1,
     ecutwfc = 120.0,
- /
- &ions
-    ion_dynamics = 'sd'
  /
  &electrons
     mixing_beta = 0.7
@@ -64,10 +68,10 @@ K_POINTS {automatic}
 EOF
 
 echo " running a=$a k=$k ecut=$j ..."
-$RUN/pw.x < ./inputs/si.R.$a.$k.$j.in > ./outputs/si.R.$a.$k.$j.out
+$RUN/pw.x < ./inputs/si.a.scf.$a.$k.$j.in > ./outputs/si.a.scf.$a.$k.$j.out
 
-#energy=`grep "!    total energy" ./outputs/si.R.$a.$k.$j.out | awk '{print $5}'`
-#echo "$a, $k, $j, $energy" >> results.R.dat
+energy=`grep "!    total energy" ./outputs/si.a.scf.$a.$k.$j.out | awk '{print $5}'`
+echo "$a $k $j $energy" >> results.a.dat
 
 done
 done

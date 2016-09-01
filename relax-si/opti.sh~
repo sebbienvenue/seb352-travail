@@ -18,14 +18,14 @@ ECUT="30.0 40.0 50.0 60.0 70.0 80.0 90.0 100.0 110.0 120.0 130.0 140.0"
 RATIO="3.0 3.5 4.0 4.5 5.0 5.5 6.0 6.5 7.0 7.5 8.0"
 LISTK="4"
 LISTA="10.20"
-echo "a    k    ecut    ratio    energy" > results.dat
+#echo "a    k    ecut    ratio    energy" > results.$ratio.dat
 echo " running the scf calculation for Si..."
 
 for a in $LISTA
 do
 for ratio in $RATIO
 do 
-#echo "a    k    ecut    ratio    energy" > results.$ratio.dat
+echo "a    k    ecut    ratio    energy" > results.$ratio.dat
 for j in $ECUT
 do
 for k in $LISTK
