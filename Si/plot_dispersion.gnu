@@ -1,0 +1,20 @@
+set terminal post eps enhanced solid color "Helvetica" 20
+set output "phonon_dispersion.eps"
+set xrange [0:4.280239]
+set yrange [0:550]
+set arrow from 1,0. to 1,550 nohead  lw 3
+set arrow from 2,0. to 2,550 nohead  lw 3
+set arrow from 1.5,0. to 1.5,550 nohead  lw 3
+set arrow from 3.4142,0. to 3.4142,550 nohead  lw 3
+set ylabel "{/Symbol w} (cm^{-1})"
+unset xtics
+set label "{/Symbol G}" at -0.05,-15
+set label "X" at 0.95,-15
+set label "W" at 1.45,-15
+set label "X" at 1.95,-15
+set label "{/Symbol G}" at 3.37,-15
+set label "L" at 4.1897,-15
+set size 1.5, 1.2
+
+plot "40/freq.plot" u 1:2 w l lw 2 title 'ecut = 40', "u/freq.plot" u 1:2 w l lw 2 title 'u'
+

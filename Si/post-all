@@ -1,0 +1,16 @@
+#!/bin/sh
+
+LIST="40 80 grid u"
+
+echo "Started at `date`" > LOG
+
+for i in $LIST
+do
+
+echo "change in dir $i" >> LOG
+cd $i
+
+bash post.sh  
+cd ..
+
+done
