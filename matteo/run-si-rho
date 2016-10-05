@@ -1,0 +1,72 @@
+#!/bin/sh
+#
+# output in results_Si/
+#
+
+PWdir="/home/sebastien/Programs/dftU/dfptu_git_03.07.2016/bin"
+resdir='results_sius_ecutrho'
+
+if [ ! -d $resdir ]; then
+   mkdir  $resdir
+fi
+
+if [ ! -d temp ]; then
+   mkdir  temp
+fi
+
+NAME="res-ecut.dat"
+#rm $NAME 2>/dev/null
+echo "ecut ecutrho energy" > $NAME
+
+for ecut in 10.0 20.0 25.0 30.0 35.0 40.0 45.0 50.0 55.0 60.0 65.0 70.0 75.0 80.0 85.0 90.0 95.0 100.0
+do
+
+ecutrho=`echo "$ecut * 4" |bc -l`
+
+rm -rf temp/*
+
+# self-consistent calculation
+cat > $resdir/si.scf.in << EOF
+ &control
+!    pseudo_dir = '../SSSP_acc_PBESOL/',
+    pseudo_dir = '.',
+    outdir='./temp/',
+    verbosity = 'high',
+    tstress = .true.
+    prefix='si',
+ /
+ &system
+    ibrav=  2, celldm(1)=10.2612, nat=  2, ntyp= 1,
+    ecutwfc = $ecut
+    ecutrho = $ecutrho
+    nbnd = 10,
+    nspin = 1
+    occupations = 'smearing'
+    smearing = 'gaussian'
+    degauss = 0.01
+ /
+ &electrons
+    mixing_beta = 0.3 
+    mixing_mode = 'plain',
+    conv_thr =  1.0d-9,
+ /
+ATOMIC_SPECIES
+ Si  28.086  Si.pbesol-n-rrkjus_psl.1.0.0.UPF
+ATOMIC_POSITIONS crystal
+ Si 0.0   0.0   0.0 
+ Si 0.25  0.25  0.25 
+K_POINTS automatic
+6 6 6 0 0 0
+EOF
+
+#nice -19 mpirun -n 8 $PWdir/pw_5_0.x < si.scf.in  > $resdir/si.scf.$ecut.out
+mpirun -n 4 $PWdir/pw.x < $resdir/si.scf.in  > $resdir/si.scf.$ecut.out
+
+energy=`grep "!    total energy" $resdir/si.scf.$ecut.out | awk '{print $5}'`
+echo "$ecut $ecutrho $energy" >> $NAME
+
+
+done
+
+#Si.pbesol-n-rrkjus_psl.1.0.0.UPF
+#Si.pbe-rrkj.UP
