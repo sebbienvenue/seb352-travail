@@ -1,0 +1,58 @@
+Import Data rho 
+In[154]:= resrho=Import[NotebookDirectory[]<>"res-rho.dat"];
+header=resrho[[1]]
+resrho=Rest@resrho;
+Out[155]= {ecut,rho,energy}
+Compare rho
+In[157]:= refrho=resrho[[-1]][[-1]];
+In[158]:= Manipulate[
+Abs[refrho-resrho[[i]][[-1]]], Dynamic[resrho[[i]][[1;;2]]],
+{i,1,Length@resrho, 1}]
+Out[158]= Manipulate[Abs[refrho - resrho[[i]][[-1]]], Dynamic[resrho[[i]][[1 ;; 2]]], 
+  {i, 1, 19, 1}]
+In[159]:= 0.0002496799999995858`/2
+Out[159]= 0.00012484
+Import Data ecut
+In[160]:= resecut=Import[NotebookDirectory[]<>"res-ecut.dat"];
+header=resecut[[1]]
+resecut=Rest@resecut;
+Out[161]= {ecut,rho,energy}
+Compare rho
+In[163]:= refecut=resecut[[1]][[-1]]
+refecut=-22.67588909`;
+Out[163]= -22.6756
+In[165]:= Manipulate[
+Abs[refecut-resecut[[i]][[-1]]], Dynamic[resecut[[i]][[1;;3]]],
+{i,1,Length@resecut, 1}]
+Out[165]= Manipulate[Abs[refecut - resecut[[i]][[-1]]], 
+  Dynamic[resecut[[i]][[1 ;; 3]]], {i, 1, 1, 1}]
+In[166]:= 0.0003336699999998416`/2 
+Out[166]= 0.000166835
+In[167]:= 160/27.
+Out[167]= 5.92593
+Import Data k
+In[168]:= resk=Import[NotebookDirectory[]<>"res-k.dat"];
+header=resk[[1]]
+resk=Rest@resk;
+Out[169]= {k,energy}
+Compare k
+In[177]:= refk=resk[[-1]][[-1]]
+Out[177]= -22.6041
+In[178]:= Manipulate[
+Abs[refk-resk[[i]][[-1]]], Dynamic[resk[[i]][[1;;3]]],
+{i,1,Length@resk, 1}]
+Out[178]= Manipulate[Abs[refk - resk[[i]][[-1]]], Dynamic[resk[[i]][[1 ;; 3]]], 
+  {{i, 3}, 1, 8, 1}]
+In[179]:= 0.0022093599999983837`/2*13.6
+0.01502364799998901`
+Fit a
+In[181]:= resa=Rest@Import[NotebookDirectory[]<>"res-a.dat"];
+In[182]:= ListPlot[resa, ImageSize->Large, Frame->True]
+Out[182]= 
+In[195]:= fit=NonlinearModelFit[resa[[30;;-30]], a x^2+b x + c, {a, b, c}, x];
+function=Normal[fit]
+minPoint={a, b}/.{b->Minimize[function, x][[1]], a->x/.Minimize[function, x][[2]]}
+Plot[fit[x],{x,10,10.6},Epilog:>Point[resa],PlotStyle->{Orange,Thick}, Frame->True, ImageSize->Large]
+Out[196]= -14.8193-1.52957 x+0.0744493 x^2
+Out[197]= {10.2725,-22.6756}
+Out[198]= 

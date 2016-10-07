@@ -1,0 +1,59 @@
+#!/bin/sh
+clear
+echo "Starting at `date`"
+
+go=8
+BIN="/home/bienvenue/Documents/DFPT+U/dfptu_git_03.07.2016/bin"
+RUN="mpirun $BIN/pw.x -np $go "
+NAME="res-ecut.dat"
+
+echo "ecut rho energy" > $NAME
+ecutrho=160
+
+for fact in 1 #`seq 4.0 0.25 16.0`
+do
+
+ecut=`echo "scale=8;$ecutrho / $fact" |bc -l`
+ecut=27
+rm -r tmp/ 2>/dev/null
+
+# self-consistent calculation
+cat > inputs/si.scf.ultra.$ecut.$ecutrho.in << EOF
+ &control
+    pseudo_dir = '.',
+    outdir='./tmp/',
+    verbosity = 'high',
+    tstress = .true.
+    tprnfor = .true.
+    prefix='si',
+ /
+ &system
+    ibrav=  2, celldm(1)=10.2612, nat=  2, ntyp= 1,
+    ecutwfc = $ecut
+    ecutrho = $ecutrho
+ /
+ &electrons
+    mixing_beta = 0.7 
+    mixing_mode = 'plain',
+    conv_thr =  1.0d-9,
+ /
+ATOMIC_SPECIES
+ Si  28.086  Si.pbesol-n-rrkjus_psl.1.0.0.UPF
+ATOMIC_POSITIONS crystal
+ Si 0.0   0.0   0.0 
+ Si 0.25  0.25  0.25 
+K_POINTS automatic
+6 6 6 0 0 0
+EOF
+
+$RUN < inputs/si.scf.ultra.$ecut.$ecutrho.in > outputs/si.scf.ultra.$ecut.$ecutrho.out
+
+energy=`grep "!    total energy" outputs/si.scf.ultra.$ecut.$ecutrho.out | awk '{print $5}'`
+totforce=`grep "Total force" outputs/si.scf.ultra.$ecut.$ecutrho.out | awk '{print $4}'`
+presure=`grep "P=" outputs/si.scf.ultra.$ecut.$ecutrho.out | awk '{print $6}'`
+echo "$ecut $ecutrho $fact $energy" >> $NAME
+echo "$ecut $ecutrho $fact $energy" 
+
+done
+
+echo "Finishing at `date`"

@@ -1,0 +1,25 @@
+ &control
+    pseudo_dir = '.',
+    outdir='./tmp/',
+    verbosity = 'high',
+    tstress = .true.
+    tprnfor = .true.
+    prefix='si',
+ /
+ &system
+    ibrav=  2, celldm(1)=10.64, nat=  2, ntyp= 1,
+    ecutwfc = 27
+    ecutrho = 160
+ /
+ &electrons
+    mixing_beta = 0.7 
+    mixing_mode = 'plain',
+    conv_thr =  1.0d-9,
+ /
+ATOMIC_SPECIES
+ Si  28.086  Si.pbesol-n-rrkjus_psl.1.0.0.UPF
+ATOMIC_POSITIONS crystal
+ Si 0.0   0.0   0.0 
+ Si 0.25  0.25  0.25 
+K_POINTS automatic
+6 6 6 0 0 0

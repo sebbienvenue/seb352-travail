@@ -1,0 +1,65 @@
+#!/bin/sh
+clear
+echo "Starting at `date`"
+
+go=8
+BIN="/home/bienvenue/Documents/DFPT+U/dfptu_git_03.07.2016/bin"
+RUN="mpirun $BIN/pw.x -np $go "
+NAME="res-a.dat"
+
+echo "a energy" > $NAME
+LIST="`seq -40 1 40`"
+ecutrho=160
+ecut=27
+a0=10.26
+#10.2725
+span=0.01
+
+rm -r inputs/* outputs/* 2>/dev/null
+
+for i in $LIST
+do
+
+a=`echo "scale=8;$a0 + $span * $i" |bc -l`
+rm -r tmp/ 2>/dev/null
+
+# self-consistent calculation
+cat > inputs/si.scf.ultra.$a.in << EOF
+ &control
+    pseudo_dir = '.',
+    outdir='./tmp/',
+    verbosity = 'high',
+    tstress = .true.
+    tprnfor = .true.
+    prefix='si',
+ /
+ &system
+    ibrav=  2, celldm(1)=$a, nat=  2, ntyp= 1,
+    ecutwfc = $ecut
+    ecutrho = $ecutrho
+ /
+ &electrons
+    mixing_beta = 0.7 
+    mixing_mode = 'plain',
+    conv_thr =  1.0d-9,
+ /
+ATOMIC_SPECIES
+ Si  28.086  Si.pbesol-n-rrkjus_psl.1.0.0.UPF
+ATOMIC_POSITIONS crystal
+ Si 0.0   0.0   0.0 
+ Si 0.25  0.25  0.25 
+K_POINTS automatic
+6 6 6 0 0 0
+EOF
+
+$RUN < inputs/si.scf.ultra.$a.in > outputs/si.scf.ultra.$a.out
+
+energy=`grep "!    total energy" outputs/si.scf.ultra.$a.out | awk '{print $5}'`
+totforce=`grep "Total force" outputs/si.scf.ultra.$a.out | awk '{print $4}'`
+presure=`grep "P=" outputs/si.scf.ultra.$a.out | awk '{print $6}'`
+echo "$a $energy" >> $NAME
+echo "$a $energy" 
+
+done
+
+echo "Finishing at `date`"
