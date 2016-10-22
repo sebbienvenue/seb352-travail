@@ -1,0 +1,129 @@
+.TH "LDSqNetz" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqNetz \- Implementation of the (0,s) nets, according to an algorithm given by Lecot for Niederreiter's construction using hyperderivatives of polynomials. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqBase\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqNetz\fP (long *b=NULL, long bas=5, long dm=0, long iterations=0, long lamb=5, char *ex='ts',char *nm='(t, s)-Sequence')"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.ti -1c
+.RI "virtual long \fBInitData\fP (long genau, double genau1)"
+.br
+.ti -1c
+.RI "virtual long \fBExitData\fP ()"
+.br
+.ti -1c
+.RI "virtual long* \fBInitGenericBases\fP (long dm)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "long \fBbase\fP"
+.br
+.ti -1c
+.RI "long \fBnu\fP"
+.br
+.ti -1c
+.RI "long \fBlambda\fP"
+.br
+.ti -1c
+.RI "long \fBnprime\fP"
+.br
+.ti -1c
+.RI "long \fBncurr\fP"
+.br
+.ti -1c
+.RI "long \fBncmax\fP"
+.br
+.ti -1c
+.RI "long* \fBncoeff\fP"
+.br
+.ti -1c
+.RI "long * \fBypji\fP"
+.br
+.ti -1c
+.RI "long \fBypjilen\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+Implementation of the (0,s) nets, according to an algorithm given by Lecot for Niederreiter's construction using hyperderivatives of polynomials.
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqNetz::LDSqNetz (long * b = NULL, long bas = 5, long dm = 0, long iterations = 0, long lamb = 5, char * ex = 'ts', char * nm = '(t,s)-Sequence')"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqNetz::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Calculates the next element and stores it to the buffer.
+.PP
+If bufflen>dim, the remaining dimensions are pseudo-random numbers (i.e. the sequence is a hybrid sequence) This function should never be called directly! Use NextElement(..) instead!!! 
+.PP
+\fBSee also: \fP
+.in +1c
+\fBNextElement\fP() 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqNetz::ExitData ()\fC [protected, virtual]\fP"
+.PP
+Do class-specific freeing of memory etc.
+.PP
+Called by the destructor 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqNetz::InitData (long genau, double genau1)\fC [protected, virtual]\fP"
+.PP
+initialize the method specific data.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long * LDSqNetz::InitGenericBases (long dm)\fC [protected, virtual]\fP"
+.PP
+This net sequences just need dm different integers, no need for them to be prime numbers, so use the dm lowest integers instead to minimize the discrepancy.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "long LDSqNetz::base\fC [protected]\fP"
+.PP
+.SS "long LDSqNetz::lambda\fC [protected]\fP"
+.PP
+.SS "long LDSqNetz::ncmax\fC [protected]\fP"
+.PP
+.SS "long * LDSqNetz::ncoeff\fC [protected]\fP"
+.PP
+.SS "long LDSqNetz::ncurr\fC [protected]\fP"
+.PP
+.SS "long LDSqNetz::nprime\fC [protected]\fP"
+.PP
+.SS "long LDSqNetz::nu\fC [protected]\fP"
+.PP
+.SS "long * LDSqNetz::ypji\fC [protected]\fP"
+.PP
+.SS "long LDSqNetz::ypjilen\fC [protected]\fP"
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

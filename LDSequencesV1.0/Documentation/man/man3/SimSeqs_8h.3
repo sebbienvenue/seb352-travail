@@ -1,0 +1,278 @@
+.TH "SimSeqs.h" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SimSeqs.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'BaseDefinitions.h'\fP
+.br
+.SS "Compounds"
+
+.in +1c
+.ti -1c
+.RI "class \fBLDSqAfflerbach\fP"
+.br
+.RI "\fIAfflerbach is a special Pseudorandomnumber generator that uses a linear congruence operator		(quite fast).\fP"
+.ti -1c
+.RI "class \fBLDSqAtanassov\fP"
+.br
+.RI "\fIThis class implements Atanassov's modified Halton sequence.\fP"
+.ti -1c
+.RI "class \fBLDSqBase\fP"
+.br
+.RI "\fIThis is the base class for all the simulation sequences including Monte Carlo (just random numbers).\fP"
+.ti -1c
+.RI "class \fBLDSqFaure\fP"
+.br
+.RI "\fIImplementation of the Faure low discrepancy sequence, use a linear field c to store the pascal matrix and multiply it on the previous coefficients by matrix-multiplication to get the new coefficients.\fP"
+.ti -1c
+.RI "class \fBLDSqHalton\fP"
+.br
+.RI "\fIThis class implements the Halton Sequence in the bases stored in b passed to the constructor.\fP"
+.ti -1c
+.RI "class \fBLDSqHammersley\fP"
+.br
+.RI "\fIThis class implements the Hammersley Set by creathing the Halton-sequence in dim-1 dimensions and adding the additional dimension of the form k/N.\fP"
+.ti -1c
+.RI "class \fBLDSqMonteCarlo\fP"
+.br
+.RI "\fIThis class implements pseudo-random numbers.\fP"
+.ti -1c
+.RI "class \fBLDSqNAlpha\fP"
+.br
+.RI "\fIThis class implements the N *Alpha Sequence.\fP"
+.ti -1c
+.RI "class \fBLDSqNetz\fP"
+.br
+.RI "\fIImplementation of the (0,s) nets, according to an algorithm given by Lecot for Niederreiter's construction using hyperderivatives of polynomials.\fP"
+.ti -1c
+.RI "class \fBLDSqNiederreiter\fP"
+.br
+.RI "\fIImplementation of (0,s) nets, according to an algorithm given by Niederreiter using monic polynomials.\fP"
+.ti -1c
+.RI "class \fBLDSqSobol\fP"
+.br
+.RI "\fIThis class implements the Sobol Sequence, direction numbers are only available for 51 dimensions, so we can only provide that many dimensions.\fP"
+.ti -1c
+.RI "class \fBlongpoly\fP"
+.br
+.RI "\fIThis helper class describes polynomials with long coefficients.\fP"
+.ti -1c
+.RI "struct \fBpolynom\fP"
+.br
+.in -1c
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBUSEMC\fP   1"
+.br
+.ti -1c
+.RI "#define \fBUSEHALTON\fP   2"
+.br
+.ti -1c
+.RI "#define \fBUSENET\fP   4"
+.br
+.ti -1c
+.RI "#define \fBUSENIEDER\fP   8"
+.br
+.ti -1c
+.RI "#define \fBUSESOBOL\fP   16"
+.br
+.ti -1c
+.RI "#define \fBUSEFAURE\fP   32"
+.br
+.ti -1c
+.RI "#define \fBUSEATANASSOV\fP   64"
+.br
+.ti -1c
+.RI "#define \fBUSEHAMMERSLEY\fP   128"
+.br
+.ti -1c
+.RI "#define \fBUSENALPHA\fP   256"
+.br
+.ti -1c
+.RI "#define \fBUSEMAX\fP   USENALPHA"
+.br
+.ti -1c
+.RI "#define \fBGENAU\fP   1E-9"
+.br
+.ti -1c
+.RI "#define \fBBGENAU\fP   29"
+.br
+.ti -1c
+.RI "#define \fBMAXLONG\fP   2147483647"
+.br
+.ti -1c
+.RI "#define \fBMAXPREC\fP   30"
+.br
+.ti -1c
+.RI "#define \fBprimefile\fP   'primes.dat'"
+.br
+.ti -1c
+.RI "#define \fBNAlphaOnes\fP   .6180339887498948482045969343656391177203091798058"
+.br
+.ti -1c
+.RI "#define \fBNAlphaTwos\fP   .4142135623730950488016887242096980785696718753769"
+.br
+.ti -1c
+.RI "#define \fBNAlphaThrees\fP   .3027756377319946465596106337352479731256482869226"
+.br
+.ti -1c
+.RI "#define \fBNAlphaFours\fP   .2360679774997896964091736687312762354406183596115"
+.br
+.ti -1c
+.RI "#define \fBmaxanz\fP   310"
+.br
+.ti -1c
+.RI "#define \fBmax_nieder\fP   900000000"
+.br
+.ti -1c
+.RI "#define \fBmaxdim\fP   310"
+.br
+.ti -1c
+.RI "#define \fBMAX_I_NORMAL\fP   1025"
+.br
+.ti -1c
+.RI "#define \fBNTAB\fP   32"
+.br
+.ti -1c
+.RI "#define \fBMC1\fP   1"
+.br
+.ti -1c
+.RI "#define \fBMC2\fP   2"
+.br
+.ti -1c
+.RI "#define \fBMC3\fP   3"
+.br
+.ti -1c
+.RI "#define \fBkonst\fP   1073741824"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef double \fBdouble_vektor\fP [maxanz]"
+.br
+.ti -1c
+.RI "typedef int \fBint_vektor\fP [maxanz]"
+.br
+.ti -1c
+.RI "typedef \fBpolynom\fP \fBpolarr\fP [maxdim+4]"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "long \fBReadPrimes\fP (long *primes, long m)"
+.br
+.ti -1c
+.RI "long \fBNextPrime\fP (long current)"
+.br
+.ti -1c
+.RI "long* \fBInitGenericPrimes\fP (long dm)"
+.br
+.ti -1c
+.RI "long* \fBInitGenericInts\fP (long dm)"
+.br
+.in -1c
+.SH "DEFINE DOCUMENTATION"
+.PP 
+.SS "#define BGENAU   29"
+.PP
+.SS "#define GENAU   1E-9"
+.PP
+.SS "#define MAXLONG   2147483647"
+.PP
+.SS "#define MAXPREC   30"
+.PP
+.SS "#define MAX_I_NORMAL   1025"
+.PP
+.SS "#define MC1   1"
+.PP
+These gives the Monte Carlo Method (just pseudo-random numbers), defines constant for the \fBLDSqMonteCarlo\fP class.
+.PP
+.SS "#define MC2   2"
+.PP
+.SS "#define MC3   3"
+.PP
+.SS "#define NAlphaFours   .2360679774997896964091736687312762354406183596115"
+.PP
+.SS "#define NAlphaOnes   .6180339887498948482045969343656391177203091798058"
+.PP
+some numbes for the nAlpha sequence: NAlphaOnes is [0;1,1,1,1,1,1,1,1....] NAlphaTwos is [0;2,2,2,2,2,2,2,2....] NAlphaThrees is [0;3,3,3,3,3,3,3,3....] NAlphaFours is [0;4,4,4,4,4,4,4,4....].
+.PP
+.SS "#define NAlphaThrees   .3027756377319946465596106337352479731256482869226"
+.PP
+.SS "#define NAlphaTwos   .4142135623730950488016887242096980785696718753769"
+.PP
+.SS "#define NTAB   32"
+.PP
+.SS "#define USEATANASSOV   64"
+.PP
+.SS "#define USEFAURE   32"
+.PP
+.SS "#define USEHALTON   2"
+.PP
+.SS "#define USEHAMMERSLEY   128"
+.PP
+.SS "#define USEMAX   USENALPHA"
+.PP
+.SS "#define USEMC   1"
+.PP
+These constants define bitwise masks for variables that describe which sequence to use for your calculation.
+.PP
+e.g. 107 means MC, Halton, Niederreiter, Faure and Atanassov 
+.SS "#define USENALPHA   256"
+.PP
+.SS "#define USENET   4"
+.PP
+.SS "#define USENIEDER   8"
+.PP
+.SS "#define USESOBOL   16"
+.PP
+.SS "#define konst   1073741824"
+.PP
+.SS "#define max_nieder   900000000"
+.PP
+.SS "#define maxanz   310"
+.PP
+.SS "#define maxdim   310"
+.PP
+.SS "#define primefile   'primes.dat'"
+.PP
+.SH "TYPEDEF DOCUMENTATION"
+.PP 
+.SS "typedef double double_vektor"
+.PP
+.SS "typedef int int_vektor"
+.PP
+.SS "typedef \fBpolynom\fP polarr"
+.PP
+.SH "FUNCTION DOCUMENTATION"
+.PP 
+.SS "long* InitGenericInts (long dm)"
+.PP
+returns a field of length dm filled with the smalles Integer numbers.
+.PP
+Use this e.g. as bases for the Niederreiter sequence in a base p. The long* field has to be delete[]'ed manually. 
+.SS "long* InitGenericPrimes (long dm)"
+.PP
+returns a field of length dm filled with the smalles prime numbers.
+.PP
+Use this e.g. as bases for the Halton sequence. The long* field has to be delete[]'ed manually. 
+.SS "long NextPrime (long current)"
+.PP
+Returns the smalles prime larger than or equal to 'current'.
+.PP
+.SS "long ReadPrimes (long * primes, long m)"
+.PP
+This function reads in the first m primes from the file 'primes.dat' in the working directory and stores them to primes, which must be large enough to hold all m primes.
+.PP
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

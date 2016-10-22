@@ -1,0 +1,233 @@
+.TH "SimSeqs.cpp" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SimSeqs.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdlib.h>\fP
+.br
+\fC#include <stdio.h>\fP
+.br
+\fC#include <math.h>\fP
+.br
+\fC#include <string.h>\fP
+.br
+\fC#include <iostream.h>\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include 'SimSeqs.h'\fP
+.br
+\fC#include 'matrix.h'\fP
+.br
+\fC#include 'BaseDefinitions.h'\fP
+.br
+\fC#include 'SobolDirNum.i'\fP
+.br
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBIM1\fP   2147483399"
+.br
+.ti -1c
+.RI "#define \fBIM2\fP   2147483399"
+.br
+.ti -1c
+.RI "#define \fBAM\fP   (1.0/IM1)"
+.br
+.ti -1c
+.RI "#define \fBIMM1\fP   (IM1-1)"
+.br
+.ti -1c
+.RI "#define \fBIA1\fP   40014"
+.br
+.ti -1c
+.RI "#define \fBIA2\fP   40692"
+.br
+.ti -1c
+.RI "#define \fBIQ1\fP   53668"
+.br
+.ti -1c
+.RI "#define \fBIQ2\fP   52774"
+.br
+.ti -1c
+.RI "#define \fBIR1\fP   12211"
+.br
+.ti -1c
+.RI "#define \fBIR2\fP   3791"
+.br
+.ti -1c
+.RI "#define \fBNDIV\fP   (1+IMM1/NTAB)"
+.br
+.ti -1c
+.RI "#define \fBEPS\fP   1.2e-7"
+.br
+.ti -1c
+.RI "#define \fBRNMX\fP   (1.0-EPS)"
+.br
+.ti -1c
+.RI "#define \fBIA\fP   16807"
+.br
+.ti -1c
+.RI "#define \fBIM\fP   2147483647"
+.br
+.ti -1c
+.RI "#define \fBIQ\fP   127773"
+.br
+.ti -1c
+.RI "#define \fBIR\fP   2836"
+.br
+.ti -1c
+.RI "#define \fBMBIG\fP   1000000000"
+.br
+.ti -1c
+.RI "#define \fBMSEED\fP   161803398"
+.br
+.ti -1c
+.RI "#define \fBMZ\fP   0"
+.br
+.ti -1c
+.RI "#define \fBFAC\fP   (1.0/MBIG)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "long \fBkill_last_zeros\fP (long *n)"
+.br
+.ti -1c
+.RI "bool \fBCreateModExponents\fP (long *A, long dim, long *bases, long *prts)"
+.br
+.ti -1c
+.RI "long \fBexpand\fP (long *A, bool *rowsUsed, long dim, long dimleft, long dimtocalc)"
+.br
+.ti -1c
+.RI "long \fBCalcDeterminant\fP (long *A, long dim, long dimtocalc)"
+.br
+.ti -1c
+.RI "void \fBMakeDet1\fP (long *A, long dim, long i)"
+.br
+.ti -1c
+.RI "long \fBReadPrimes\fP (long *primes, long m)"
+.br
+.ti -1c
+.RI "long \fBNextPrime\fP (long number)"
+.br
+.ti -1c
+.RI "long* \fBInitGenericPrimes\fP (long dm)"
+.br
+.ti -1c
+.RI "long* \fBInitGenericInts\fP (long dm)"
+.br
+.ti -1c
+.RI "Zahl \fBmmin\fP (Zahl x, Zahl y)"
+.br
+.ti -1c
+.RI "long \fBlmin\fP (long x, long y)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "unsigned int \fBW\fP [53][32]"
+.br
+.in -1c
+.SH "DEFINE DOCUMENTATION"
+.PP 
+.SS "#define AM   (1.0/IM1)"
+.PP
+.SS "#define EPS   1.2e-7"
+.PP
+.SS "#define FAC   (1.0/MBIG)"
+.PP
+.SS "#define IA   16807"
+.PP
+.SS "#define IA1   40014"
+.PP
+.SS "#define IA2   40692"
+.PP
+.SS "#define IM   2147483647"
+.PP
+.SS "#define IM1   2147483399"
+.PP
+.SS "#define IM2   2147483399"
+.PP
+.SS "#define IMM1   (IM1-1)"
+.PP
+.SS "#define IQ   127773"
+.PP
+.SS "#define IQ1   53668"
+.PP
+.SS "#define IQ2   52774"
+.PP
+.SS "#define IR   2836"
+.PP
+.SS "#define IR1   12211"
+.PP
+.SS "#define IR2   3791"
+.PP
+.SS "#define MBIG   1000000000"
+.PP
+.SS "#define MSEED   161803398"
+.PP
+.SS "#define MZ   0"
+.PP
+.SS "#define NDIV   (1+IMM1/NTAB)"
+.PP
+.SS "#define RNMX   (1.0-EPS)"
+.PP
+.SH "FUNCTION DOCUMENTATION"
+.PP 
+.SS "long CalcDeterminant (long * A, long dim, long dimtocalc)"
+.PP
+calculates the determinant of the (upper left) i*i submatrix of the dim*dim \fBMatrix\fP A.
+.PP
+This is really slow, but never mind... flag the rows used so that we don't need another array for the cofactor. This saves a lot of mem... 
+.SS "bool CreateModExponents (long * A, long dim, long * bases, long * prts)"
+.PP
+this function is needed for Atanassov's modified Halton sequence.
+.PP
+It calculates the matrix A of values a_ij with prts[i]^{a_ij}=bases[j] (mod bases[i]) @author: Reinhold Kainhofer 
+.SS "long * InitGenericInts (long dm)"
+.PP
+returns a field of length dm filled with the smalles Integer numbers.
+.PP
+Use this e.g. as bases for the Niederreiter sequence in a base p. The long* field has to be delete[]'ed manually. 
+.SS "long * InitGenericPrimes (long dm)"
+.PP
+returns a field of length dm filled with the smalles prime numbers.
+.PP
+Use this e.g. as bases for the Halton sequence. The long* field has to be delete[]'ed manually. 
+.SS "void MakeDet1 (long * A, long dim, long i)"
+.PP
+this function calculates the entries k_i for Atanassov's modified Halton sequence.
+.PP
+The matrix A needs to have a determinant of 1, so this is used to determine k_i. @author: Reinhold Kainhofer 
+.SS "long NextPrime (long current)"
+.PP
+Returns the smalles prime larger than or equal to 'current'.
+.PP
+.SS "long ReadPrimes (long * primes, long m)"
+.PP
+This function reads in the first m primes from the file 'primes.dat' in the working directory and stores them to primes, which must be large enough to hold all m primes.
+.PP
+.SS "long expand (long * A, bool * rowsUsed, long dim, long dimleft, long dimtocalc)"
+.PP
+.SS "long kill_last_zeros (long * n)"
+.PP
+.SS "long lmin (long x, long y)"
+.PP
+.SS "Zahl mmin (Zahl x, Zahl y)"
+.PP
+.SH "VARIABLE DOCUMENTATION"
+.PP 
+.SS "unsigned int W"
+.PP
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

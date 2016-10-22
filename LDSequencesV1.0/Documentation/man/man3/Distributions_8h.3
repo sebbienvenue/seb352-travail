@@ -1,0 +1,261 @@
+.TH "Distributions.h" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Distributions.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <math.h>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include 'BaseDefinitions.h'\fP
+.br
+.SS "Compounds"
+
+.in +1c
+.ti -1c
+.RI "class \fBDistBeta\fP"
+.br
+.ti -1c
+.RI "class \fBDistBradford\fP"
+.br
+.ti -1c
+.RI "class \fBDistCauchy\fP"
+.br
+.ti -1c
+.RI "class \fBDistDiscrete\fP"
+.br
+.ti -1c
+.RI "class \fBDistExp\fP"
+.br
+.RI "\fIThis class describes the exponential distribution.\fP"
+.ti -1c
+.RI "class \fBDistFoldedNormal\fP"
+.br
+.ti -1c
+.RI "class \fBDistGamma\fP"
+.br
+.RI "\fIThis class describes the Gamma distribution with parameters alpha and beta.\fP"
+.ti -1c
+.RI "class \fBDistHalfNormal\fP"
+.br
+.ti -1c
+.RI "class \fBDistLaplace\fP"
+.br
+.ti -1c
+.RI "class \fBDistLogNormal\fP"
+.br
+.RI "\fIThis class describes the LOG-Normal (Gauss) distribution.\fP"
+.ti -1c
+.RI "class \fBDistNormal\fP"
+.br
+.RI "\fIThis class describes the Normal (Gauss) distribution.\fP"
+.ti -1c
+.RI "class \fBDistPareto\fP"
+.br
+.RI "\fIThis class describes the Pareto distribution.\fP"
+.ti -1c
+.RI "class \fBDistPareto0\fP"
+.br
+.RI "\fIThis class describes the 0-Point Pareto distribution.\fP"
+.ti -1c
+.RI "class \fBDistribution\fP"
+.br
+.RI "\fIThis is the base class for all distributions.\fP"
+.ti -1c
+.RI "class \fBDistTemplate\fP"
+.br
+.ti -1c
+.RI "class \fBDistUniform\fP"
+.br
+.RI "\fIThis class describes the uniform distribution.\fP"
+.ti -1c
+.RI "class \fBDistWeibull\fP"
+.br
+.RI "\fIThis class describes the Weibull distribution, which is a generalization of the Exp dist, so maybe I should make \fBDistExp\fP make its base classe??? TODO.\fP"
+.in -1c
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBRANGE_NONE\fP   -1"
+.br
+.ti -1c
+.RI "#define \fBRANGE_MININF_INF\fP   0"
+.br
+.ti -1c
+.RI "#define \fBRANGE_0_INF\fP   1"
+.br
+.ti -1c
+.RI "#define \fBRANGE_0_1\fP   2"
+.br
+.ti -1c
+.RI "#define \fBRANGE_PARA1_PARA2\fP   3"
+.br
+.ti -1c
+.RI "#define \fBRANGE_0_PARA1\fP   4"
+.br
+.ti -1c
+.RI "#define \fBRANGE_PARA1_INF\fP   5"
+.br
+.ti -1c
+.RI "#define \fBRANGE_PARA2_INF\fP   6"
+.br
+.ti -1c
+.RI "#define \fBRANGE_PARA3_INF\fP   7"
+.br
+.ti -1c
+.RI "#define \fBRANGE_PARA1P1_INF\fP   8"
+.br
+.ti -1c
+.RI "#define \fBINFINITY\fP   10e+300"
+.br
+.ti -1c
+.RI "#define \fBinf\fP   INFINITY"
+.br
+.ti -1c
+.RI "#define \fBMOMENT_NONE\fP   INFINITY"
+.br
+.ti -1c
+.RI "#define \fBUSE_EXP_DIST\fP   1"
+.br
+.ti -1c
+.RI "#define \fBUSE_GAMMA_DIST\fP   2"
+.br
+.ti -1c
+.RI "#define \fBUSE_NORMAL_DIST\fP   3"
+.br
+.ti -1c
+.RI "#define \fBUSE_LOGNORMAL_DIST\fP   4"
+.br
+.ti -1c
+.RI "#define \fBUSE_PARETO0_DIST\fP   5"
+.br
+.ti -1c
+.RI "#define \fBUSE_WEIBULL_DIST\fP   6"
+.br
+.ti -1c
+.RI "#define \fBIncompleteBeta\fP(p1, p2, p3)	   0"
+.br
+.ti -1c
+.RI "#define \fBIncompleteGamma\fP(p1, p2)   0"
+.br
+.ti -1c
+.RI "#define \fBtgamma\fP(x)   exp(lgamma(x))"
+.br
+.ti -1c
+.RI "#define \fBDistLorentz\fP   DistChauchy"
+.br
+.ti -1c
+.RI "#define \fBDistDoubleExponential\fP   \fBDistLaplace\fP"
+.br
+.ti -1c
+.RI "#define \fBDistBilateralExponential\fP   \fBDistLaplace\fP"
+.br
+.ti -1c
+.RI "#define \fBDistGauss\fP   \fBDistNormal\fP"
+.br
+.ti -1c
+.RI "#define \fBDIstCobbDouglas\fP   \fBDistLogNormal\fP"
+.br
+.ti -1c
+.RI "#define \fBDistAntiLogNormal\fP   \fBDistLogNormal\fP"
+.br
+.ti -1c
+.RI "#define \fBDistRectangular\fP   \fBDistUniform\fP"
+.br
+.ti -1c
+.RI "#define \fBDistFrechet\fP   \fBDistWeibull\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDistribution\fP* \fBCreateDistribution\fP (long type, Zahl para, Zahl para1)"
+.br
+.in -1c
+.SH "DEFINE DOCUMENTATION"
+.PP 
+.SS "#define DIstCobbDouglas   \fBDistLogNormal\fP"
+.PP
+.SS "#define DistAntiLogNormal   \fBDistLogNormal\fP"
+.PP
+.SS "#define DistBilateralExponential   \fBDistLaplace\fP"
+.PP
+.SS "#define DistDoubleExponential   \fBDistLaplace\fP"
+.PP
+.SS "#define DistFrechet   \fBDistWeibull\fP"
+.PP
+.SS "#define DistGauss   \fBDistNormal\fP"
+.PP
+.SS "#define DistLorentz   DistChauchy"
+.PP
+.SS "#define DistRectangular   \fBDistUniform\fP"
+.PP
+.SS "#define INFINITY   10e+300"
+.PP
+.SS "#define IncompleteBeta(p1, p2, p3)   0"
+.PP
+.SS "#define IncompleteGamma(p1, p2)   0"
+.PP
+.SS "#define MOMENT_NONE   INFINITY"
+.PP
+.SS "#define RANGE_0_1   2"
+.PP
+.SS "#define RANGE_0_INF   1"
+.PP
+.SS "#define RANGE_0_PARA1   4"
+.PP
+.SS "#define RANGE_MININF_INF   0"
+.PP
+.SS "#define RANGE_NONE   -1"
+.PP
+.SS "#define RANGE_PARA1P1_INF   8"
+.PP
+.SS "#define RANGE_PARA1_INF   5"
+.PP
+.SS "#define RANGE_PARA1_PARA2   3"
+.PP
+.SS "#define RANGE_PARA2_INF   6"
+.PP
+.SS "#define RANGE_PARA3_INF   7"
+.PP
+.SS "#define USE_EXP_DIST   1"
+.PP
+.SS "#define USE_GAMMA_DIST   2"
+.PP
+.SS "#define USE_LOGNORMAL_DIST   4"
+.PP
+.SS "#define USE_NORMAL_DIST   3"
+.PP
+.SS "#define USE_PARETO0_DIST   5"
+.PP
+.SS "#define USE_WEIBULL_DIST   6"
+.PP
+.SS "#define inf   INFINITY"
+.PP
+.SS "#define tgamma(x)   exp(lgamma(x))"
+.PP
+.SH "FUNCTION DOCUMENTATION"
+.PP 
+.SS "\fBDistribution\fP* CreateDistribution (long type, Zahl para, Zahl para1)"
+.PP
+This initializes a \fBDistribution\fP and returns a pointer to it.
+.PP
+\fBParameters: \fP
+.in +1c
+.TP
+\fB\fItype\fP\fP
+defines which distribution is created, constants defined in \fBDistributions.h\fP 
+.TP
+\fB\fIpara\fP\fP
+First parameter 
+.TP
+\fB\fIpara1\fP\fP
+Second parameter (ignored if distribution has just one param) 
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

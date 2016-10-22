@@ -1,0 +1,64 @@
+.TH "LDSqHammersley" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqHammersley \- This class implements the Hammersley Set by creathing the Halton-sequence in dim-1 dimensions and adding the additional dimension of the form k/N. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqHalton\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqHammersley\fP (long *b=NULL, long dm=0, long iterations=0, long genau=0, double genau1=0., int npos=1, char *ex='ham',char *nm='Hammersley')"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBNpos\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This class implements the Hammersley Set by creathing the Halton-sequence in dim-1 dimensions and adding the additional dimension of the form k/N.
+.PP
+Here the parameter len is really important!!! 
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqHammersley::LDSqHammersley (long * b = NULL, long dm = 0, long iterations = 0, long genau = 0, double genau1 = 0., int npos = 1, char * ex = 'ham', char * nm = 'Hammersley')"
+.PP
+npos gibt an, an welcher Stelle das n/iterations eingefuegt werden soll.
+.PP
+Der Index is 0-basierend, negative Werte sind von rechts gezaehlt bzw. der Wert ist modulo dim 
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqHammersley::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+write the next elements of the sequence in a buffer.
+.PP
+Reimplemented from \fBLDSqHalton\fP.
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "int LDSqHammersley::Npos\fC [protected]\fP"
+.PP
+npos gibt an, an welcher Stelle das n/iterations eingefuegt werden soll.
+.PP
+Der Index is 0-basierend, negative Werte sind von rechts gezaehlt bzw. der Wert ist modulo dim 
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

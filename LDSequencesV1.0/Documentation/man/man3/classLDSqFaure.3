@@ -1,0 +1,108 @@
+.TH "LDSqFaure" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqFaure \- Implementation of the Faure low discrepancy sequence, use a linear field c to store the pascal matrix and multiply it on the previous coefficients by matrix-multiplication to get the new coefficients. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqBase\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqFaure\fP (long *b=NULL, long dm=0, long iterations=0, long genau=0, double genau1=0., long fstp=0, char *ex='fau',char *nm='Faure')"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "long \fBfstep\fP"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.ti -1c
+.RI "virtual long \fBInitData\fP (long genau, double genau1)"
+.br
+.ti -1c
+.RI "virtual long \fBExitData\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBCreateDirMx\fP (long *cc, long \fBlen\fP, long bs)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "long \fBr\fP"
+.br
+.ti -1c
+.RI "long \fBbase\fP"
+.br
+.ti -1c
+.RI "long* \fBc\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+Implementation of the Faure low discrepancy sequence, use a linear field c to store the pascal matrix and multiply it on the previous coefficients by matrix-multiplication to get the new coefficients.
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqFaure::LDSqFaure (long * b = NULL, long dm = 0, long iterations = 0, long genau = 0, double genau1 = 0., long fstp = 0, char * ex = 'fau', char * nm = 'Faure')"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqFaure::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Calculates the next element and stores it to the buffer.
+.PP
+If bufflen>dim, the remaining dimensions are pseudo-random numbers (i.e. the sequence is a hybrid sequence) This function should never be called directly! Use NextElement(..) instead!!! 
+.PP
+\fBSee also: \fP
+.in +1c
+\fBNextElement\fP() 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "void LDSqFaure::CreateDirMx (long * cc, long len, long bs)\fC [protected, virtual]\fP"
+.PP
+Create the Pascal matrix.
+.PP
+If you want a different uppre triangular matrix, just overload this function in your subclass and create your own direction numbers 
+.SS "long LDSqFaure::ExitData ()\fC [protected, virtual]\fP"
+.PP
+Do class-specific freeing of memory etc.
+.PP
+Called by the destructor 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqFaure::InitData (long genau, double genau1)\fC [protected, virtual]\fP"
+.PP
+initialize the method specific data.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "long LDSqFaure::base\fC [protected]\fP"
+.PP
+.SS "long * LDSqFaure::c\fC [protected]\fP"
+.PP
+.SS "long LDSqFaure::fstep"
+.PP
+.SS "long LDSqFaure::r\fC [protected]\fP"
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

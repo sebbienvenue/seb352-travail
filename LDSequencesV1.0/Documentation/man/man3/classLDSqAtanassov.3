@@ -1,0 +1,101 @@
+.TH "LDSqAtanassov" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqAtanassov \- This class implements Atanassov's modified Halton sequence. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqBase\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqAtanassov\fP (long *b=NULL, long dm=NULL, long iterations=0, long genau=BGENAU, double genau1=GENAU, char *ex='ata',char *nm='Atanassov', long *prts=NULL, long *mdfs=NULL)"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.ti -1c
+.RI "virtual long \fBInitData\fP (long genau=0, double genau1=0)"
+.br
+.ti -1c
+.RI "virtual long \fBExitData\fP ()"
+.br
+.ti -1c
+.RI "virtual long* \fBInitGenericBases\fP (long dm)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "long* \fBfactors\fP"
+.br
+.ti -1c
+.RI "long* \fBproots\fP"
+.br
+.ti -1c
+.RI "long* \fBmodifiers\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This class implements Atanassov's modified Halton sequence.
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqAtanassov::LDSqAtanassov (long * b = NULL, long dm = NULL, long iterations = 0, long genau = BGENAU, double genau1 = GENAU, char * ex = 'ata', char * nm = 'Atanassov', long * prts = NULL, long * mdfs = NULL)"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqAtanassov::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+writes the next element(s) of the sequence in a buffer.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqAtanassov::ExitData ()\fC [protected, virtual]\fP"
+.PP
+Do class-specific freeing of memory etc.
+.PP
+Called by the destructor 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqAtanassov::InitData (long genau = 0, double genau1 = 0)\fC [protected, virtual]\fP"
+.PP
+initialize the method specific data.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long * LDSqAtanassov::InitGenericBases (long dm)\fC [protected, virtual]\fP"
+.PP
+If no array of bases was given in the constructor, but the sequence needs them, this creates generic bases, e.g.
+.PP
+most of the time these are the dm lowest prime numbers, but you can override this by reimplementing InitGenericBases in your subclass 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "long * LDSqAtanassov::factors\fC [protected]\fP"
+.PP
+stores the factors of Atanassov's definition.
+.PP
+.SS "long * LDSqAtanassov::modifiers\fC [protected]\fP"
+.PP
+stores the modifiers needed in Atanassov's definition.
+.PP
+.SS "long * LDSqAtanassov::proots\fC [protected]\fP"
+.PP
+stores the primitive roots needed to create the sequence.
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

@@ -1,0 +1,112 @@
+.TH "longpoly" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+longpoly \- This helper class describes polynomials with long coefficients. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBlongpoly\fP (long cflen=15, long bs=0)"
+.br
+.ti -1c
+.RI "\fB~longpoly\fP ()"
+.br
+.ti -1c
+.RI "long \fBGetDegree\fP ()"
+.br
+.ti -1c
+.RI "long \fBSetDegree\fP (long \fBdeg\fP)"
+.br
+.ti -1c
+.RI "long \fBSetCoeff\fP (long k, long val)"
+.br
+.ti -1c
+.RI "long \fBGetCoeff\fP (long k)"
+.br
+.ti -1c
+.RI "longpoly* \fBtimes\fP (longpoly &poly1)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "long \fBdeg\fP"
+.br
+.ti -1c
+.RI "long \fBbase\fP"
+.br
+.ti -1c
+.RI "long* \fBcoeff\fP"
+.br
+.ti -1c
+.RI "long \fBcoefflen\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This helper class describes polynomials with long coefficients.
+.PP
+I know, this should probably be implemented as a Template class so that arbitrary data types are allowed. I'm just too lazy for now ;-) 
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "longpoly::longpoly (long cflen = 15, long bs = 0)"
+.PP
+initializes the polynomial with the given number of coefficients (order, default is 15) and in base bs (default is 0).
+.PP
+If bs is set <=0, this means: 'Don't do any modulo operations on the coefficients',i.e. we are in Z 
+.SS "longpoly::~longpoly ()"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long longpoly::GetCoeff (long k)"
+.PP
+Gets the k-th coefficient.
+.PP
+.SS "long longpoly::GetDegree ()"
+.PP
+Returns the degree of the polynomial (memory allocated for the coefficients).
+.PP
+.SS "long longpoly::SetCoeff (long k, long val)"
+.PP
+Sets the k-th coefficient to val.
+.PP
+.SS "long longpoly::SetDegree (long deg)"
+.PP
+Sets a new possible degree for the polynomial by allocating sufficient memory (old coefficients are preserved).
+.PP
+.SS "longpoly * longpoly::times (longpoly & poly1)"
+.PP
+multiply this polynomial with another one (poly1).
+.PP
+A new longpoly object is returned, which has to be free manually / by the garbage collection 
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "long longpoly::base\fC [protected]\fP"
+.PP
+if we are in the Ring Z_n, this is the base for all the modulo operations.
+.PP
+.SS "long * longpoly::coeff\fC [protected]\fP"
+.PP
+this field stores the coefficients of the polynomial.
+.PP
+.SS "long longpoly::coefflen\fC [protected]\fP"
+.PP
+Size of memory allocated for the coefficients.
+.PP
+.SS "long longpoly::deg\fC [protected]\fP"
+.PP
+stores the degree of the polynomial.
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

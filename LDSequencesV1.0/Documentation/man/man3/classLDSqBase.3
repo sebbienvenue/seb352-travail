@@ -1,0 +1,361 @@
+.TH "LDSqBase" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqBase \- This is the base class for all the simulation sequences including Monte Carlo (just random numbers). 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherited by \fBLDSqAtanassov\fP, \fBLDSqFaure\fP, \fBLDSqHalton\fP, \fBLDSqMonteCarlo\fP, \fBLDSqNAlpha\fP, \fBLDSqNetz\fP, \fBLDSqNiederreiter\fP, and \fBLDSqSobol\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqBase\fP (long *b=NULL, long dm=0, long iterations=0, long genau=0, double genau1=0., char *ex='',char *nm='')"
+.br
+.ti -1c
+.RI "virtual \fB~LDSqBase\fP ()"
+.br
+.ti -1c
+.RI "virtual long \fBGetDimension\fP ()"
+.br
+.ti -1c
+.RI "virtual long \fBGetLength\fP ()"
+.br
+.ti -1c
+.RI "virtual char* \fBGetName\fP ()"
+.br
+.ti -1c
+.RI "virtual char* \fBGetExtension\fP ()"
+.br
+.ti -1c
+.RI "virtual long \fBSetBases\fP (long *b, long dm, long genau, double genau1)"
+.br
+.ti -1c
+.RI "virtual long \fBGetBases\fP (long *b, long dm)"
+.br
+.ti -1c
+.RI "virtual long \fBNextElement\fP (double *buffer, long bufflen, long nr=-1)"
+.br
+.ti -1c
+.RI "virtual bool \fBCreateNumbers\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBSetNames\fP (char *ex='',char *nm='')"
+.br
+.ti -1c
+.RI "virtual void \fBSetSeed\fP (long int status)"
+.br
+.ti -1c
+.RI "double \fBran1\fP (long *idum)"
+.br
+.ti -1c
+.RI "double \fBran2\fP (long *idum)"
+.br
+.ti -1c
+.RI "double \fBran3\fP (long *idum)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "long \fBlastnr\fP"
+.br
+.ti -1c
+.RI "bool \fBqmc\fP"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBInitMethod\fP (long *b=NULL, long dm=0, long iterations=0, long genau=0, double genau1=0., char *ex='',char *nm='')"
+.br
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.ti -1c
+.RI "virtual long \fBInitData\fP (long genau, double genau1)"
+.br
+.ti -1c
+.RI "virtual long \fBExitData\fP ()"
+.br
+.ti -1c
+.RI "virtual long* \fBInitGenericBases\fP (long dm)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "char* \fBname\fP"
+.br
+.ti -1c
+.RI "char * \fBext\fP"
+.br
+.ti -1c
+.RI "long \fBdim\fP"
+.br
+.ti -1c
+.RI "long \fBlen\fP"
+.br
+.ti -1c
+.RI "long* \fBbases\fP"
+.br
+.ti -1c
+.RI "double* \fBnumbers\fP"
+.br
+.ti -1c
+.RI "bool \fBcreated\fP"
+.br
+.ti -1c
+.RI "long \fBstate\fP"
+.br
+.ti -1c
+.RI "long \fBiy\fP"
+.br
+.ti -1c
+.RI "long \fBiv\fP [NTAB]"
+.br
+.ti -1c
+.RI "long \fBtype\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This is the base class for all the simulation sequences including Monte Carlo (just random numbers).
+.PP
+If you intend to use MC / QMC sequences in your program, use an object of LDSqBase* type, so that you can later determine which sequence you really want. To initialize the sequence, just initialize a subclass and type-cast it to LDSqBase*. To get the next element, use the method NextElement(double*buffer, long bufflen, long nr=-1); To get the name of the sequence use \fBGetName\fP() or \fBGetExtension\fP() You probably won't need any other methods.
+.PP
+If you decide you want any other sequence, just use a diffent constructor, you don't have to change anything else. e.g. 
+.PP
+.nf
+
+		 void docalc() {
+			 // definition of vars, memory for buffer, get bases etc.
+			 // ...
+			 LDSqBase*numbers;
+			 numbers=(LDSqBase*)new MonteCarlo();
+			 //numbers=(LDSqBase*)new Halton(bases, 5); // uncomment this if you want to use the Halton -sequence. This is the only place where you need to change something if you want a different sequence.
+
+			 numbers->NextElement(buffer, bufflen); // This is the same, whatever sequence you use!!!
+			 // .. do whatever you want
+			 numbers->NextElement(buffer, bufflen, 271); // returns the 271. element of the sequence
+
+			 //.. some more code,
+			 delete numbers; // This is the same for all sequences, too
+			 //free mem etc.
+		 }
+		 
+.fi
+.PP
+So, you see, to use different sequences, just initialize a differen object, but since all use LDSqBase as base class (which supplies the framework and the virtual functions that are implemented by the other sequence classes), the rest of the program, where you really work with the sequence just stays the same. 
+.PP
+\fBAuthor(s): \fP
+.in +1c
+Reinhold Kainhofer 
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqBase::LDSqBase (long * b = NULL, long dm = 0, long iterations = 0, long genau = 0, double genau1 = 0., char * ex = '', char * nm = '')"
+.PP
+Constructor, initializes the sequence.
+.PP
+\fBParameters: \fP
+.in +1c
+.TP
+\fB\fIb\fP\fP
+Pointer to an array of longs containing the bases for the sequence (if needed, NULL or 0 otherwise). If the sequence needs bases, but NULL is given, it calls InitGenericBases(..) to create default bases (usually the lowest dim prime numbers) 
+.TP
+\fB\fIdm\fP\fP
+dimension of the sequence. 
+.TP
+\fB\fIiterations\fP\fP
+Number of points needed (e.g. used for the Hammesley-point set) 
+.TP
+\fB\fIgenau\fP\fP
+Needed for the Halton-sequence (and maybe for some other sequences as well) 
+.TP
+\fB\fIgenau1\fP\fP
+like genau 
+.TP
+\fB\fIex\fP\fP
+extension returned by \fBGetExtension\fP(), usually you leave this to its default value 
+.TP
+\fB\fInm\fP\fP
+Name of the sequence, returned by \fBGetName\fP(), usually you leave this to its default value 
+.SS "LDSqBase::~LDSqBase ()\fC [virtual]\fP"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqBase::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Calculates the next element and stores it to the buffer.
+.PP
+If bufflen>dim, the remaining dimensions are pseudo-random numbers (i.e. the sequence is a hybrid sequence) This function should never be called directly! Use NextElement(..) instead!!! 
+.PP
+\fBSee also: \fP
+.in +1c
+\fBNextElement\fP() 
+.PP
+Reimplemented in \fBLDSqMonteCarlo\fP, \fBLDSqAfflerbach\fP, \fBLDSqNAlpha\fP, \fBLDSqHalton\fP, \fBLDSqAtanassov\fP, \fBLDSqHammersley\fP, \fBLDSqSobol\fP, \fBLDSqFaure\fP, \fBLDSqNetz\fP, and \fBLDSqNiederreiter\fP.
+.SS "bool LDSqBase::CreateNumbers ()\fC [virtual]\fP"
+.PP
+Creates all the numbers (len defines how many are needed) and stores them in the array numbers, so that NextElement(..) can just copy them from the array and does not have to calcualate them.
+.PP
+.SS "long LDSqBase::ExitData ()\fC [protected, virtual]\fP"
+.PP
+Do class-specific freeing of memory etc.
+.PP
+Called by the destructor 
+.PP
+Reimplemented in \fBLDSqMonteCarlo\fP, \fBLDSqHalton\fP, \fBLDSqAtanassov\fP, \fBLDSqSobol\fP, \fBLDSqFaure\fP, \fBLDSqNetz\fP, and \fBLDSqNiederreiter\fP.
+.SS "long LDSqBase::GetBases (long * b, long dm)\fC [virtual]\fP"
+.PP
+Returns the bases used for this sequence into the buffer b, at most dm of them and returns how many bases have been copied to b.
+.PP
+.SS "long LDSqBase::GetDimension ()\fC [virtual]\fP"
+.PP
+Returns the dimension of the LD sequence (stored in the member variable dim).
+.PP
+.SS "char * LDSqBase::GetExtension ()\fC [virtual]\fP"
+.PP
+.SS "long LDSqBase::GetLength ()\fC [virtual]\fP"
+.PP
+Returns len (the number of points of this point set or sequence).
+.PP
+.SS "char * LDSqBase::GetName ()\fC [virtual]\fP"
+.PP
+.SS "long LDSqBase::InitData (long genau, double genau1)\fC [protected, virtual]\fP"
+.PP
+initialize the method specific data.
+.PP
+Reimplemented in \fBLDSqMonteCarlo\fP, \fBLDSqHalton\fP, \fBLDSqAtanassov\fP, \fBLDSqSobol\fP, \fBLDSqFaure\fP, \fBLDSqNetz\fP, and \fBLDSqNiederreiter\fP.
+.SS "long * LDSqBase::InitGenericBases (long dm)\fC [protected, virtual]\fP"
+.PP
+If no array of bases was given in the constructor, but the sequence needs them, this creates generic bases, e.g.
+.PP
+most of the time these are the dm lowest prime numbers, but you can override this by reimplementing InitGenericBases in your subclass 
+.PP
+Reimplemented in \fBLDSqNAlpha\fP, \fBLDSqHalton\fP, \fBLDSqAtanassov\fP, and \fBLDSqNetz\fP.
+.SS "void LDSqBase::InitMethod (long * b = NULL, long dm = 0, long iterations = 0, long genau = 0, double genau1 = 0., char * ex = '', char * nm = '')\fC [protected, virtual]\fP"
+.PP
+Initializes the method, allocates memory needed,sets default values for the variables needed and calls InitData to do class-specific initialization...
+.PP
+\fBParameters: \fP
+.in +1c
+.TP
+\fB\fIb\fP\fP
+Pointer to an array of longs containing the bases for the sequence (if needed, NULL or 0 otherwise) 
+.TP
+\fB\fIdm\fP\fP
+dimension of the sequence. 
+.TP
+\fB\fIiterations\fP\fP
+Number of points needed (e.g. used for the Hammesley-point set) 
+.TP
+\fB\fIgenau\fP\fP
+Needed for the Halton-sequence (and maybe for some other sequences as well) 
+.TP
+\fB\fIgenau1\fP\fP
+like genau 
+.TP
+\fB\fIex\fP\fP
+extension returned by \fBGetExtension\fP(), usually you leave this to its default value 
+.TP
+\fB\fInm\fP\fP
+Name of the sequence, returned by \fBGetName\fP(), usually you leave this to its default value 
+.SS "long LDSqBase::NextElement (double * buffer, long bufflen, long nr = -1)\fC [virtual]\fP"
+.PP
+Writes the nr-th element (if nr=-1 or not given, it writes the next element) of the sequence in a buffer.
+.PP
+If bufflen>dim, the remaining dimensions are pseudo-random numbers (i.e. the sequence is a hybrid sequence). This is the method you should call from within your program.
+.PP
+If the number have been pre-created (because \fBCreateNumbers\fP() has been called to create them), it just copies the appropriate element to the buffer, otherwise it will really calculate it. 
+.SS "long LDSqBase::SetBases (long * b, long dm, long genau, double genau1)\fC [virtual]\fP"
+.PP
+Set the bases for the sequence (or change them if they were already given in the constructor).
+.PP
+.SS "void LDSqBase::SetNames (char * ex = '', char * nm = '')\fC [virtual]\fP"
+.PP
+Changes the name of the sequence and the default extension (return value of \fBGetName\fP() and \fBGetExtension\fP()).
+.PP
+They are initialized by the constructor 
+.SS "void LDSqBase::SetSeed (long int status)\fC [virtual]\fP"
+.PP
+Sets the seed for the ran1, ran2 and ran3 pseudo-number generators.
+.PP
+.SS "double LDSqBase::ran1 (long * idum)"
+.PP
+ran1 pseudo-Random number generator from the 'Numerical Recipies in C': 'minimal' random number generator of Park and Miller with Bays-Durham shuffle and added safeguards.
+.PP
+.SS "double LDSqBase::ran2 (long * idum)"
+.PP
+ran2 improved pseudo-Random number generator from the 'Numerical Recipies in C' long period rng of L'Ecuyer with Bays-Durham shuffle and added safeguards.
+.PP
+.SS "double LDSqBase::ran3 (long * idum)"
+.PP
+ran3 improved pseudo-Random number generator from the 'Numerical Recipies in C' Knuth's subtractive method rng.
+.PP
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "long * LDSqBase::bases\fC [protected]\fP"
+.PP
+long-field that stores the bases (if needed), e.g.
+.PP
+for the Halton/Hammersley sequence 
+.SS "bool LDSqBase::created\fC [protected]\fP"
+.PP
+flag to show whether the elements are pre-created into the field numbers already and just need to be copied from there.
+.PP
+If false, the element needs to be calculated. 
+.SS "long LDSqBase::dim\fC [protected]\fP"
+.PP
+number of dimensions (also the length of long* bases).
+.PP
+.SS "char * LDSqBase::ext\fC [protected]\fP"
+.PP
+Strings, which contain the name and the 3-letter name of the sequence, e.g.
+.PP
+name='Halton', ext='hal' 
+.SS "long LDSqBase::iv\fC [protected]\fP"
+.PP
+.SS "long LDSqBase::iy\fC [protected]\fP"
+.PP
+.SS "long LDSqBase::lastnr"
+.PP
+store the index of the last created element, to use lastnr+1 as default...
+.PP
+Some sequences can be calculated recursively (like the Halton sequences), so compare if the number needed is lastnr+1 (if yes, use the previous element to create the next one much faster 
+.SS "long LDSqBase::len\fC [protected]\fP"
+.PP
+Number of points of this point set (for sequences this has no important meaning, but for the Hammersley set this is vital).
+.PP
+.SS "char * LDSqBase::name\fC [protected]\fP"
+.PP
+Strings, which contain the name and the 3-letter name of the sequence, e.g.
+.PP
+name='Halton', ext='hal' 
+.SS "double * LDSqBase::numbers\fC [protected]\fP"
+.PP
+If all the numbers should be created at the beginning, this field stores all the elements.
+.PP
+This can be quite effective if you need the same elements quite often in your code, since they are created just once at the beginning and not on the fly when needed (as it is the default 
+.SS "bool LDSqBase::qmc"
+.PP
+Determines whether the sequence is a Low Discrepancy Sequence or not.
+.PP
+This is a flag that is set once in the constructor. Your Program can check if (numberObject->qmc) {Do for QMC-sequence} else {Do for pseudo-random sequence} 
+.SS "long LDSqBase::state\fC [protected]\fP"
+.PP
+.SS "long LDSqBase::type\fC [protected]\fP"
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

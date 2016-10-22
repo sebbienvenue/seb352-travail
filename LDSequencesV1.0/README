@@ -1,0 +1,15 @@
+LDSequences 1.0
+===============
+
+C++ Classes for the generation of low-discrepancy sequences.
+
+You can find the documentation in the file index.html in the htdocs directory.
+The class reference can be found in the directory Documentation.
+
+The Sources of the classes are located in the directory Sources.
+
+If you find any bugs etc. tell me at reinhold@kainhofer.com
+
+The code is licensec under the GPL V2 (or above). See the file Sources/gpl.txt for the whole text of the license.
+
+

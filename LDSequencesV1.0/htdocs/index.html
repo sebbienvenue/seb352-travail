@@ -1,0 +1,100 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76C-SGI [en] (X11; I; IRIX 6.5 IP22) [Netscape]">
+</head>
+<body text="#000000" bgcolor="#FFFF99" link="#0000EE" vlink="#551A8B" alink="#FF0000">
+
+<center>
+<h1>
+LDSequences</h1></center>
+
+<center>A collection of C++ classes for the generation of low-discrepancy
+sequences</center>
+
+<h2>
+What are low-discrepancy sequences</h2>
+Yet to come... sorry.
+<br>&nbsp;
+<h2>
+How can I use them in my program?</h2>
+Well, it's very simple:
+<ul>
+<li>
+-) Include the necessary include files in your code</li>
+
+<li>
+-) create an object of the according child class of LDSqBase. Note that
+this is the only place where you tell the program which sequence you want
+to create. The code to create the elements of the sequence does not have
+to be changed if you want to use a different sequence.</li>
+
+<pre>&nbsp;&nbsp;&nbsp; // Giving NULL for the bases, means: use the first dim prime numbers
+&nbsp;&nbsp;&nbsp; long dim=7;
+&nbsp;&nbsp;&nbsp; LDSqBase*Numbers=(LDSqBase*)new Halton(NULL, dim);</pre>
+
+<li>
+-) Once the object is created, you can easily get the next or the n-th
+element of the sequence. The following line gives the next element of the
+sequence&nbsp; (the sequence remembers the index of the element it returned
+last time). // if lenght (here 12) is larger than dim used to create the
+sequence, the rest of the dimensions is filled with pseudo-random numbers
+created by the ran2 method described in "Numerical Recipies in C".</li>
+
+<pre>&nbsp;&nbsp;&nbsp; double buffer[13];
+&nbsp;&nbsp;&nbsp; Numbers->NextElement(&amp;buffer[0], 12);</pre>
+Or if you want to get e.g. th 16234-th element of the sequence, give that
+index as additional argument:
+<pre>&nbsp;&nbsp;&nbsp; Numbers->NextElement(&amp;buffer[0], 12, 16234);</pre>
+
+<li>
+-) When you don't need the sequence any more, release / delete it:</li>
+
+<pre>&nbsp;&nbsp;&nbsp; delete Numbers;</pre>
+
+<li>
+-) Make sure you compile the *.cpp files from the LDSequences package and
+link your program to the object files, too!!!</li>
+</ul>
+
+<h2>
+List of the classes included</h2>
+The <a href="Documentation/">complete reference</a> of all classes and
+their methods included is <a href="Documentation/">provided here</a> (automatically
+created from the sources and the comments there by <a href="http://www.doxygen.org/">Doxygen</a>).
+<p>I also created a small Mathematica package to create the Halton/Van
+der Corput, Faure and Niederreiter sequences in Mathematica. The notebook
+LDSequences.nb with the code and the respective package LDSequences.m can
+be found in CVS in the module "Mathematica".
+<br>&nbsp;
+<h2>
+How to get the classes</h2>
+Look at the <a href="http://sourceforge.net/projects/ldsequences/">LDSequences'
+development homepage</a> at sourceforge. You can either download a release
+version (once version 1.0 is ready) or use cvs to get a development snapshot
+as described at that page.
+<br>Yet to come... sorry.
+<br>&nbsp;
+<h2>
+I want to help</h2>
+If you feel this is an important project for the scientific community,
+I really invite you to join forces with me and help develop or maintain
+these classes. Contact me at my email address <a href="mailto:reinhold@kainhofer.com">reinhold@kainhofer.com</a>.
+<br>&nbsp;
+<h2>
+License</h2>
+This software is free software; you can redistribute it and / or modify
+it under the terms of the GNU General Public License as published by the
+Free Software Foundation; either version 2 of the License, or (at your
+option) any later version.
+<br>For the complete text of the license see the <a href="http://www.gnu.org/copyleft/gpl.html">GPL-web
+page</a>.
+<br>
+<hr WIDTH="100%">
+<br>Reinhold Kainhofer, email: <a href="mailto:reinhold@kainhofer.com">reinhold@kainhofer.com</a>,
+homepage: <a href="http://reinhold.kainhofer.com">http://reinhold.kainhofer.com</a>
+<br>This page is hosted by Sourceforge&nbsp;<a href="http://sourceforge.net"><img SRC="http://sourceforge.net/sflogo.php?group_id=27887" ALT="SourceForge Logo" NOSAVE BORDER=0 height=31 width=88 align=ABSCENTER></a>,
+which provide a lot of free services for Open Source projects.
+</body>
+</html>

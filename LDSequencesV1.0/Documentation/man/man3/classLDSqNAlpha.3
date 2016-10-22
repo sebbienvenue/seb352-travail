@@ -1,0 +1,71 @@
+.TH "LDSqNAlpha" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqNAlpha \- This class implements the N *Alpha Sequence. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqBase\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqNAlpha\fP (Zahl *alph=NULL, long dm=0, long iterations=0, char *ex='nalpha', char *nm='[n Alpha]')"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long* \fBInitGenericBases\fP (long dm)"
+.br
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "Zahl* \fBalpha\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This class implements the N *Alpha Sequence.
+.PP
+No check on the independence of the alphas is done!!! 
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqNAlpha::LDSqNAlpha (Zahl * alph = NULL, long dm = 0, long iterations = 0, char * ex = 'nalpha', char * nm = '[n Alpha]')"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqNAlpha::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Create the nr-th element by a simple multiplication nr*alpha (mod 1).
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long * LDSqNAlpha::InitGenericBases (long dm)\fC [protected, virtual]\fP"
+.PP
+Here we should create dm independent bases into alpha.
+.PP
+Not done yet!!! 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "Zahl * LDSqNAlpha::alpha\fC [protected]\fP"
+.PP
+This double field stores the alpha-values.
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

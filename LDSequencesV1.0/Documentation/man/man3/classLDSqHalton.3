@@ -1,0 +1,114 @@
+.TH "LDSqHalton" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqHalton \- This class implements the Halton Sequence in the bases stored in b passed to the constructor. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqBase\fP.
+.PP
+Inherited by \fBLDSqHammersley\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqHalton\fP (long *b=NULL, long dm=0, long iterations=0, long genau=BGENAU, double genau1=GENAU, char *ex='hal',char *nm='Halton')"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.ti -1c
+.RI "virtual long \fBInitData\fP (long genau, double genau1)"
+.br
+.ti -1c
+.RI "virtual long \fBExitData\fP ()"
+.br
+.ti -1c
+.RI "virtual long* \fBInitGenericBases\fP (long dm)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "long \fBprec\fP"
+.br
+.ti -1c
+.RI "double* \fBq\fP"
+.br
+.ti -1c
+.RI "double * \fBp\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This class implements the Halton Sequence in the bases stored in b passed to the constructor.
+.PP
+The VanDerCorput Sequence is just a special case with dim=1. 
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqHalton::LDSqHalton (long * b = NULL, long dm = 0, long iterations = 0, long genau = BGENAU, double genau1 = GENAU, char * ex = 'hal', char * nm = 'Halton')"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqHalton::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Calculates the next element from the current element (or if we need a different element it calculates it using the function Phi.
+.PP
+If bufflen>dim=length(bases), the remaining dimensions are filled with pseudo-random numbers. 
+.PP
+\fBSee also: \fP
+.in +1c
+\fBPhi\fP() 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.PP
+Reimplemented in \fBLDSqHammersley\fP.
+.SS "long LDSqHalton::ExitData ()\fC [protected, virtual]\fP"
+.PP
+Do class-specific freeing of memory etc.
+.PP
+Called by the destructor 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqHalton::InitData (long genau, double genau1)\fC [protected, virtual]\fP"
+.PP
+Precalculate some values needed to create the numbers much faster (recursively).
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long * LDSqHalton::InitGenericBases (long dm)\fC [protected, virtual]\fP"
+.PP
+If no array of bases was given in the constructor, but the sequence needs them, this creates generic bases, e.g.
+.PP
+most of the time these are the dm lowest prime numbers, but you can override this by reimplementing InitGenericBases in your subclass 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "double * LDSqHalton::p\fC [protected]\fP"
+.PP
+Stores 1/2^i and 1-1/2^i to speed up the calculation (recursive!!!).
+.PP
+.SS "long LDSqHalton::prec\fC [protected]\fP"
+.PP
+Precision (in powers of 1/2).
+.PP
+We need this many precreated numbers 1/2^i and the other corresponding value 1-1/2^1 in p and q 
+.SS "double * LDSqHalton::q\fC [protected]\fP"
+.PP
+Stores 1/2^i and 1-1/2^i to speed up the calculation (recursive!!!).
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

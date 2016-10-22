@@ -1,0 +1,83 @@
+.TH "LDSqMonteCarlo" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqMonteCarlo \- This class implements pseudo-random numbers. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqBase\fP.
+.PP
+Inherited by \fBLDSqAfflerbach\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqMonteCarlo\fP (long tp=MC1, long status=-44891368, char *ex='mc',char *nm='Monte Carlo')"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.ti -1c
+.RI "virtual long \fBInitData\fP (long genau, double genau1)"
+.br
+.ti -1c
+.RI "virtual long \fBExitData\fP ()"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This class implements pseudo-random numbers.
+.PP
+To create them it uses either ran1, ran2 or ran3 depending on the value for tp that you pass to the constructor. 
+.PP
+\fBAuthor(s): \fP
+.in +1c
+Reinhold Kainhofer 
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqMonteCarlo::LDSqMonteCarlo (long tp = MC1, long status = -44891368, char * ex = 'mc', char * nm = 'Monte Carlo')"
+.PP
+Constructor, initializes the Monte Carlo sequence.
+.PP
+\fBParameters: \fP
+.in +1c
+.TP
+\fB\fItp\fP\fP
+defines whether to use ran1, ran2 or ran3 (use the constants MC1, MC2 and MC3 for this) 
+.TP
+\fB\fIstatus\fP\fP
+initial seed for the RNGs 
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqMonteCarlo::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Generates an bufflen-dimensional pseudo-random vector and stores it to buffer.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.PP
+Reimplemented in \fBLDSqAfflerbach\fP.
+.SS "long LDSqMonteCarlo::ExitData ()\fC [protected, virtual]\fP"
+.PP
+Do class-specific freeing of memory etc.
+.PP
+Called by the destructor 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqMonteCarlo::InitData (long genau, double genau1)\fC [protected, virtual]\fP"
+.PP
+initialize the method specific data.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

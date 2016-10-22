@@ -1,0 +1,81 @@
+.TH "LDSqSobol" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqSobol \- This class implements the Sobol Sequence, direction numbers are only available for 51 dimensions, so we can only provide that many dimensions. 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqBase\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqSobol\fP (long *b=NULL, long dm=0, long iterations=0, long genau=0, double genau1=0., char *ex='sob',char *nm='Sobol')"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.ti -1c
+.RI "virtual long \fBInitData\fP (long genau, double genau1)"
+.br
+.ti -1c
+.RI "virtual long \fBExitData\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "long* \fBV\fP"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+This class implements the Sobol Sequence, direction numbers are only available for 51 dimensions, so we can only provide that many dimensions.
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqSobol::LDSqSobol (long * b = NULL, long dm = 0, long iterations = 0, long genau = 0, double genau1 = 0., char * ex = 'sob', char * nm = 'Sobol')"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqSobol::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Calculates the next element and stores it to the buffer.
+.PP
+If bufflen>dim, the remaining dimensions are pseudo-random numbers (i.e. the sequence is a hybrid sequence) This function should never be called directly! Use NextElement(..) instead!!! 
+.PP
+\fBSee also: \fP
+.in +1c
+\fBNextElement\fP() 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqSobol::ExitData ()\fC [protected, virtual]\fP"
+.PP
+Do class-specific freeing of memory etc.
+.PP
+Called by the destructor 
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SS "long LDSqSobol::InitData (long genau, double genau1)\fC [protected, virtual]\fP"
+.PP
+initialize the method specific data.
+.PP
+Reimplemented from \fBLDSqBase\fP.
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "long * LDSqSobol::V\fC [protected]\fP"
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

@@ -1,0 +1,51 @@
+.TH "LDSqAfflerbach" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+LDSqAfflerbach \- Afflerbach is a special Pseudorandomnumber generator that uses a linear congruence operator		(quite fast). 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <SimSeqs.h>\fP
+.PP
+Inherits \fBLDSqMonteCarlo\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBLDSqAfflerbach\fP (char *ex='aff', char *nm='Afflerbach')"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "virtual long \fBCalculateNextElement\fP (long nr, double *buffer, long bufflen)"
+.br
+.in -1c
+.SH "DETAILED DESCRIPTION"
+.PP 
+Afflerbach is a special Pseudorandomnumber generator that uses a linear congruence operator		(quite fast).
+.PP
+\fBAuthor(s): \fP
+.in +1c
+Reinhold Kainhofer (code taken from Thomas Siegl's programs) 
+.PP
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "LDSqAfflerbach::LDSqAfflerbach (char * ex = 'aff', char * nm = 'Afflerbach')"
+.PP
+Sets the state 'altx' to a generic value of 12785.
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "long LDSqAfflerbach::CalculateNextElement (long nr, double * buffer, long bufflen)\fC [protected, virtual]\fP"
+.PP
+Generates an bufflen-dimensional pseudo-random vector and stores it to buffer.
+.PP
+Reimplemented from \fBLDSqMonteCarlo\fP.
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

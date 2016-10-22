@@ -1,0 +1,154 @@
+.TH "DistLaplace" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+DistLaplace \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <Distributions.h>\fP
+.PP
+Inherits \fBDistExp\fP.
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBDistLaplace\fP (Zahl lamb=1, Zahl para=0)"
+.br
+.ti -1c
+.RI "virtual \fB~DistLaplace\fP ()"
+.br
+.ti -1c
+.RI "virtual string \fBDistributionName\fP ()"
+.br
+.ti -1c
+.RI "virtual Zahl \fBpdf\fP (Zahl y, Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBTransform\fP (Zahl y, Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBcdf\fP (Zahl y, Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual int \fBRange\fP ()"
+.br
+.ti -1c
+.RI "virtual Zahl \fBmgf\fP (Zahl y, Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBMoment\fP (int k, Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBMean\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBVariance\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBSkewness\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBKurtosis\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBLogLikelihood\fP (Zahl y, Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBCharacteristicFunction\fP (Zahl y, Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBMedian\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBQ1\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBQ3\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBMode\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBqMean\fP (Zahl para, Zahl para1)"
+.br
+.ti -1c
+.RI "virtual Zahl \fBqMode\fP (Zahl para, Zahl para1)"
+.br
+.in -1c
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "DistLaplace::DistLaplace (Zahl lamb = 1, Zahl para = 0)"
+.PP
+.SS "DistLaplace::~DistLaplace ()\fC [virtual]\fP"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "Zahl DistLaplace::CharacteristicFunction (Zahl y, Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "string DistLaplace::DistributionName ()\fC [virtual]\fP"
+.PP
+Returns a string specifying the name of this distribution.
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Kurtosis (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::LogLikelihood (Zahl y, Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Mean (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Median (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Mode (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Moment (int k, Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Q1 (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Q3 (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "int DistLaplace::Range ()\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Skewness (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Transform (Zahl y, Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Transforms the uniform variate y into an exponentially transformed one with parameter para, which can be different from the parameter stored inside the class.
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::Variance (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::cdf (Zahl y, Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::mgf (Zahl y, Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::pdf (Zahl y, Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Returns the density of the exponential distribution evaluated at y: Lambda*exp(-Lambda*y).
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::qMean (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+.SS "Zahl DistLaplace::qMode (Zahl para, Zahl para1)\fC [virtual]\fP"
+.PP
+Reimplemented from \fBDistExp\fP.
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

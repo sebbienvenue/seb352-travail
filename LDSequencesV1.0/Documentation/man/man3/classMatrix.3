@@ -1,0 +1,123 @@
+.TH "Matrix" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Matrix \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <matrix.h>\fP
+.PP
+.SS "Public Methods"
+
+.in +1c
+.ti -1c
+.RI "\fBMatrix\fP (int zSz=3, int sSz=-1, Zahl diag=1, Zahl other=0)"
+.br
+.ti -1c
+.RI "\fBMatrix\fP (Matrix &x)"
+.br
+.ti -1c
+.RI "\fB~Matrix\fP ()"
+.br
+.ti -1c
+.RI "Zahl \fBGet\fP (const int i, const int j)"
+.br
+.ti -1c
+.RI "Zahl \fBSet\fP (int i, int j, const Zahl val)"
+.br
+.ti -1c
+.RI "int \fBGetSize\fP (void)"
+.br
+.ti -1c
+.RI "int \fBGetZSize\fP (void)"
+.br
+.ti -1c
+.RI "int \fBGetSSize\fP (void)"
+.br
+.ti -1c
+.RI "bool \fBQuadratic\fP (void)"
+.br
+.ti -1c
+.RI "bool \fBTauscheZeilen\fP (int n, int m)"
+.br
+.ti -1c
+.RI "bool \fBTauscheSpalten\fP (int n, int m)"
+.br
+.ti -1c
+.RI "Zahl \fBDet\fP ()"
+.br
+.in -1c
+.SS "Protected Methods"
+
+.in +1c
+.ti -1c
+.RI "bool \fBAllocMxMem\fP (int zSz, int sSz)"
+.br
+.ti -1c
+.RI "bool \fBFreeMxMem\fP ()"
+.br
+.ti -1c
+.RI "int \fBGetBestPivot\fP (int Col)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "Zahl* \fBElements\fP"
+.br
+.ti -1c
+.RI "int \fBzSize\fP"
+.br
+.ti -1c
+.RI "int \fBsSize\fP"
+.br
+.in -1c
+.SH "CONSTRUCTOR & DESTRUCTOR DOCUMENTATION"
+.PP 
+.SS "Matrix::Matrix (int zSz = 3, int sSz = -1, Zahl diag = 1, Zahl other = 0)"
+.PP
+.SS "Matrix::Matrix (Matrix & x)"
+.PP
+.SS "Matrix::~Matrix ()"
+.PP
+.SH "MEMBER FUNCTION DOCUMENTATION"
+.PP 
+.SS "bool Matrix::AllocMxMem (int zSz, int sSz)\fC [protected]\fP"
+.PP
+.SS "Zahl Matrix::Det (void)"
+.PP
+.SS "bool Matrix::FreeMxMem ()\fC [protected]\fP"
+.PP
+.SS "Zahl Matrix::Get (const int i, const int j)"
+.PP
+.SS "int Matrix::GetBestPivot (int Col)\fC [protected]\fP"
+.PP
+.SS "int Matrix::GetSSize (void)"
+.PP
+.SS "int Matrix::GetSize (void)"
+.PP
+.SS "int Matrix::GetZSize (void)"
+.PP
+.SS "bool Matrix::Quadratic (void)"
+.PP
+.SS "Zahl Matrix::Set (int i, int j, const Zahl val)"
+.PP
+.SS "bool Matrix::TauscheSpalten (int n, int m)"
+.PP
+.SS "bool Matrix::TauscheZeilen (int n, int m)"
+.PP
+.SH "MEMBER DATA DOCUMENTATION"
+.PP 
+.SS "Zahl * Matrix::Elements\fC [protected]\fP"
+.PP
+.SS "int Matrix::sSize\fC [protected]\fP"
+.PP
+.SS "int Matrix::zSize\fC [protected]\fP"
+.PP
+
+
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.

@@ -1,0 +1,226 @@
+.TH "BaseDefinitions.h" 3 "20 Jun 2001" "LDSequences" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BaseDefinitions.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <stdio.h>\fP
+.br
+\fC#include <fstream.h>\fP
+.br
+.SS "Defines"
+
+.in +1c
+.ti -1c
+.RI "#define \fBZahl\fP   double"
+.br
+.ti -1c
+.RI "#define \fBmin\fP(a, b)   (a<b)?a:b"
+.br
+.ti -1c
+.RI "#define \fBepsilon\fP   0.0000000001"
+.br
+.ti -1c
+.RI "#define \fBM_SQRTPI\fP   1.772453850905516027298167483341145182798"
+.br
+.ti -1c
+.RI "#define \fBM_1SQRT2PI\fP   0.398942280401432677939946059934"
+.br
+.ti -1c
+.RI "#define \fBFree\fP(ptr)   delete[] ptr;ptr=NULL;"
+.br
+.ti -1c
+.RI "#define \fBlfloor\fP(f)   (long)floor(f)"
+.br
+.ti -1c
+.RI "#define \fBmin\fP(x, y)   (x<y)?x:y"
+.br
+.ti -1c
+.RI "#define \fBmax\fP(x, y)   (x>y)?x:y"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "Zahl \fBAsymErfc\fP (Zahl zsq)"
+.br
+.ti -1c
+.RI "void \fBWriteDoubleArray\fP (ofstream &str, long len, double *vals, char *endchar, long dim)"
+.br
+.ti -1c
+.RI "long \fBpower\fP (long m, long n)"
+.br
+.ti -1c
+.RI "double \fBpower\fP (double m, long n)"
+.br
+.ti -1c
+.RI "long \fBbinom\fP (long i, long k)"
+.br
+.ti -1c
+.RI "double \fBvectabs\fP (double a1, double a2, double a3)"
+.br
+.ti -1c
+.RI "double \fBPhi\fP (long base, long x)"
+.br
+.ti -1c
+.RI "long \fBLongToCoeff\fP (long nr, long base, long *cfs, long cflen)"
+.br
+.ti -1c
+.RI "double \fBCoeffToDoubleModified\fP (long base, long *cfs, long cflen, long modfact)"
+.br
+.ti -1c
+.RI "double \fBCoeffToDouble\fP (long base, long *cfs, long cflen)"
+.br
+.ti -1c
+.RI "bool \fBIsPrimitiveRoot\fP (long proot, long base)"
+.br
+.ti -1c
+.RI "long \fBCalcDeterminant\fP (long *A, long dim, long i)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "long \fBERFCMAXREK\fP"
+.br
+.in -1c
+.SH "DEFINE DOCUMENTATION"
+.PP 
+.SS "#define Free(ptr)   delete[] ptr;ptr=NULL;"
+.PP
+Frees the array-pointer ptr and sets it to NULL afterwards.
+.PP
+.SS "#define M_1SQRT2PI   0.398942280401432677939946059934"
+.PP
+.SS "#define M_SQRTPI   1.772453850905516027298167483341145182798"
+.PP
+approximate value for the square root of pi.
+.PP
+.SS "#define Zahl   double"
+.PP
+We want to use double, but who knows, maybe sometimes we need long double or just float.
+.PP
+By using our own type we only have to change this here and then to recompile 
+.SS "#define epsilon   0.0000000001"
+.PP
+.SS "#define lfloor(f)   (long)floor(f)"
+.PP
+.SS "#define max(x, y)   (x>y)?x:y"
+.PP
+Macro, returns the maximum of two given values.
+.PP
+.SS "#define min(x, y)   (x<y)?x:y"
+.PP
+Macro, returns the minimum of two given values.
+.PP
+.SS "#define min(a, b)   (a<b)?a:b"
+.PP
+Macro, returns the minimum of two given values.
+.PP
+.SH "FUNCTION DOCUMENTATION"
+.PP 
+.SS "Zahl AsymErfc (Zahl zsq)"
+.PP
+Calculates the Erfc by means of its asymptotic expansion.
+.PP
+\fBParameters: \fP
+.in +1c
+.TP
+\fB\fIzsq\fP\fP
+The variable z^2 in the expansion. 
+.SS "long CalcDeterminant (long * A, long dim, long dimtocalc)"
+.PP
+calculates the determinant of the (upper left) i*i submatrix of the dim*dim \fBMatrix\fP A.
+.PP
+This is really slow, but never mind... flag the rows used so that we don't need another array for the cofactor. This saves a lot of mem... 
+.SS "double CoeffToDouble (long base, long * cfs, long cflen)"
+.PP
+returns the double-representation of the cofficients in base 'base' given in cfs.
+.PP
+E.g. cfs={1,2,1,2,1}, base=3 => returns 1/3 + 2/9 + 1/27 + 2/81 + 1/243 
+.SS "double CoeffToDoubleModified (long base, long * cfs, long cflen, long modfact)"
+.PP
+returns the double-representation of the cofficients in base 'base' given in cfs.
+.PP
+E.g. cfs={1,2,1,2,1}, base=3 => returns 1/3 + 2/9 + 1/27 + 2/81 + 1/243 This is the modified version, needed by Atanassov's sequence. (Not quite implemented yet ...) 
+.SS "bool IsPrimitiveRoot (long proot, long base)"
+.PP
+Checks if proot is a primitive root modulo base.
+.PP
+.SS "long LongToCoeff (long nr, long base, long * cfs, long cflen)"
+.PP
+Expands n in base 'base'.
+.PP
+\fBParameters: \fP
+.in +1c
+.TP
+\fB\fInr\fP\fP
+the number to develop in base 
+.TP
+\fB\fIbase\fP\fP
+Which base to use for the expansion 
+.TP
+\fB\fIcfs\fP\fP
+long-array where the coefficients should be stored 
+.TP
+\fB\fIcflen\fP\fP
+length of the buffer cfs 
+.PP
+\fBReturns: \fP
+.in +1c
+Returns the number of coefficients (lowest n s.t. nr<base^n) or cflen, depending in which one is smaller 
+.SS "double Phi (long base, long x)"
+.PP
+The digit inversion function.
+.PP
+This inverts x (written down in base 'base') at the comma. E.g. Phi(3, 25): 25=2*9+2*3+1=221_3 => 0.112_3=1/3 + 1/9 + 2/27 
+.SS "void WriteDoubleArray (ofstream & str, long len, double * vals, char * endchar, long dim)"
+.PP
+Writes the 'dim'-dimensional array vals in Mathematica-List format to the file str.
+.PP
+\fBParameters: \fP
+.in +1c
+.TP
+\fB\fIendchar\fP\fP
+defines a string which should be written out after the list, e.g. ';' or '//MatrixForm' 
+.TP
+\fB\fIlen\fP\fP
+.TP
+\fB\fIvals\fP\fP
+The dim-dimensional array of double-Values 
+.TP
+\fB\fIendchar\fP\fP
+String that is appended to the file after the List is written out. 
+.TP
+\fB\fIdim\fP\fP
+.SS "long binom (long i, long k)"
+.PP
+Returns the binomial coefficient (i k).
+.PP
+.SS "double power (double m, long n)"
+.PP
+Returns m^n where n and m are double variable.
+.PP
+The result is of type double, too. 
+.SS "long power (long m, long n)"
+.PP
+Returns m^n, where n and m are long variables.
+.PP
+The result, of course, is also of type long. 
+.SS "double vectabs (double a1, double a2, double a3)"
+.PP
+Returns the length of the 3-dimensional vector (a1, a2, a3) (just sqrt(a1*a1 + a2*a2 + a3*a3) ).
+.PP
+.SH "VARIABLE DOCUMENTATION"
+.PP 
+.SS "long ERFCMAXREK"
+.PP
+Defines how many term in the asymptotic expansion of erfc=1-erf should be used for the calculation.
+.PP
+.SH "AUTHOR"
+.PP 
+Generated automatically by Doxygen for LDSequences from the source code.
