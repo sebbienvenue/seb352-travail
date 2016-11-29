@@ -1,0 +1,13 @@
+Cleaned up version of John Burkardt and Corrado Chisari's python sobol sequence
+implementation. 
+Original version is available from
+http://people.sc.fsu.edu/~jburkardt/py_src/sobol/sobol.html
+
+== Installation and Usage ==
+pip install sobol
+
+
+from sobol import i4_sobol, i4_sobol_generator
+
+Use i4_sobol to generate a single Sobol vector, or i4_sobol_generate
+to generate a Sobol sequence.
