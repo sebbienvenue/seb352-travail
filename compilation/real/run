@@ -1,5 +1,0 @@
-#!bin/sh
-clear
-
-g++ -o main.exe  main.cpp sobol.cpp
-./main.exe
