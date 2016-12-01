@@ -1,9 +1,11 @@
 %module test
+
 %{
 #define SWIG_FILE_WITH_INIT
 #include "test.hpp"
 %}
 
+int seb ( int spatialDIM, int Npoints, int avoid );
 int sobol ( int argc, char *argv[] );
 int i8_bit_hi1 ( long long int n );
 int i8_bit_lo0 ( long long int n );

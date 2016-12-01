@@ -1,3 +1,15 @@
+# include <cstdlib>
+# include <cmath>
+# include <ctime>
+# include <iostream>
+# include <iomanip>
+# include <fstream>
+# include <sstream>
+# include <string>
+//# include "test.hpp"
+using namespace std;
+
+int seb ( int spatialDIM, int Npoints, int avoid );
 int sobol ( int argc, char *argv[] );
 int i8_bit_hi1 ( long long int n );
 int i8_bit_lo0 ( long long int n );

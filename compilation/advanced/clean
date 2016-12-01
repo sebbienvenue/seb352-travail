@@ -1,0 +1,4 @@
+#!bin/sh
+clear 
+
+rm -r *~ sobol*  *.py *.pyc *.o *.so *.cxx   2>/dev/null
