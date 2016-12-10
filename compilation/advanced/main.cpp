@@ -9,41 +9,47 @@
 # include "test.hpp"
 using namespace std;
 
-string maxiReturn( int m, int skip);
+int main (void);
+void maxiReturn(int n , int m, int skip);
 int seb ( int spatialDIM, int Npoints, int avoid );
 int sobol ( int argc, char *argv[] );
-int i8_bit_hi1 ( long long int n ); 
+int i8_bit_hi1 ( long long int n );
 int i8_bit_lo0 ( long long int n );
 void i8_sobol ( int dim_num, long long int *seed, double quasi[ ] );
 double *i8_sobol_generate ( int m, int n, int skip );
 void r8mat_write ( string output_filename, int m, int n, double table[] );
 void timestamp ( );
-double emergency(int m , int seed, int place);
 
-
-double emergency(int m , int seed, int place){
+int main (){
 double *a;
+int i, n, m, skip;
 
-a=i8_sobol_generate(1, m, seed);
-//cout << *(a+place);
-return  *(a+place);
+n=4;
+m=2;
+skip=1;
+
+seb(m, n, skip);
+a=i8_sobol_generate(m, n, skip);
+
+for(i=0; i<n*m; i++){
+cout << *(a+i);
+cout << "\n";
 }
 
-string maxiReturn(int m, int skip){
+return 0;
+
+}
+
+void maxiReturn(int n , int m, int skip){
 double *a;
 int i;
-char buffer[50];
-string s;
+a=i8_sobol_generate(m, n, skip);
 
-a=i8_sobol_generate(1, m, skip);
-
-for(i=0; i<m; i++){
-sprintf(buffer,"%0.16lf",*(a+i));
-s.append(" ");
-s.append(buffer);
+for(i=0; i<n*m; i++){
+cout << *(a+i);
+cout << " ";
 }
-cout << s;
-return s;
+return;
 }
 
 int seb ( int spatialDIM, int Npoints, int avoid )
@@ -77,20 +83,19 @@ int seb ( int spatialDIM, int Npoints, int avoid )
 
   r8mat_write ( output_filename, m, n, r );
 
-  cout << "\n";
-  cout << "  The data was written to the file \"" 
-    << output_filename << "\".\n";
+/*  cout << "  The data was written to the file \"" 
+    << output_filename << "\".\n";*/
 //
 //  Terminate.
 //
   delete [] r;
 
-  cout << "\n";
+/*  cout << "\n";
   cout << "SOBOL_DATASET:\n";
   cout << "  Normal end of execution.\n";
   cout << "\n";
   timestamp ( );
-
+*/
   return 0;
 }
 

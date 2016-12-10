@@ -6,7 +6,7 @@
 # include <fstream>
 # include <sstream>
 # include <string>
-# include "test.hpp"
+# include "sobol.hpp"
 using namespace std;
 
 string maxiReturn( int m, int skip);
