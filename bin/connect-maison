@@ -1,0 +1,4 @@
+#!/bin/bash
+clear
+sshfs spbienve@cosmopc7:/home/spbienve/maison/ maison
+
