@@ -1,0 +1,20 @@
+	G N U P L O T
+	Version 5.0 patchlevel 3    last modified 2016-02-21 
+
+	Copyright (C) 1986-1993, 1998, 2004, 2007-2016
+	Thomas Williams, Colin Kelley and many others
+
+	gnuplot home:     http://www.gnuplot.info
+	faq, bugs, etc:   type "help FAQ"
+	immediate help:   type "help"  (plot window: hit 'h')
+
+Terminal type set to 'wxt'
+gnuplot> p "gaas.
+gaas.force_0.xyz gaas.pos_0.xyz   gaas.restart_1  
+gaas.out         gaas.restart_0   gaas.restart_2  
+gnuplot> p "gaas.out" u 1:14 w l
+gnuplot> p "gaas.out" u 1:7 w l
+gnuplot> p "gaas.out" u 1:8 w l, '' u 1:9 w l, '' u 1:10 w l
+gnuplot> 
+
+
