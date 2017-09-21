@@ -1,4 +1,9 @@
 #!/bin/bash
 clear
-sshfs spbienve@cosmopc7:/home/spbienve/maison/ maison
+
+if [ ! -d ~/maison ]; then
+mkdir ~/maison
+fi
+
+sshfs spbienve@cosmopc7:/home/spbienve/maison/ ~/maison
 
