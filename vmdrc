@@ -1,0 +1,263 @@
+############################################################################
+#cr                                                                       
+#cr            (C) Copyright 1995 The Board of Trustees of the            
+#cr                        University of Illinois                         
+#cr                         All Rights Reserved                           
+#cr                                                                       
+############################################################################
+
+############################################################################
+# RCS INFORMATION:
+#
+#       $RCSfile: .vmdrc,v $
+#       $Author: johns $        $Locker:  $                $State: Exp $
+#       $Revision: 1.7 $      $Date: 2003/05/20 20:36:55 $
+#
+############################################################################
+# DESCRIPTION:
+#
+# VMD startup script.  The commands here are executed as soon as VMD starts up
+############################################################################
+
+# turn on lights 0 and 1
+light 0 on
+light 1 on
+light 2 off
+light 3 off
+
+# position the stage and axes
+axes location lowerleft
+stage location off
+
+# position and turn on menus
+menu main     move 5   225
+menu display  move 395 30
+menu graphics move 395 500
+menu color    move 125 225
+menu files    move 125 325
+menu labels   move 125 525
+menu render   move 125 525
+
+menu main      on
+#menu display  on
+#menu graphics on
+#menu color    on
+#menu labels   on
+#menu render   on
+#menu files    on
+
+# start the scene a-rockin'
+# rock y by 1
+
+#############################################
+####            MODS BY MIK             #####
+#############################################
+# setta la visuale come dico io!
+display projection Orthographic
+display rendermode GLSL
+
+#delete the default visualization and create another one
+proc clear_reps {args} {
+   lassign $args molid
+   set nreps [molinfo $molid get numreps]
+   for {set ir 0} {$ir<$nreps} {incr ir} {
+      mol delrep 0 $molid
+   }
+}
+
+#setta una rappresentazione adatta ad un sistema si-h
+proc my_sih_viz {args} {
+   lassign $args molid
+
+   clear_reps $molid
+   mol color Name
+   mol selection all
+   mol representation VDW 0.20000 10
+   mol addrep $molid
+   mol color Name
+   mol selection type Si or type H
+   mol representation DynamicBonds 1.7 0.1 8
+   mol addrep $molid
+   mol selection type Si
+   mol representation DynamicBonds 2.65 0.1 8
+   mol addrep $molid
+}
+
+user add key d {my_sih_viz [molinfo top]}
+
+#setta una rappresentazione adatta ad un sistema di atomi tutti uguali
+#con dynamic bonds
+proc my_x_viz {args} {  
+   lassign $args molid
+   clear_reps $molid
+
+   mol color Name
+   mol selection all
+   mol representation VDW 0.20000 10
+   mol addrep $molid
+   mol color Name
+   mol selection all
+   mol representation DynamicBonds 1.8 0.1 8
+   mol addrep $molid
+}
+
+user add key f {my_x_viz [molinfo top]}
+
+#incrementa o decrementa le distanze di legame di tutti i Dynamic bonds
+proc scale_dyn_bonds {args} {
+     lassign $args molid f
+     set nreps [molinfo $molid get numreps]
+     for {set ir 0} {$ir<$nreps} {incr ir} {
+        set rep [molinfo $molid get "{rep $ir} {selection $ir} {color $ir} {material $ir}"] 
+        lassign $rep r s c m
+        lassign $r rn rd rs rp
+        if { $rn == "DynamicBonds" } then { 
+           set rd [ expr "$rd*$f"]
+           puts "Dynamic Bonds cutoff set to $rd"
+
+           mol representation $rn $rd $rs $rp
+           mol modrep $ir $molid
+        }
+     }
+}
+
+user add key b {scale_dyn_bonds [molinfo top] 0.95}
+user add key B {scale_dyn_bonds [molinfo top] 1.053}
+
+# procedure to highlight an atom with a (relatively)
+# large colored sphere. 
+set hl_used_colors { 0 0 0 0 0 0 0 0 0 0 }
+set hl_sel_atoms {}
+
+proc hl_atom { name element op } {
+  global vmd_pick_mol vmd_pick_atom hl_used_colors hl_sel_atoms
+  
+  set id [lsearch -exact $hl_sel_atoms $vmd_pick_atom]
+  puts "ID $id "
+  if ($id==-1) then {
+     puts "Selecting new atom for highlighting"      
+      set col_id [lsearch -exact $hl_used_colors 0]
+      if ($col_id==-1) then { 
+         puts "No more than 10 atoms can be selected"
+         return
+      }
+      set hl_used_colors [lreplace $hl_used_colors $col_id $col_id 1]
+      
+      mol color ColorID $col_id      
+      mol selection "index $vmd_pick_atom"
+      mol representation VDW 0.22 10
+      mol addrep $vmd_pick_mol
+      
+      lappend hl_sel_atoms $vmd_pick_atom
+   
+      puts "Seleted atoms: $hl_sel_atoms"
+  } else {
+      puts "Atom already selected"
+      set nreps [molinfo $vmd_pick_mol get numreps]
+      puts "Number of reps $nreps"
+      set sstr "index $vmd_pick_atom"
+      for {set ir 0} {$ir<$nreps} {incr ir} {
+        puts "Checking $ir for removal"
+        set rep [molinfo $vmd_pick_mol get "{rep $ir} {selection $ir} {color $ir}"]
+        lassign $rep r s c
+        if ([expr {$s == $sstr}]) then {
+           lassign $c cn col_id
+           set hl_used_colors [lreplace $hl_used_colors $col_id $col_id 0] 
+           set hl_sel_atoms [lreplace $hl_sel_atoms $id $id]            
+           mol delrep $ir $vmd_pick_mol
+        }
+     }
+   
+  }
+}
+
+proc hl_start {} {
+     puts "starting tracing"
+     uplevel {trace vdelete vmd_pick_atom w hl_atom}
+     uplevel {trace variable vmd_pick_atom w hl_atom}
+}
+
+proc hl_stop {} {uplevel {trace vdelete vmd_pick_atom w hl_atom}}
+
+set hl_active 0
+user add key n { 
+if ($hl_active==0) then { 
+  hl_start
+   set hl_active 1
+  } else { 
+  hl_stop
+  set hl_active 0
+ }}
+
+proc structure_trace {name index op} {
+      vmd_calculate_structure $index
+}
+
+user add key m { 
+  puts "Automatic update of secondary structure, and alignment to first frame"
+  trace add variable vmd_frame write structure_trace
+#  rmsdtt
+#  rmsdtt::doAlign
+#  destroy $::rmsdtt::w
+  clear_reps top
+  mol color Structure
+  mol selection backbone
+  mol representation NewCartoon
+  mol addrep top
+  mol color Type
+  mol selection all
+  mol representation Lines
+  mol addrep top
+}
+
+
+#hot keys
+user add key X {
+#Rotates scene to make a view from X axis, z is up
+  mouse stoprotation
+  rotate x to -90
+  rotate y by -90
+}
+user add key Y {
+#Rotates scene to make a view from Y axis, z is up
+  mouse stoprotation
+  rotate z to 180
+  rotate x by -90
+}
+user add key e {
+#Rotates scene to make a view from Z axis, x is to the left
+  mouse stoprotation
+  rotate z to 180
+}
+
+
+
+# load multi-frame pdb file, storing B factors from each frame in user.
+# usage: pdbbfactor <filename>
+#
+# Justin Gullingsrud
+# 3 September 2004
+
+proc pdb_loadwithbeta { fname } {
+  mol new $fname waitfor all
+  set all [atomselect top all]
+  set frame 0
+  set in [open $fname r]
+  set beta {}
+  while { [gets $in line] != -1 } {
+    switch -- [string range $line 0 3] {
+      END {
+        $all frame $frame
+        $all set user $beta
+        set beta {}
+        incr frame
+      }
+      ATOM -
+      HETA {
+        lappend beta [string range $line 61 66]
+      }
+    }
+  }
+}
+
+
