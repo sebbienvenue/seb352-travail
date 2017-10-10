@@ -1,0 +1,37 @@
+SHELL := /bin/bash
+MAKEFLAGS += --no-builtin-rules --no-print-directory
+
+SRC := $(filter-out mpi_%.f90,$(wildcard *.f90))
+OBJ := $(SRC:.f90=.o)
+
+include config.mk
+
+.PHONY : all \
+	 clean
+
+all : RuNNer.x
+clean :
+	rm -f *.o *.mod RuNNer.x
+strip : all
+	strip RuNNer.x
+
+ifeq ($(MPI),1)
+OBJ := $(OBJ) mpi_module.o
+mpi_module.o mpi_mod.mod : mpi_module.f90
+	$(FC) -c $(CPPFLAGS) $(FCFLAGS) $(<)
+else
+OBJ := $(OBJ) mpi_dummy.o mpi_dummy_routines.o
+mpi_dummy.o mpi_mod.mod : mpi_dummy.f90
+	$(FC) -c $(CPPFLAGS) $(FCFLAGS) $(<)
+endif
+
+include Makefile.depends
+
+compileinfo.f90 :
+	./compileinfo.csh
+	cat compileinfoheader compileinfomiddle compileinfotail > compileinfo.f90
+	rm -f compileinfomiddle
+%.o %.mod : %.f90
+	$(FC) -c $(CPPFLAGS) $(FCFLAGS) $(<)
+RuNNer.x : $(OBJ)
+	$(LD) -o $(@) $(^) $(LDFLAGS)

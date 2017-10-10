@@ -1,0 +1,25 @@
+python module RuNNer
+    interface
+        module wrapper
+            subroutine initwrapper(pred_max_num_atoms,ielem)
+                integer,intent(in) :: pred_max_num_atoms
+                integer,intent(in) :: ielem
+            end subroutine initwrapper
+            subroutine getenergyandforces(num_atoms,xyz,zelem,lattice,lperiodic,energy,forces,atomic_energies,ex_atoms,&
+                                          min_bond_underrun)
+                integer,optional,intent(in),check(shape(xyz,1)==num_atoms),depend(xyz) :: num_atoms=shape(xyz,1)
+                real(kind=8),dimension(3,num_atoms),intent(in) :: xyz
+                integer,dimension(num_atoms),intent(in),depend(num_atoms) :: zelem
+                real(kind=8),dimension(3,3),intent(in) :: lattice
+                logical intent(in) :: lperiodic
+                real(kind=8),intent(out) :: energy
+                real(kind=8),dimension(3,num_atoms),intent(out),depend(num_atoms) :: forces
+                real(kind=8),dimension(num_atoms),intent(out),depend(num_atoms) :: atomic_energies
+                logical,dimension(num_atoms),intent(out),depend(num_atoms) :: ex_atoms
+                logical,intent(out) :: min_bond_underrun
+            end subroutine getenergyandforces
+        end module wrapper
+    end interface 
+end python module RuNNer
+
+! vim: set et ft=fortran sw=4 ts=4 tw=132:

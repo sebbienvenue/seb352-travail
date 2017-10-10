@@ -1,0 +1,20 @@
+python module lbfgs
+    interface
+        subroutine lbfgs(n,m,x,f,g,diagco,diag,iprint,eps,xtol,w,iflag)
+            integer,optional,check(len(x)>=n),depend(x),intent(in) :: n=len(x)
+            integer,intent(in) :: m
+            double precision,dimension(n),intent(inout) :: x
+            double precision,intent(in) :: f
+            double precision,dimension(n),depend(n),intent(in) :: g
+            logical,intent(in) :: diagco
+            double precision,dimension(n),depend(n) :: diag
+            integer,dimension(2),intent(in) :: iprint
+            double precision,intent(in) :: eps
+            double precision,intent(in) :: xtol
+            double precision,dimension(n*(2*m+1)+2*m),depend(n,m),intent(inout) :: w
+            integer,intent(inout) :: iflag
+        end subroutine lbfgs
+    end interface 
+end python module lbfgs
+
+! vim: set et ft=fortran sw=4 ts=4 tw=132:

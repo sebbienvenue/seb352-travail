@@ -1,0 +1,549 @@
+09.09.2009 V0_27: 1) writing and reading of kalman matrices is fixed for parallel runs
+                  2) serious bug in charge fitting (optimize_ewald) fixed, which came in because of parallelization
+14.09.2009 V0_28: 1) now separate scaling.data and scalinge.data files instead of just scaling.data => simplifies separate fitting
+                  2) new keywords: scalefactorf, steepeststepe, steepeststepf, steepeststepq
+15.09.2009 V0_29: 1) small bugfix: If just the charges are fitted, there is NaN for the short range forces => fixed now
+21.09.2009 V0_30: 1) more aggressive parallelization options with paramode=2 (be careful, results depend on number of cores)
+                  2) weight vector change is now also implemented for the charge weights (wshifte)
+                  3) new keyword: chargernd (to use only a random fraction of the charges for the charge weight update)
+                  4) new mode 4: check of symmetry functions with 4 new input keywords:
+                     symthres: threshold value for the symmetry functions
+                     chargethres: threshold value for the charge check 
+                     forcethres: threshold value for the force check 
+                     energythres: threshold value for the energy check (this is not yet implemented in symcheck.f90) 
+21.09.2009 V0_31: 1) MAJOR CHANGE: separate weight files are introduced for each element
+                    000000.short.out -> 000000.short.XXX.out (XXX=nuclear charge)
+                    000000.ewald.out -> 000000.ewald.XXX.out (XXX=nuclear charge)
+                    tmpweights.out -> tmpweights.XXX.out (XXX=nuclear charge)
+                    tmpweightse.out -> tmpweightse.XXX.out (XXX=nuclear charge)
+                    optweights.out -> optweights.XXX.out (XXX=nuclear charge)
+                    optweightse.out -> optweightse.XXX.out (XXX=nuclear charge)
+                    weights.data -> weights.XXX.data (XXX=nuclear charge)
+                    weightse.data -> weightse.XXX.data (XXX=nuclear charge)
+                  2) optweights.XXX.out and optweightse.XXX.out are not necessarily from the same epoch anymore, charges got own reference 
+                  3) atoms of each element in training and test set are counted now (trainelem(nelem) and testelem(nelem))
+21.09.2009 V0_32: 1) new keywords:
+                    lupdatebyelement: train the weights for the different chemical species independently
+                    elemupdate: nuclear charge of the element to be updated
+                    The independent update of the different elements is so far implemented only for the charge update 
+                  2) We now keep for each epoch the files
+                      trainpoints.XXXXXX.out
+                      testpoints.XXXXXX.out
+                      traincharges.XXXXXX.out
+                      testcharges.XXXXXX.out
+                      trainforces.XXXXXX.out
+                      testforces.XXXXXX.out
+                  3) Order of all indices of forces is reversed to improve performance.
+                  4) New keyword: lwritetrainforces to switch on and off writing of trainforces.out and testforces.out
+22.09.2009 V0_33: 1) new keywords
+                    luseworste: do update only with a fixed percentage of the worst energies 
+                    luseworstf: do update only with a fixed percentage of the worst forces 
+                    luseworstq: do update only with a fixed percentage of the worst charges 
+                    worste: percentage of worst energies
+                    worstf: percentage of worst forces 
+                    worstq: percentage of worst charges 
+                    For each block of points we determine a fixed percentage of bad points and these points are used for
+                    update in this block, no matter what happens to the weights during the optimization of this block
+                    lupdatebyelement should now also work for the short range energies and short range forces
+23.09.2009 V0_34: 1) luseworst can now be combined with arbitrary kalmanthreshold values
+                  2) For lupdatebyelement and lewald the electrostatic energies and the total charges are not meaningful and set to zero in the output
+                  3) lupdatebyelement: RMSE are cleaned and proper warnings are written
+                  4) All warnings by RuNNer are now clearly written as: ### WARNING ###
+                  5) In prediction mode ldebug is switched off automatically for parallel runs (because most debugging stuff is not parallelized)
+                  6) New algorithms to determine lusee, lusef, luseq in sortchargeerror.f90, sorteshorterror.f90, sortforceserror.f90 => MUCH FASTER now
+06.10.2009 V0_35: 1) New keyword
+                     rmin: in mode 1:all structures with bond lengths smaller than rmin are eliminated from the training set
+                           in mode 3: if a structure contains a bond shorter than rmin, the calculation is stopped with an error message
+                  2) automatic reduction of nenergygroup, nforcegroup and nchargegroup to nblock if they are larger
+                  3) improvement in getkaldims.f90: arrays are only set larger than 1 if Kalman Filter is really used
+                  4) also getkalmanmatrices.f90 is adapted to initialize or read from kalman.data only if the kalman filter is really used
+                  5) New optimization algorithm: Levenberg Marquardt is partially implemented for the charge optimization. NOT YET WORKING
+                     It is used by setting optmodeq to 4
+                  6) For each element the min, max, average charge and the standard deviation are given in the output file
+14.10.2009 V0_36: 1) For consistency subroutine getstructurefunctions.f90 is renamed to getsymmetryfunctions.f90
+                  2) New keywords
+                     lgrowth: use growth mode for fitting: use only a subset of points for a certain number of epochs, then include more and more structures
+                     ngrowth: number of structures to be included in each increase of the training data set
+                     growthstep: number of epochs with fixed training set size, before training set size is increased  
+                  3) New keywords
+                     ldampw: use weight decay
+                     dampw: weight parameter to balance the error and the weight damping 
+                     This is implemented for the short range and the electrostatic part 
+                  4) Bug in rmin criterion fixed, did not work yet
+                  5) in debug mode (ldebug=.true.) the values of all nodes are printed in the prediction mode
+                     also the symmetry function values of all atoms and the weights
+                  6) Now only those keywords of input.nn are repeated in the output, which are relevant in the selected mode
+20.10.2009 V0_37  1) New symmetry function type 4: G=cos(a*R_{ij})*f_{cut}(R_{ij})
+                  2) New activation function "c": cos(x)
+                  3) bug in electrostatic forces for gaussian activation function removed
+20.10.2009 V0_38  1) New symmetry function type 5 for debugging: simply the original Cartesian coordinates
+                     If the x, y or z coordinate should be used is specified by a parameter eta: eta=1.0 => x , eta=2.0 => y, eta=3.0 => z
+                     Example lines for input.sym:
+                     5 1.0 ! eta 
+                     5 2.0 ! eta 
+                     5 3.0 ! eta 
+23.10.2009 V0_39  1) New activation function 1/(1+exp(-x)) called "s"
+                  2) 0000* weight files contain now information on which number is which weight (a=connecting w, b=bias weight)
+                  3) New keyword: lfixweights
+                     This keyword allows a very flexible way to freeze or optimize individual or groups of weights.
+                     The specifications are given in the new optional input files wconstraint.data (short range) and wconstrainte.data (charge weights)
+                     The options for the wconstraint.data files are:
+                        all fixed/free                                 ! set the default for all weights
+                        node layer node fixed/free                     ! all weights starting or ending at this node
+                        interlayer layer1 layer2 fixed/free            ! all connection weights between 2 layers
+                        weight layer1 node1 layer2 node2 fixed/free    ! individual connecting weight
+                        bias layer node fixed/free                     ! individual bias weight
+                     CAUTION: The order of constraints is important, because the final lines overwrite earlier specifications.
+                     If weights are frozen, the weights are excluded from the Kalman matrices, therefore the fits become much faster.
+                     TODO: so far still the derivatives with respect to all weights are calculated. This is not very efficient
+                       but changing this is a MAJOR change of the code and likely to cause bugs.
+                  4) New symmetry function type 6: just Rij, works only for dimers 
+26.10.2009 V0_40  1) Bug is symmetry function type 6 fixed: We need to specify a cutoff, because otherwise neighbor.f90 does not work
+28.10.2009 V0_41  1) bug in getfixedweights.f90 fixed
+                  2) bug in calconefunction_para.f90 fixed: symmetry function type 6 was missing
+11.11.2009 V0_42  1) subroutine getavcharge.f90 is now called only for mpirank.eq.0 in parallel runs
+                  2) BUG in readfunctions.f90 corrected: if no electrostatic is used, still the short range energy must not necessarily be the total energy in case we fit
+                     Eshort and Charges in separate directories 
+13.11.2009 V0_43  1) BUG in getdimensions.f90 fixed. This affected reading luseatomicenergies and lchargeconstraint.
+03.12.2009 V0_44  1) New activation function type "e", exponential function: f(x)=exp(-x)
+                  2) completely new free-formatted input.nn file
+07.12.2009 V0_45  1) atomenergies.in input file is not used anymore, information is now included in input.nn file with keyword "atom_energy Zn -1779.18243"                   
+                  2) wconstraints.data and wconstraintse.data files are not used anymore, information is now included in input.nn with keywords "weight_constraint" and "weighte_constraint"
+                  3) the range of the initial random weight parameters can be selected by the keywords "weights_min", "weights_max", "weightse_min", and "weightse_max"
+                  4) keyword "energy_threshold" (fitethres) now refers to energy per atom, before it referred to total energies, 
+                     which is not good, because structures of different size are treated differently (small change in calcfunctions.f90)
+                  5) individual activation functions can be selected for each node
+                     => actfunc_short(num_layersshort) -> actfunc_short(maxnodes_short,num_layersshort) 
+                     => actfunc_ewald(num_layersewald) -> actfunc_ewald(maxnodes_ewald,num_layersewald) 
+                     The keywords are "node_activation_electrostatic" and "node_activation_short"
+17.12.2009 V0_46  1) New keyword "fitting_unit" to set error units to eV and eV/Bohr (option "eV") or Ha and Ha/Bohr (option "Ha").
+                  2) renamed keyword 'nodes_short' to 'global_nodes_short' for later extensions
+                  3) renamed keyword 'nodes_electrostatic' to 'global_nodes_electrostatic' for later extensions
+                  4) renamed keyword 'input_nodes_short' to 'global_input_nodes_short' for later extensions
+                  5) renamed keyword 'input_nodes_electrostatic' to 'global_input_nodes_electrostatic' for later extensions
+                  6) renamed keyword 'output_nodes_short' to 'global_output_nodes_short' for later extensions
+                  7) renamed keyword 'output_nodes_electrostatic' to 'global_output_nodes_electrostatic' for later extensions
+                  8) renamed keyword 'hidden_layers_short' to 'global_hidden_layers_short' for later extensions
+                  9) renamed keyword 'hidden_layers_electrostatic' to 'global_hidden_layers_electrostatic' for later extensions
+                 10) New keyword "joint_energy_force_update". Here, for each training point the weights will be updated using
+                     weight derivatives averaged over the energy and forces. THIS IS NOT YET FULLY WORKING
+                 11) bug in lupdatebyelement for eshort removed (so far it did just work for the element with the lowest nuclear charge)
+06.01.2010 V0_47  1) Bugs in sortchargeerror.f90, sorteshorterror.f90 and sortforceerror.f90 
+                     removed. Now using the worst fraction works also on Generoso
+                  2) New output file debug.out is introduced for debugging information
+                  3) New variable for controlling print options in debug.out: character*20: pstring
+                  4) New keyword: print_all_short_weights (for pstring(1:1)), NOT YET WORKING
+                  5) New keyword: print_all_electrostatic_weights (for pstring(2:2)), NOT YET WORKING
+                  6) kalman.data file is split into individual files for each
+                     element (kalman.data -> kalman.short.XXX.data) for reading and writing
+                  7) kalmane.data file is split into individual files for each
+                     element (kalmane.data -> kalman.elec.XXX.data) for reading and writing
+08.01.2010 V0_48: 1) module kalmandims removed, now dimesions of Kalman
+                     matrices are passed in the usual way (needed for
+                     generalization to element-specific NNs)
+                  2) all NN architectures now are element-specific,
+                     this requires redimensioning many arrays:
+                     - num_layersshort -> num_layersshort(nelem)
+                     - num_layersewald -> num_layersewald(nelem)
+                     - nodes_short(0:num_layersshort) ->
+                       nodes_short(0:maxnum_layersshort,nelem)
+                     - nodes_ewald(0:num_layersewald) ->
+                       nodes_ewald(0:maxnum_layersewald,nelem)
+                     - windex(2*num_layersshort) -> windex(2*maxnum_layersshort,nelem)
+                     - windexe(2*num_layersewald) -> windexe(2*maxnum_layersewald,nelem)
+                     - kaldim -> kaldim(nelem)
+                     - kaledim -> kaledim(nelem)
+                     - corrdim -> corrdim(nelem)
+                     - corredim -> corredim(nelem)
+                     - dfshortdw(num_weightsshortfree) -> dfshortdw(maxnum_weightsshort)
+                     - dfshortdwsum(num_weightsshortfree,nelem) -> dfshortdwsum(maxnum_weightsshort,nelem)
+                     - deshortdw(num_weightsshortfree,1,nelem) -> deshortdw(maxnum_weightsshort,1,nelem)  
+                     - deshortdwsum(num_weightsshortfree,1,nelem) -> deshortdwsum(maxnum_weightsshort,1,nelem) 
+                     - num_weightsshortfree -> num_weightsshortfree(nelem)
+                     - num_weightsewaldfree -> num_weightsewaldfree(nelem)
+                     - num_weightsshortfixed -> num_weightsshortfixed(nelem)
+                     - num_weightsewaldfixed -> num_weightsewaldfixed(nelem)
+                     - dedwc(num_weightsewald,1) -> dedwc(maxnum_weightsewald,1)
+                     - dedwsumc(num_weightsewald,1,nelem) -> dedwsumc(maxnum_weightsewald,1,nelem)
+                     - actfunc_short(maxnodes_short,num_layersshort) ->
+                       actfunc_short(maxnodes_short,maxnum_layersshort,nelem) 
+                     - actfunc_ewald(maxnodes_ewald,num_layersewald) ->
+                       actfunc_ewald(maxnodes_ewald,maxnum_layersewald,nelem) 
+                     - weights_short(num_weightsshort,nelem) -> weights_short(maxnum_weightsshort,nelem)
+                     - weights_ewald(num_weightsewald,nelem) -> weights_ewald(maxnum_weightsewald,nelem)
+                     - num_weightsshort -> num_weightsshort(nelem)
+                     - num_weightsewald -> num_weightsewald(nelem)
+                     - dedwconstraint(nelem*num_weightsewald) -> allocatable
+                     - wconstraintidx(num_weightsshortfree,nelem) -> wconstraintidx(maxnum_weightsshort,nelem)
+                     - wconstraintidxe(num_weightsewaldfree,nelem) -> wconstraintidxe(maxnum_weightsewald,nelem) 
+                     - wconstraint(num_weightsshort,nelem) -> wconstraint(maxnum_weightsshort,nelem)
+                     - wconstrainte(num_weightsewald,nelem) -> wconstrainte(maxnum_weightsewald,nelem)
+                     For these new dimesions also new variables had to be introduced:
+                     - maxnum_layersshort
+                     - maxnum_layersewald
+                     - maxnum_weightsshort
+                     - maxnum_weightsewald
+                     - maxkaldim
+                     - maxkaledim
+                     - maxcorrdim
+                     - maxcorredim
+                     - deshortdw_temp(num_weightsshortfree(i2))
+                     - dfshortdw_temp(num_weightsshortfree(i4))
+                  3) New keywords for element-specific short range NNs:
+                     - element_input_nodes_short (not yet in)
+                     - element_hidden_layers_short
+                     - element_nodes_short
+                     - element_activation_short
+                     - element_input_nodes_electrostatic (not yet in)
+                     - element_hidden_layers_electrostatic
+                     - element_nodes_electrostatic
+                     - element_activation_electrostatic
+                  This version now compiles and runs without segfaults, but after so many changes bugs are very likely
+13.01.2010 V0_49: 1) fixing weights during optimization is now possible for specific elements 
+                  2) first preparations for reading element-specific symmetry functions from input.nn
+                     New keywords: symfunction_short
+                                   symfunction_electrostatic
+                     New variables: maxnum_funcvalues
+                                    maxnum_funcvaluese
+                     They are now determined in getdimensions.f90
+                     Many arrays have been changed
+                   3) subroutine countfunctions.f90 is not needed anymore
+                   THIS VERSION COMPILES AND RUNS, BUT FITS WITH SHORT RANGE FORCES ARE VERY BAD
+                   probably there are still bugs
+15.01.2010 V0_50:  1) symmetry functions are now read completely from input.nn
+                      (input.sym and inpute.sym are not used anymore)
+                      new keywords:
+                      - symfunction_short 
+                      - element_symfunction_short
+                      - global_symfunction_short
+                      - symfunction_electrostatic 
+                      - element_symfunction_electrostatic
+                      - global_symfunction_electrostatic
+                      new subroutine: sortsymfunctions.f90
+28.01.2010 V0_51: 1) New keyword: print_all_deshortdw (for pstring(3:3)) in debug mode
+                  2) New keyword: print_all_dfshortdw (for pstring(4:4)) in debug mode
+                  3) keyword print_all_short_weights (for pstring(1:1)) is working now in debug mode
+                  4) keyword print_all_electrostatic_weights (for pstring(2:2)) is working now in debug mode
+05.02.2010 V0_52: 1) new keyword: nn_type - for future extensions to different NN types (Behler Parrinello scheme is nn_type 1)
+                  2) new keyword: random_number_type - type of random number generator (variable nran) 
+                  3) new subroutine getpairsymfunctions.f90 for atom pair
+                     symmetry function calculation in mode 1 (called for nn_type=2) 
+                  4) new subroutine random.f90 now contains the random number
+                     generator formerly in initialweights.f90 
+                  5) new random number generators ran1, ran2 and ran3, only
+                     used for initial weights at the moment, all from
+                     numerical recipes (ran0-ran3)
+26.02.2010 V0_53: 1) new keyword: enforce_totcharge (in predicition mode rescale charges to total charge 0)
+                     variable enforcetotcharge (integer, because we can use
+                     that as switch for many rescaling method then)
+                     in prediction mode now also the atomic charges are written to runner.out.
+                  2) new keyword: use_fixed_charges (variable lfixedcharges)
+                     charges for each element are then fixed and have to be
+                     specified in input.nn by the keyword (e.g.) 
+                     fixed_charge Zn 2.0
+                     fixed_charge O -2.0
+                     variable for fixed_charge is fixedcharge(nelem)
+                     CAUTION: it is not clear if the electrostatic forces are ok
+02.03.2010 V0_54: 1) new variable npairs: number of unique element
+                     combinations needed for nn_type 2
+                     npairs is determined in subroutine getdimensions.f90 
+                  2) new variable elempair(npairs,2): contains all element pair combinations
+                     Example: Binary compound AB
+                              elempair(1,1)=A, elempair(1,2)=A => AA
+                              elempair(2,1)=A, elempair(2,2)=B => AB
+                              elempair(3,1)=B, elempair(3,2)=B => BB
+                     elempair is determined in subroutine readinput.f90
+                  3) new keyword: global_pairsymfunction_short
+                     specifies symmetry functions for nn_type 2
+                     The symmetry function is generated for all element pairs.
+                  4) new keyword: pairsymfunction_short A B
+                     specifies symmetry functions for nn_type 2
+                     The symmetry function is generated for one specified element combination only.
+                     A and B are the element symbols of the pair.
+                  5) new variables for defining the numbers of pair symmetry functions:
+                     maxnum_funcvaluesp
+                     num_funcvaluesp(npairs)
+                  6) new variables for the definitions of the pair symmetry functions:
+                     function_typep(maxnum_funcvaluesp,npairs)
+                     funccutoffp(maxnum_funcvaluesp,npairs)
+                     etap(maxnum_funcvaluesp,npairs) 
+                     zetap(maxnum_funcvaluesp,npairs)
+                     lambdap(maxnum_funcvaluesp,npairs)
+                     rshiftp(maxnum_funcvaluesp,npairs)
+                     sympelement(maxnum_funcvaluesp,2,npairs)
+                  7) The pair NNs need new arrays, because nodes_short is dimensioned using nelem 
+                     new variable: maxnodes_pair (from getdimensions.f90)
+                     new variable: maxnum_funcvaluesp
+                     new variable: num_funcvaluesp(npairs)
+                     new variable: nodes_pair(0:maxnum_layerspair,npairs)
+                     new variable: actfunc_pair(maxnodes_pair,maxnum_layerspair,npairs)
+                     new variable: windexp(2*maxnum_layerspair,npairs)
+                     new variable: maxnum_layerspair
+                     new variable: num_layerspair(npairs) 
+                     new variable: num_weightspair(npairs)
+                     new variable: maxnum_weightspair
+                     new variable: weights_pair(maxnum_weightspair,npairs) 
+                     new variable: symfunctionp_list(maxnum_funcvaluesp,max_num_pairs,nblock)
+                  8) New keywords to specify NNs for pairs
+                     global_hidden_layers_pair
+                     global_nodes_pair
+                     global_output_nodes_pair
+                     global_activation_pair
+                     pairsymfunction_short          ! individual function
+                     element_pairsymfunction_short  ! all functions for a specified pair
+                     global_pairsymfunction_short   ! all functions
+                     element_activation_pair
+                     element_hidden_layers_pair
+                     element_nodes_pair
+08.03.2010 V0_55: 1) new keyword: use_systematic_weights_short (variable lsysweights) 
+                     Do not use random weights for the short range NN initially, but evenly distributed weights.
+                  2) new keyword: use_systematic_weights_electrostatic (variable lsysweightse) 
+                     Do not use random weights for the electrostatic NN initially, but evenly distributed weights.
+                  3) stricter criterion for WARNING in case of minvalue=maxvalue for symfunctions is used
+                  4) Some general polishing of the output file
+                  5) ielem/nelem bug removed that prevented a use of RuNNer
+                     for monocomponent systems, if 2 elements were specified in input.nn
+                  6) bug in reading symfunction type 5 in readinput.f90 removed 
+                  7) RMSE of forces and NN forces in trainforces.XXXXXX.out and testforces.XXXXXX.out were wrong (wrong sign) 
+                     This is now fixed by changing from - to + in subroutine
+                     getshortforces.f90 in calculation of nnxyzforce 
+09.03.2010 V0_56: 1) serious BUG in calconefunction.f90 for symmetry function type 3 fixed 
+                  2) change 7) of V55 was wrong, now the sign in
+                     getshortforces.f90 is changed back to the correct form of the older versions
+12.03.2010 V0_57: 1) New keyword: kalman_damp_short
+                     This keyword will reduce the weight change in a Kalman
+                     filter update of the short range energy
+                     Variable: kalman_damp (default 1.0)
+                  2) New keyword: kalman_damp_force
+                     This keyword will reduce the weight change in a Kalman
+                     filter update of the short range force 
+                     Variable: kalman_dampf (default 1.0)
+                  3) New keyword: kalman_damp_charge
+                     This keyword will reduce the weight change in a Kalman
+                     filter update of the charges 
+                     Variable: kalman_dampq (default 1.0)
+                  4) New angular symmetry function type 8 for short range
+                     nn_type 1 and electrostatic NN
+                     Usage:
+                     global_symfunction_short type=8 eta rshift(in degree) funccutoff 
+                     element_symfunction_short central_atom type=8 eta rshift(in degree) funccutoff 
+                     symfunction_short central_atom type=8 neighbor1 neighbor2 eta rshift(in degree) funccutoff 
+                     global_symfunction_electrostatic type=8 eta rshift(in degree) funccutoff 
+                     element_symfunction_electrostatic central_atom type=8 eta rshift(in degree) funccutoff 
+                     symfunction_electrostatic central_atom type=8 neighbor1 neighbor2 eta rshift(in degree) funccutoff 
+16.03.2010 V0_58: 1) Bug in calconefunction.f90 concerning the symmetry
+                     function type 8 fixed. acos(x) is defined from -1 to +1,
+                     but for numerical reasons x can be slightly outside this range causing NaN
+                     numbers
+                     This is now fixed. Further, theta is now converted to degree before being shifted
+                     The same is also fixed in calconefunction_para.f90
+                  2) Synchronization done with Jovans version
+06.04.2010 V0_59: 1) New keyword: print_sensitivity
+                     New variable lsens (logical)
+                     Will print the sensitivity of the output with respect to
+                     the symmetry functions 
+                  2) In mode 3 RuNNer now also prints the atomic energies
+                  3) New subroutines by Jovan incorporated (30.3.2010)
+                  4) subroutine getfixedweights.f90 will now recognize if
+                     elements in constraints do not exist
+                  5) Line with 'Short update point' in debug.out is now only
+                     written in debugging mode (otherwise debug.out can get
+                     huge)
+                  6) trainpoints/testpoints, traincharges/testcharges
+                     trainforces/testforces file can now be written for up to
+                     9999 epochs
+                  7) new subroutine getforcestatistics: print min and max
+                     forces for each element in training set
+08.04.2010 V0_60: 1) kalgainmat matrices are removed everywhere because they
+                     are just needed internally by updatekalman.f90 and
+                     updatekalman_para.f90 
+                     There is no need to store these matrices for restarts.
+                  2) Kalman restart files now also contain iseed,kseed,lseed,mseed
+                     because they might be needed for a clean restart
+                     => still the Kalman restart does not work well, probably
+                     because of numerical issues in the weights and correlation matrix
+                  3) It seems that upon writing weight files and kalman files
+                     precision is lost
+                     Solution: optionally write kalman and weight files
+                     unformatted
+                     It might be useful to switch between formatted and
+                     unformatted files. We can use RuNNer as converter
+                     directly by allowing to specfiy formatted and unformatted
+                     separately for reading and writing
+                     New keyword: read_unformatted (variable lreadunformatted) 
+                     New keyword: write_unformatted (variable lwriteunformatted) 
+                     New subroutines:
+                     getkalmanmatricesunformatted.f90
+                     writekalmanunformatted.f90
+                     readweightsunformatted.f90
+                     writeoptweightsunformatted.f90
+                     writetmpweightsunformatted.f90
+                     writeweightsunformatted.f90
+                  4) New subroutine getenergystatistics.f90
+                     calculating the statistics of the training energies in
+                     mode 2
+                     The corresponding part in getscale.f90 is not used
+                     anymore.
+                  5) New keyword reset_kalman (variable lresetkalman)
+                     Reinitialize the Kalman correlation matrix for each epoch 
+                  6) New versions of paircount.f90 and neighborpair.f90
+                     included
+                  7) Bug fixed in getdimensions:
+                     If the global number of hidden layers was not specified,
+                     readinput crashed. Now getdimensions checks, if the
+                     global number of hidden layers is really given in
+                     input.nn. 
+                  8) Small change in normalization of dfshortdw in
+                     optimize_short_combined.f90
+14.04.2010 V0_61: 1) debugging output added in optimize_short_combined.f90
+                     if debug mode is used
+                  2) New in optimize_short_combined: 
+                     dfshortdw(:)=dfshortdw(:)*scalefactorftemp
+                  3) It seems that a serious problem in fitting the forces
+                     with the Kalman filter is a numerical instability
+                     caused by the interplay between energies and forces.
+                     Solution (?):
+                     We introduce a separate correlation matrix for the
+                     forces.
+                     New variables:
+                     corrfdim, maxcorrfdim (set to 1 if no force fitting is used)
+                     They are determined in getkaldims.f90
+                     corrmatrixf_list
+                     kalmanlambdaf(nelem) copied from kalmanlambda(nelem)
+                     At the moment kalmanlambdaf is not used, because the
+                     fits seem to be better if both kalman filters use the 
+                     same kalmanlambda (significantly!)
+                     New keyword: separate_kalman_short (variable lsepkalman)
+                     If this keyword is used, separate correlation matrices
+                     are used for the short range energies and forces. 
+                     The defauls is .false.
+                  4) If the short range forces are used for fitting, 
+                     currently we update the weights first using the energy
+                     and then we update once for each force of a structure.
+                     Then we proceed to the next structure.
+                     Problem: If we have many atoms we have many forces and
+                     consequently also many updates which cause strong changes
+                     in the weights and the NN can forget the fitted energies
+                     in the meantime.
+                     Question: Is it useful to repeat the energy fit after
+                     each individual force update?
+                     This could be considered as a kind of constraint
+                     enforcing a good reproduction of the energies while the
+                     forces are fitted. 
+                     Of course for each repeated energy update we need the 
+                     current energy error and derivatives.
+                     This will roughly double the costs of the calculations.
+                     New keyword: repeated_energy_update (variable lrepeate)
+                     Default is .false.
+28.04.2010 V0_62: 1) Also for lrepeate now:
+                     errore=errore*kalman_damp
+                  2) New subroutine analyzeinput.f90
+                     Called by fitting.f90 to analyze the structures in
+                     trainstruct.data, implemented if short range NN is used
+                     An analysis of the test data set is also done.
+                  3) Many quantities for the force update are now calculated
+                     only if forcernd>0
+                     => If forces are not used for fitting but the force error
+                     is calculated, this is now much faster
+                  4) Automatic reduction of kalmanthreshold if no points have
+                     been found with a sufficiently high error for update
+                     (fitting.f90)
+                  5) New keyword: max_force A
+                     If the absolute value of a force component in x,y or z 
+                     is larger than A Ha/Bohr
+                     then the force is not used in the update
+                     and it is also not used for the RMSE calculation!!!
+                  6) New keyword: max_energy A
+                     If the energy per atom is larger that A Ha/atom
+                     then the energy is not used in the update
+                     and it is also not used for the RMSE calculation!!!
+                     Purpose: So far the keyword energy_threshold
+                     has been used to eliminate complete data points from 
+                     the training set if the energy is too large. The
+                     disadvantage of this procedure is that not only the
+                     energy but also all forces and charges of this structure
+                     get lost. With the new keyword max_energy the forces and
+                     charges can still be used.
+                  7) Bug fixed in prediction.f90
+                     Arguments of scaledsfunc were wrong, the correct
+                     subroutine must be scaledsfunc_para. Thanks to Gabriele.
+11.05.2010 V0_63: 1) In all mpi_allreduce statements mpi_in_place is used
+                     now to work with new MPI environment
+                  2) Some small bugs for parrallel mode 2 fixed
+                  3) Fixed bug in parallel force calculation in
+                     getshortforces_para.f90
+                  4) Fixed serious bug in prediction.f90 affecting the
+                     short range forces and sensitivity in parallel runs.
+                  5) new parts from Jovan incorporated
+XX.05.2010 V0_64: 1) New checks for inconsistent element specifications in
+                     keywords in readinput.f90
+                     New subroutine: checkelements.f90 
+                  2) bug removed in mpi version of getoneshortforce_para.f90
+                  3) New keyword: calculate_final_force
+                     Purpose: Setting forcernd to zero to get the error of the
+                     forces without really using the forces for updates is
+                     time consuming, because calculating the force error is
+                     demanding.
+                     The new keyword will initiate the calculation of the
+                     force error only in the final epoch to save time.
+                     This keyword is only operational if forces are NOT used
+                     for fitting.
+                     variable: lfinalforce
+
+                  Jovan has to modify paircount (need to define max_num_pairs)
+                  dimension of Kalman parameters needs to be adapted for nn_type 2
+                  
+
+                     FIXME: If one correlation matrix is used for energy and forces,
+                     copying the correlation matrices is a waste of time and wastes also memory
+TODO:
+- Check: Is mpi_in_place an integer in mpi_mod???
+- everything related to forces or force training does not work for symmetry
+  function type 8 for conceptual reasons
+- take into account that deshortdw and dfshortdw can have very different
+  orders of magnitude
+- can we speed up the code making use of the fact that dsfuncdxyz is 0 for
+  most neighbors (e.g. in force fitting?)
+- implement option for mode 3 to read symmetry functions instead of structures
+- get min and max forces for each element in training set and write to runner.out
+- scalefactorf should be adapted to actual structure size in optimize_short_combined.f90
+- identify saturated nodes
+- if nn_type 2 is used reduce the size of arrays for nn_type 1 and vice versa
+- mode 4 should also take into account lscalesym and lcentersym
+- improve efficiency of mode 4 by reading many structures in memory at once and by removing double counting
+- the error function refers to the error, not to the squared error. Should we change that? Don't forget factor 0.5 in error function.
+- complete getstddev.f90 to maybe fix the Levenberg Marquardt algorithm
+- implement the stress tensor for electrostatics
+- include direct links
+- generate a new type of angular symmetry function which converges systematically like type 4 !!!!!!!!!!!!!!!!!!!!!!!1
+- generalize the hardcoded parameter alphagaussian for the Gaussian functions to a user-specified parameter
+- sensitivity of a NN with respect to input nodes (s. P2412) 
+- write minimum and maximum error in each epoch
+- maybe scale symmetry functions from -1 to 1 instead of 0 to 1 because this is the nonlinear range of the activation functions
+- determine lelement also in mode 2 (from function.data then) in subroutine checkstructures.f90 so that the element check in readinput.f90 also
+  works in this case
+
+old TODO:
+------------
+- translate atoms back into cell for PBC when structures are read
+- maybe sort the atoms by element number in readonestructure to avoid
+  unnecessary copying of weight arrays
+- check Coulomb energy for correct unit
+- because of the Coulomb energy the unit of the input energies is not
+  arbitrary anymore
+- carefully derive Kalman equations and check implementation
+- using Soenkes dsprml seems to be essential to get reasonable fits, what is
+  missing in dspr?? (check Kalman Eqs)
+- be careful when using derivatives for fitting. The target quantity of the
+  fit is an atomic energy, so the forces also have to be normalized per atom
+- maybe it is better for the electrostatic weights to first sum the
+  derivatives for all atom charges and then do just one Kalman update per
+structure
+- test exponential and radial basis funcions
+- CHECK scaling of symmetry function derivatives, if they are calculated on
+  the fly. The symmetry functions are thrown away, but not the derivatives
+  (this affects the forces in prediction mode and the calculation of forces in
+fitting, also the stress must be affected)
+- we should not recalculate the neighbor list each time ewaldreal.f90 is
+  called
+

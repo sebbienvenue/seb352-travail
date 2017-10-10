@@ -1,0 +1,527 @@
+abstime.o: abstime.f90
+addatoms.o: addatoms.f90 globaloptions.mod
+addvdw.o: addvdw.f90 fileunits.mod globaloptions.mod \
+ predictionoptions.mod
+adjustkalman_elec.o: adjustkalman_elec.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod mpi_mod.mod
+adjustkalman.o: adjustkalman.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod mpi_mod.mod
+adjustkalman_short.o: adjustkalman_short.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod mpi_mod.mod
+allocatestructures.o: allocatestructures.f90 globaloptions.mod \
+ structures.mod
+analyzeinput.o: analyzeinput.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+analyzeweights.o: analyzeweights.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod
+atomsymfunction1.o: atomsymfunction1.f90 fileunits.mod
+atomsymfunction2.o: atomsymfunction2.f90 fileunits.mod
+atomsymfunction3Andi.o: atomsymfunction3Andi.f90 fileunits.mod
+atomsymfunction3.o: atomsymfunction3.f90 fileunits.mod
+atomsymfunction4.o: atomsymfunction4.f90 fileunits.mod
+atomsymfunction5.o: atomsymfunction5.f90 fileunits.mod
+atomsymfunction6.o: atomsymfunction6.f90 fileunits.mod
+atomsymfunction8.o: atomsymfunction8.f90 fileunits.mod
+atomsymfunction9.o: atomsymfunction9.f90 fileunits.mod
+basismod.o basismod.mod: basismod.f90
+calcfunctions.o: calcfunctions.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod mode1options.mod symfunctions.mod nnshort_atomic.mod \
+ nnshort_pair.mod nnewald.mod nnham.mod structures.mod
+calconecharge.o: calconecharge.f90 fileunits.mod globaloptions.mod \
+ nnewald.mod
+calconecharge_para.o: calconecharge_para.f90 fileunits.mod \
+ globaloptions.mod nnewald.mod
+calconefunction_atomic.o: calconefunction_atomic.f90 fileunits.mod
+calconefunction_pair.o: calconefunction_pair.f90 fileunits.mod \
+ globaloptions.mod symfunctions.mod nnshort_pair.mod
+calconenn.o: calconenn.f90 globaloptions.mod fileunits.mod
+calconeshort.o: calconeshort.f90 fileunits.mod globaloptions.mod \
+ nnshort_atomic.mod
+calconeshortpair.o: calconeshortpair.f90 fileunits.mod globaloptions.mod \
+ nnshort_pair.mod
+calconeshort_para.o: calconeshort_para.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod nnshort_atomic.mod
+calconeshort_parapair.o: calconeshort_parapair.f90 mpi_mod.mod \
+ fileunits.mod globaloptions.mod nnshort_pair.mod
+calcrmse_charge.o: calcrmse_charge.f90 fittingoptions.mod \
+ globaloptions.mod
+calcrmse_energy.o: calcrmse_energy.f90 fileunits.mod globaloptions.mod \
+ fittingoptions.mod
+calcrmse_forces.o: calcrmse_forces.f90 fileunits.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod structures.mod
+checkelement.o: checkelement.f90 fileunits.mod globaloptions.mod
+checkextrapolation.o: checkextrapolation.f90 fileunits.mod \
+ globaloptions.mod
+checkextrapolationpair.o: checkextrapolationpair.f90 fileunits.mod
+checkfiles.o: checkfiles.f90
+checkfunction.o: checkfunction.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+checkinputnn.o: checkinputnn.f90 nnflags.mod globaloptions.mod \
+ inputnncounters.mod fittingoptions.mod predictionoptions.mod \
+ mode1options.mod nnshort_atomic.mod nnewald.mod nnshort_pair.mod \
+ nnham.mod fileunits.mod
+checkonestructure.o: checkonestructure.f90 fileunits.mod \
+ globaloptions.mod
+checkstructures.o: checkstructures.f90 fileunits.mod globaloptions.mod
+cleanup.o: cleanup.f90 mpi_mod.mod fileunits.mod timings.mod \
+ nnshort_atomic.mod nnewald.mod nnshort_pair.mod nnham.mod basismod.mod \
+ symfunctions.mod fittingoptions.mod nnflags.mod globaloptions.mod
+comperrfct.o: comperrfct.f90
+compileinfo.o: compileinfo.f90 fileunits.mod
+coulomb_para.o: coulomb_para.f90 fileunits.mod globaloptions.mod
+countpoints.o: countpoints.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+dcomperrfct.o: dcomperrfct.f90
+deallocatestructures.o: deallocatestructures.f90 globaloptions.mod \
+ structures.mod
+debugweights.o: debugweights.f90 fileunits.mod
+distribute_fittingoptions.o: distribute_fittingoptions.f90 mpi_mod.mod \
+ nnflags.mod globaloptions.mod fittingoptions.mod
+distribute_globaloptions.o: distribute_globaloptions.f90 mpi_mod.mod \
+ nnflags.mod globaloptions.mod
+distribute_predictionoptions.o: distribute_predictionoptions.f90 \
+ mpi_mod.mod predictionoptions.mod
+electrostatic.o: electrostatic.f90 globaloptions.mod fileunits.mod
+electrostatic_para.o: electrostatic_para.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod
+enforcecharge.o: enforcecharge.f90 fileunits.mod globaloptions.mod
+environmentanalysis.o: environmentanalysis.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod nnshort_atomic.mod
+erroranalysis.o: erroranalysis.f90 fileunits.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod
+ewaldenergies_para.o: ewaldenergies_para.f90 fileunits.mod \
+ globaloptions.mod symfunctions.mod nnewald.mod
+ewaldreal.o: ewaldreal.f90 globaloptions.mod
+ewaldreal_mode3.o: ewaldreal_mode3.f90 globaloptions.mod fileunits.mod
+ewaldreal_para.o: ewaldreal_para.f90 globaloptions.mod
+ewaldrecip.o: ewaldrecip.f90 globaloptions.mod
+ewaldrecip_mode3.o: ewaldrecip_mode3.f90 globaloptions.mod fileunits.mod
+ewaldrecip_para.o: ewaldrecip_para.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod
+ewaldself.o: ewaldself.f90 globaloptions.mod
+ewaldself_mode3.o: ewaldself_mode3.f90 globaloptions.mod
+fileunits.o fileunits.mod: fileunits.f90
+findcontradictions.o: findcontradictions.f90 fileunits.mod \
+ fittingoptions.mod globaloptions.mod nnshort_atomic.mod
+fit_density.o: fit_density.f90 fileunits.mod globaloptions.mod \
+ timings.mod
+fit_external.o: fit_external.f90 fileunits.mod globaloptions.mod \
+ timings.mod
+fit_overlap.o: fit_overlap.f90 fileunits.mod globaloptions.mod \
+ timings.mod
+fitting_atomic.o: fitting_atomic.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod symfunctions.mod \
+ nnshort_atomic.mod structures.mod timings.mod
+fitting_electrostatic.o: fitting_electrostatic.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod nnflags.mod globaloptions.mod \
+ symfunctions.mod nnewald.mod structures.mod timings.mod
+fitting_nntb.o: fitting_nntb.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod timings.mod
+fittingoptions.o fittingoptions.mod: fittingoptions.f90
+fitting_short_atomic.o: fitting_short_atomic.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod nnflags.mod globaloptions.mod \
+ symfunctions.mod nnshort_atomic.mod structures.mod timings.mod
+fitting_short_pair.o: fitting_short_pair.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod symfunctions.mod \
+ nnshort_pair.mod structures.mod timings.mod
+generalinfo.o: generalinfo.f90 fileunits.mod
+getallelectrostatic.o: getallelectrostatic.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod symfunctions.mod nnewald.mod
+getallforces.o: getallforces.f90 fileunits.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod symfunctions.mod nnshort_atomic.mod
+getallshortforces.o: getallshortforces.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod globaloptions.mod symfunctions.mod nnshort_atomic.mod
+getallshortforcespair.o: getallshortforcespair.f90 fileunits.mod \
+ globaloptions.mod symfunctions.mod nnshort_pair.mod
+getatom.o: getatom.f90 fileunits.mod nnflags.mod globaloptions.mod \
+ nnshort_atomic.mod
+getatomicoutput_para.o: getatomicoutput_para.f90 fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod symfunctions.mod \
+ nnshort_atomic.mod
+getatom_para.o: getatom_para.f90 mpi_mod.mod fileunits.mod nnflags.mod \
+ globaloptions.mod nnshort_atomic.mod
+getatomsymfunctions.o: getatomsymfunctions.f90 fileunits.mod
+getavcharge.o: getavcharge.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+getchargesatomic.o: getchargesatomic.f90 fileunits.mod globaloptions.mod \
+ nnewald.mod symfunctions.mod timings.mod predictionoptions.mod
+getcharges.o: getcharges.f90 fileunits.mod globaloptions.mod nnewald.mod
+getcoulombdchargedxyz.o: getcoulombdchargedxyz.f90 fileunits.mod \
+ globaloptions.mod nnewald.mod
+getcoulombforces.o: getcoulombforces.f90 fileunits.mod globaloptions.mod \
+ nnewald.mod
+getcoulombforcesone.o: getcoulombforcesone.f90 fileunits.mod \
+ globaloptions.mod
+getcoulombforces_para.o: getcoulombforces_para.f90 fileunits.mod \
+ globaloptions.mod
+getdchargedsfunc.o: getdchargedsfunc.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod nnewald.mod
+getdchargedsfunc_para.o: getdchargedsfunc_para.f90 fileunits.mod \
+ fittingoptions.mod globaloptions.mod nnewald.mod
+getdchargedxyz.o: getdchargedxyz.f90 fileunits.mod globaloptions.mod \
+ nnewald.mod
+getddnodes_values.o: getddnodes_values.f90 fileunits.mod \
+ globaloptions.mod
+getdepairdsfunc.o: getdepairdsfunc.f90 fileunits.mod globaloptions.mod \
+ nnshort_pair.mod
+getdepairdw.o: getdepairdw.f90 fileunits.mod globaloptions.mod \
+ nnshort_pair.mod
+getdeshortdsfunc.o: getdeshortdsfunc.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod nnshort_atomic.mod
+getdeshortdw.o: getdeshortdw.f90 fileunits.mod globaloptions.mod \
+ nnshort_atomic.mod
+getdeshortdw_para.o: getdeshortdw_para.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod nnshort_atomic.mod
+getdfpairdw.o: getdfpairdw.f90 fileunits.mod globaloptions.mod \
+ nnshort_pair.mod
+getdfpairdw_para.o: getdfpairdw_para.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod nnshort_pair.mod
+getdfshortdw.o: getdfshortdw.f90 fileunits.mod globaloptions.mod \
+ nnshort_atomic.mod
+getdfshortdw_para.o: getdfshortdw_para.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod nnshort_atomic.mod
+getdimensions.o: getdimensions.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod nnshort_atomic.mod nnewald.mod nnshort_pair.mod \
+ nnham.mod
+getdnnoutdw.o: getdnnoutdw.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod nnshort_atomic.mod
+get_dnodes_values_dg.o: get_dnodes_values_dg.f90 fileunits.mod
+getdnodes_values.o: getdnodes_values.f90 fileunits.mod globaloptions.mod
+getenergystatistics.o: getenergystatistics.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod
+geterror_atomic.o: geterror_atomic.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod symfunctions.mod \
+ nnshort_atomic.mod structures.mod
+geterror_elec.o: geterror_elec.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod symfunctions.mod \
+ nnewald.mod structures.mod
+geterror_short_atomic.o: geterror_short_atomic.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod nnflags.mod globaloptions.mod \
+ symfunctions.mod nnshort_atomic.mod structures.mod
+geterror_short_pair.o: geterror_short_pair.f90 mpi_mod.mod fileunits.mod \
+ nnflags.mod globaloptions.mod fittingoptions.mod symfunctions.mod \
+ nnshort_pair.mod structures.mod
+geteshort.o: geteshort.f90 fileunits.mod globaloptions.mod \
+ nnshort_atomic.mod
+geteshortpair.o: geteshortpair.f90 fileunits.mod globaloptions.mod \
+ nnshort_pair.mod
+getewaldcorr.o: getewaldcorr.f90 globaloptions.mod
+getewaldenergy.o: getewaldenergy.f90 fileunits.mod globaloptions.mod
+getewald.o: getewald.f90 fileunits.mod globaloptions.mod
+getewaldstress.o: getewaldstress.f90 fileunits.mod
+getfilenames_elec.o: getfilenames_elec.f90 fileunits.mod \
+ globaloptions.mod fittingoptions.mod
+getfilenames.o: getfilenames.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod
+getfilenamespair.o: getfilenamespair.f90 fileunits.mod globaloptions.mod \
+ fittingoptions.mod
+getfixedweights.o: getfixedweights.f90 fileunits.mod globaloptions.mod
+getforces.o: getforces.f90 fileunits.mod fittingoptions.mod nnflags.mod \
+ globaloptions.mod nnshort_atomic.mod
+getforcestatistics.o: getforcestatistics.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod
+getidx.o: getidx.f90 fittingoptions.mod globaloptions.mod
+getkaldims_elec.o: getkaldims_elec.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod
+getkaldims.o: getkaldims.f90 mpi_mod.mod fileunits.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod
+getkaldims_short.o: getkaldims_short.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod
+getkalmanmatrices_elec.o: getkalmanmatrices_elec.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod nnflags.mod globaloptions.mod
+getkalmanmatrices.o: getkalmanmatrices.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod
+getkalmanmatrices_short.o: getkalmanmatrices_short.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod nnflags.mod globaloptions.mod
+getlistdim.o: getlistdim.f90 nnflags.mod globaloptions.mod fileunits.mod
+getmaxnumneighbors.o: getmaxnumneighbors.f90 fileunits.mod
+getneighboridxatomic.o: getneighboridxatomic.f90 fileunits.mod
+getneighboridxatomic_para.o: getneighboridxatomic_para.f90 fileunits.mod
+getneighborsatomic.o: getneighborsatomic.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod
+getneighborsatomic_para.o: getneighborsatomic_para.f90 mpi_mod.mod \
+ fileunits.mod globaloptions.mod
+getnumatomsall.o: getnumatomsall.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+getnumpairs.o: getnumpairs.f90 fileunits.mod globaloptions.mod
+getonededb.o: getonededb.f90 fileunits.mod
+getonededw_atomic.o: getonededw_atomic.f90 fileunits.mod \
+ globaloptions.mod
+getonededw.o: getonededw.f90 fileunits.mod globaloptions.mod
+getoneshortforcepair_para.o: getoneshortforcepair_para.f90 fileunits.mod \
+ globaloptions.mod nnshort_pair.mod
+getoneshortforce_para.o: getoneshortforce_para.f90 mpi_mod.mod \
+ fileunits.mod globaloptions.mod nnshort_atomic.mod
+getonestructure.o: getonestructure.f90 fileunits.mod globaloptions.mod
+getpointindex.o: getpointindex.f90 fileunits.mod globaloptions.mod \
+ fittingoptions.mod
+getreclat.o: getreclat.f90
+getrmse_elec.o: getrmse_elec.f90 fileunits.mod globaloptions.mod
+getrmse.o: getrmse.f90 fileunits.mod nnflags.mod globaloptions.mod
+getrmse_short.o: getrmse_short.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+getscale.o: getscale.f90 fileunits.mod globaloptions.mod structures.mod
+getscreenfunctionforelectrostatics.o: \
+ getscreenfunctionforelectrostatics.f90 globaloptions.mod
+getsensitivity_atomic.o: getsensitivity_atomic.f90 mpi_mod.mod \
+ nnflags.mod globaloptions.mod fileunits.mod symfunctions.mod \
+ nnshort_atomic.mod nnewald.mod structures.mod
+getsensitivity_elec.o: getsensitivity_elec.f90 mpi_mod.mod \
+ globaloptions.mod fileunits.mod symfunctions.mod nnshort_atomic.mod \
+ nnewald.mod structures.mod
+getsensitivity_short.o: getsensitivity_short.f90 mpi_mod.mod nnflags.mod \
+ globaloptions.mod fileunits.mod symfunctions.mod nnshort_atomic.mod \
+ structures.mod
+getshortatomic.o: getshortatomic.f90 fileunits.mod globaloptions.mod \
+ nnshort_atomic.mod symfunctions.mod timings.mod predictionoptions.mod
+getshortenergies_para.o: getshortenergies_para.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod globaloptions.mod symfunctions.mod \
+ nnshort_atomic.mod
+getshortenergies_parapair.o: getshortenergies_parapair.f90 fileunits.mod \
+ fittingoptions.mod globaloptions.mod symfunctions.mod nnshort_pair.mod
+getshortforces.o: getshortforces.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod nnshort_atomic.mod
+getshortforcespair.o: getshortforcespair.f90 fileunits.mod \
+ globaloptions.mod nnshort_pair.mod
+getshortforces_parapair.o: getshortforces_parapair.f90 fileunits.mod \
+ globaloptions.mod nnshort_pair.mod
+getstructure_mode3.o: getstructure_mode3.f90 fileunits.mod mpi_mod.mod \
+ globaloptions.mod
+getstructures.o: getstructures.f90 fileunits.mod globaloptions.mod \
+ structures.mod
+getstructures_mixed.o: getstructures_mixed.f90 fileunits.mod \
+ globaloptions.mod structures.mod
+getsymmetryfunctions.o: getsymmetryfunctions.f90 mpi_mod.mod \
+ fileunits.mod nnflags.mod globaloptions.mod mode1options.mod \
+ symfunctions.mod nnshort_atomic.mod nnshort_pair.mod nnewald.mod \
+ nnham.mod structures.mod timings.mod
+getvdwparams.o: getvdwparams.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+getvolume.o: getvolume.f90 fileunits.mod
+getwconstraintidx.o: getwconstraintidx.f90 mpi_mod.mod fileunits.mod \
+ nnflags.mod globaloptions.mod fittingoptions.mod
+getweightfilenames_elec.o: getweightfilenames_elec.f90 globaloptions.mod \
+ fittingoptions.mod
+getweightfilenames.o: getweightfilenames.f90 nnflags.mod \
+ globaloptions.mod fittingoptions.mod
+getwshift.o: getwshift.f90
+globaloptions.o globaloptions.mod: globaloptions.f90
+initialcorrmatrix.o: initialcorrmatrix.f90
+initialization.o: initialization.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+initializecounters.o: initializecounters.f90 inputnncounters.mod
+initialweights_elec.o: initialweights_elec.f90 fittingoptions.mod \
+ globaloptions.mod
+initialweights.o: initialweights.f90 fittingoptions.mod nnflags.mod \
+ globaloptions.mod
+initialweights_short.o: initialweights_short.f90 fittingoptions.mod \
+ nnflags.mod globaloptions.mod
+initmode3.o: initmode3.f90 fileunits.mod mpi_mod.mod nnflags.mod \
+ globaloptions.mod symfunctions.mod nnewald.mod nnshort_atomic.mod \
+ nnshort_pair.mod predictionoptions.mod
+initnn.o: initnn.f90 mpi_mod.mod fileunits.mod fittingoptions.mod \
+ mode1options.mod predictionoptions.mod nnflags.mod globaloptions.mod \
+ symfunctions.mod timings.mod nnshort_atomic.mod nnewald.mod \
+ nnshort_pair.mod nnham.mod basismod.mod
+inputnncounters.o inputnncounters.mod: inputnncounters.f90
+inputnndefaults.o: inputnndefaults.f90 nnflags.mod globaloptions.mod \
+ mode1options.mod predictionoptions.mod fittingoptions.mod \
+ nnshort_atomic.mod nnewald.mod nnshort_pair.mod nnham.mod
+main.o: main.f90 fileunits.mod nnflags.mod globaloptions.mod mpi_mod.mod \
+ timings.mod
+mode1.o: mode1.f90 mpi_mod.mod fileunits.mod nnflags.mod \
+ globaloptions.mod mode1options.mod nnshort_atomic.mod nnshort_pair.mod \
+ nnham.mod nnewald.mod symfunctions.mod structures.mod timings.mod
+mode1options.o mode1options.mod: mode1options.f90
+mode2.o: mode2.f90 fileunits.mod timings.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod
+mpifitdistribution.o: mpifitdistribution.f90 mpi_mod.mod fileunits.mod
+neighbor.o: neighbor.f90 globaloptions.mod
+neighborpair_para.o: neighborpair_para.f90 fileunits.mod \
+ globaloptions.mod
+neighbor_para.o: neighbor_para.f90 globaloptions.mod fileunits.mod
+neighbor_para_short.o: neighbor_para_short.f90 globaloptions.mod \
+ fileunits.mod
+nguyenwidrowweights.o: nguyenwidrowweights.f90 fileunits.mod
+nnewald.o nnewald.mod: nnewald.f90
+nnflags.o nnflags.mod: nnflags.f90 mpi_mod.mod
+nnham.o nnham.mod: nnham.f90
+nnshort_atomic.o nnshort_atomic.mod: nnshort_atomic.f90
+nnshort_pair.o nnshort_pair.mod: nnshort_pair.f90
+nuccharge.o: nuccharge.f90
+optimize_atomic.o: optimize_atomic.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod symfunctions.mod \
+ nnshort_atomic.mod structures.mod timings.mod
+optimize_ewald.o: optimize_ewald.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod globaloptions.mod nnewald.mod structures.mod \
+ timings.mod
+optimize_short_combined.o: optimize_short_combined.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod globaloptions.mod symfunctions.mod \
+ nnshort_atomic.mod structures.mod timings.mod
+optimize_short_combinedpair.o: optimize_short_combinedpair.f90 \
+ mpi_mod.mod fileunits.mod fittingoptions.mod globaloptions.mod \
+ symfunctions.mod nnshort_pair.mod structures.mod
+paircount.o: paircount.f90 fileunits.mod globaloptions.mod
+pairsymfunction1.o: pairsymfunction1.f90 fileunits.mod
+pairsymfunction2.o: pairsymfunction2.f90 fileunits.mod
+pairsymfunction3.o: pairsymfunction3.f90 fileunits.mod
+pairsymfunction4.o: pairsymfunction4.f90 fileunits.mod
+pairsymfunction5.o: pairsymfunction5.f90 fileunits.mod
+pairsymfunction6.o: pairsymfunction6.f90 fileunits.mod
+precondition_atomic.o: precondition_atomic.f90 mpi_mod.mod fileunits.mod \
+ nnflags.mod globaloptions.mod fittingoptions.mod symfunctions.mod \
+ structures.mod nnshort_atomic.mod
+precondition.o: precondition.f90 mpi_mod.mod fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod symfunctions.mod structures.mod \
+ nnewald.mod nnshort_atomic.mod
+precondition_short_atomic.o: precondition_short_atomic.f90 mpi_mod.mod \
+ fileunits.mod nnflags.mod globaloptions.mod fittingoptions.mod \
+ symfunctions.mod structures.mod nnewald.mod nnshort_atomic.mod
+precondition_short_pair.o: precondition_short_pair.f90 mpi_mod.mod \
+ fileunits.mod fittingoptions.mod nnflags.mod globaloptions.mod \
+ structures.mod symfunctions.mod nnshort_pair.mod
+predictelec.o: predictelec.f90 mpi_mod.mod fileunits.mod nnflags.mod \
+ globaloptions.mod symfunctions.mod nnewald.mod timings.mod \
+ predictionoptions.mod
+predict.o: predict.f90 mpi_mod.mod fileunits.mod predictionoptions.mod \
+ nnflags.mod globaloptions.mod symfunctions.mod timings.mod nnewald.mod \
+ nnshort_atomic.mod nnshort_pair.mod
+predictionelectrostatic.o: predictionelectrostatic.f90 globaloptions.mod \
+ fileunits.mod predictionoptions.mod nnewald.mod timings.mod
+predictionoptions.o predictionoptions.mod: predictionoptions.f90
+predictionshortatomic.o: predictionshortatomic.f90 mpi_mod.mod \
+ fileunits.mod predictionoptions.mod nnflags.mod globaloptions.mod \
+ symfunctions.mod timings.mod nnshort_atomic.mod
+predictionshortpair.o: predictionshortpair.f90 mpi_mod.mod fileunits.mod \
+ predictionoptions.mod nnflags.mod globaloptions.mod symfunctions.mod \
+ nnshort_pair.mod timings.mod
+preparemd.o: preparemd.f90 nnflags.mod globaloptions.mod fileunits.mod \
+ predictionoptions.mod
+printinputnn.o: printinputnn.f90 fileunits.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod mode1options.mod predictionoptions.mod \
+ nnshort_atomic.mod nnewald.mod nnshort_pair.mod nnham.mod \
+ inputnncounters.mod basismod.mod
+printtimings.o: printtimings.f90 mpi_mod.mod fileunits.mod nnflags.mod \
+ globaloptions.mod timings.mod
+random.o: random.f90
+readatomenergies.o: readatomenergies.f90 fileunits.mod globaloptions.mod
+readbasis.o: readbasis.f90 fileunits.mod globaloptions.mod basismod.mod
+readelementlayersatomic.o: readelementlayersatomic.f90 fileunits.mod \
+ globaloptions.mod
+readelementlayerspair.o: readelementlayerspair.f90 fileunits.mod \
+ globaloptions.mod
+readforces.o: readforces.f90 globaloptions.mod structures.mod
+readforces_mixed.o: readforces_mixed.f90 fileunits.mod globaloptions.mod \
+ structures.mod
+readfunctions.o: readfunctions.f90 fileunits.mod globaloptions.mod \
+ structures.mod
+readfunctions_mixed.o: readfunctions_mixed.f90 fileunits.mod \
+ globaloptions.mod structures.mod
+readinput.o: readinput.f90 mpi_mod.mod fileunits.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod mode1options.mod predictionoptions.mod \
+ symfunctions.mod nnshort_atomic.mod nnewald.mod nnshort_pair.mod \
+ nnham.mod inputnncounters.mod basismod.mod
+readkeywords.o: readkeywords.f90 fileunits.mod fittingoptions.mod \
+ nnflags.mod globaloptions.mod mode1options.mod predictionoptions.mod \
+ nnshort_atomic.mod nnewald.mod nnshort_pair.mod nnham.mod \
+ inputnncounters.mod
+readonestructure.o: readonestructure.f90 fileunits.mod globaloptions.mod
+readscale.o: readscale.f90 fileunits.mod globaloptions.mod
+readstructures.o: readstructures.f90 fileunits.mod globaloptions.mod \
+ structures.mod
+readsymfunctionatomic.o: readsymfunctionatomic.f90 fileunits.mod \
+ globaloptions.mod
+readsymfunctionelementatomic.o: readsymfunctionelementatomic.f90 \
+ fileunits.mod globaloptions.mod
+readsymfunctionelementpair.o: readsymfunctionelementpair.f90 \
+ fileunits.mod globaloptions.mod
+readsymfunctionglobalatomic.o: readsymfunctionglobalatomic.f90 \
+ fileunits.mod globaloptions.mod
+readsymfunctionglobalpair.o: readsymfunctionglobalpair.f90 fileunits.mod \
+ globaloptions.mod
+readsymfunctionpair.o: readsymfunctionpair.f90 fileunits.mod \
+ globaloptions.mod
+readweights.o: readweights.f90 fileunits.mod globaloptions.mod
+removeatoms.o: removeatoms.f90 globaloptions.mod
+scaledsfunc.o: scaledsfunc.f90 fileunits.mod globaloptions.mod
+scaledsfuncpair.o: scaledsfuncpair.f90 fileunits.mod globaloptions.mod \
+ nnshort_pair.mod
+scaledsfuncpair_para.o: scaledsfuncpair_para.f90 fileunits.mod \
+ globaloptions.mod nnshort_pair.mod
+scaledsfunc_para.o: scaledsfunc_para.f90 fileunits.mod globaloptions.mod
+scalesym.o: scalesym.f90 fileunits.mod globaloptions.mod
+scalesymfit_para.o: scalesymfit_para.f90 mpi_mod.mod fileunits.mod \
+ globaloptions.mod structures.mod
+scalesymfit_parapair.o: scalesymfit_parapair.f90 mpi_mod.mod \
+ fileunits.mod globaloptions.mod nnshort_pair.mod structures.mod
+scalesymone.o: scalesymone.f90 fileunits.mod globaloptions.mod
+scalesympair.o: scalesympair.f90 fileunits.mod globaloptions.mod \
+ nnshort_pair.mod
+scalesympair_para.o: scalesympair_para.f90 fileunits.mod \
+ globaloptions.mod nnshort_pair.mod
+scalesym_para.o: scalesym_para.f90 fileunits.mod globaloptions.mod
+select.o: select.f90
+setglobalactivation.o: setglobalactivation.f90 fileunits.mod
+sort2realint.o: sort2realint.f90
+sortchargeerror.o: sortchargeerror.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod structures.mod
+sortelements.o: sortelements.f90 fileunits.mod globaloptions.mod
+sorteshorterror.o: sorteshorterror.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod
+sortforceerror.o: sortforceerror.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod structures.mod
+sortint.o: sortint.f90
+sortpairsymfunctions.o: sortpairsymfunctions.f90 fileunits.mod
+sortsymfunctions.o: sortsymfunctions.f90 fileunits.mod globaloptions.mod
+splitcoulombforces.o: splitcoulombforces.f90 fileunits.mod \
+ globaloptions.mod
+structurecount.o: structurecount.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod
+structures.o structures.mod: structures.f90 globaloptions.mod
+symfunctions.o symfunctions.mod: symfunctions.f90 nnflags.mod \
+ globaloptions.mod nnflags.mod globaloptions.mod mpi_mod.mod nnflags.mod \
+ globaloptions.mod
+systematicweights.o: systematicweights.f90 fileunits.mod
+timings.o timings.mod: timings.f90
+translate.o: translate.f90 globaloptions.mod
+updatekalman.o: updatekalman.f90 fileunits.mod
+updatekalman_para.o: updatekalman_para.f90 mpi_mod.mod fileunits.mod
+updateshort.o: updateshort.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod globaloptions.mod nnshort_atomic.mod
+updatesteepest.o: updatesteepest.f90 fileunits.mod
+writeatomicsymfunctions.o: writeatomicsymfunctions.f90 fileunits.mod \
+ globaloptions.mod structures.mod
+writeepochtime.o: writeepochtime.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod timings.mod
+writefitstat_elec.o: writefitstat_elec.f90 globaloptions.mod \
+ fileunits.mod
+writefitstat.o: writefitstat.f90 nnflags.mod globaloptions.mod \
+ fileunits.mod
+writefitstat_short.o: writefitstat_short.f90 nnflags.mod \
+ globaloptions.mod fileunits.mod
+writeheader.o: writeheader.f90 mpi_mod.mod fileunits.mod
+writeinputdata.o: writeinputdata.f90 fileunits.mod globaloptions.mod
+writekalman_elec.o: writekalman_elec.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod globaloptions.mod
+writekalman.o: writekalman.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod
+writekalman_short.o: writekalman_short.f90 mpi_mod.mod fileunits.mod \
+ fittingoptions.mod nnflags.mod globaloptions.mod
+writeoptfit_atomic.o: writeoptfit_atomic.f90 fileunits.mod nnflags.mod \
+ globaloptions.mod fittingoptions.mod
+writeoptfit_elec.o: writeoptfit_elec.f90 fileunits.mod globaloptions.mod \
+ fittingoptions.mod
+writeoptfit_short.o: writeoptfit_short.f90 fileunits.mod \
+ globaloptions.mod fittingoptions.mod
+writeoptweights.o: writeoptweights.f90 fileunits.mod globaloptions.mod
+writepairsymfunctions.o: writepairsymfunctions.f90 fileunits.mod \
+ globaloptions.mod structures.mod
+writepdb.o: writepdb.f90 fileunits.mod globaloptions.mod
+writepov.o: writepov.f90 fileunits.mod globaloptions.mod
+writepwscf.o: writepwscf.f90 fileunits.mod globaloptions.mod
+writescale.o: writescale.f90 fileunits.mod globaloptions.mod
+writetmpweights.o: writetmpweights.f90 fileunits.mod globaloptions.mod
+writeweights.o: writeweights.f90 fileunits.mod fittingoptions.mod \
+ globaloptions.mod
+writexyz.o: writexyz.f90 fileunits.mod globaloptions.mod
+zerotime.o: zerotime.f90
