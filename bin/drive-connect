@@ -1,0 +1,9 @@
+#!/bin/bash
+clear
+
+if [ ! -d ~/gdrive ]; then
+mkdir ~/gdrive
+fi
+
+google-drive-ocamlfuse ~/gdrive
+
